@@ -3,9 +3,12 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Layout from "./components/Layout";
 import HomePage from "./components/HomePage";
 
-{ /* Other pages */}
+{
+  /* Other pages */
+}
 import AboutPage from "./pages/AboutPage";
 import PatronsPage from "./pages/PatronsPage";
+import OfficeBearersPage from "./pages/OfficeBearersPage";
 
 function App() {
   return (
@@ -15,6 +18,7 @@ function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/about" element={<AboutPage />} />
           <Route path="/patrons" element={<PatronsPage />} />
+          <Route path="/officebearers" element={<OfficeBearersPage />} />
         </Route>
       </Routes>
     </BrowserRouter>
