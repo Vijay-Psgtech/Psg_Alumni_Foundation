@@ -5,6 +5,7 @@ import HomePage from "./components/HomePage";
 
 { /* Other pages */}
 import AboutPage from "./pages/AboutPage";
+import PatronsPage from "./pages/PatronsPage";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Route path="" element={<Layout />}>
           <Route path="/" element={<HomePage />} />
           <Route path="/about" element={<AboutPage />} />
+          <Route path="/patrons" element={<PatronsPage />} />
         </Route>
       </Routes>
     </BrowserRouter>
