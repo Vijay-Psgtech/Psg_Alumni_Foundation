@@ -65,7 +65,7 @@ export default function NavBar() {
           />
           <span className="text-2xl font-bold bg-linear-to-r from-yellow-300 to-amber-500 
             text-transparent bg-clip-text drop-shadow-[0_0_12px_rgba(255,200,40,0.35)]">
-            PSG Tech Alumni Association
+            PSG Tech Alumni Foundation
           </span>
         </Link>
 
