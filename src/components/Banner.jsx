@@ -119,13 +119,13 @@ const Banner = () => {
         </motion.div>
 
         {/* Stats Section */}
-        <motion.div
+        {/* <motion.div
           variants={itemVariants}
           className="mt-16 grid grid-cols-2 gap-6 sm:gap-8"
         >
           {[
-            { number: "5K+", label: "Alumni Members" },
-            { number: "100+", label: "Active Chapters" },
+            { number: "30K+", label: "Alumni Members" },
+            { number: "50+", label: "Active Chapters" },
             // { number: "$1M+", label: "Donations" },
           ].map((stat, index) => (
             <motion.div
@@ -139,7 +139,7 @@ const Banner = () => {
               <p className="text-sm text-gray-400">{stat.label}</p>
             </motion.div>
           ))}
-        </motion.div>
+        </motion.div> */}
       </motion.div>
 
       {/* Scroll Indicator */}
