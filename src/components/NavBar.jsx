@@ -22,6 +22,7 @@ export default function NavBar() {
         { label: "OfficeBearers", path: "/officebearers" },
       ],
     },
+    { label: "Objectives", path: "/objectives" },
     // { label: "Notable Alumni", path: "/alumni" },
     // { label: "Events", path: "/events" },
     // { label: "Gallery", path: "/gallery" },

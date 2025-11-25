@@ -11,6 +11,7 @@ import AboutPage from "./pages/AboutPage";
 import PatronsPage from "./pages/PatronsPage";
 import OfficeBearersPage from "./pages/OfficeBearersPage";
 import ContactUsPage from "./pages/ContactUsPage";
+import Objectives from "./pages/Objectives";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
           <Route path="/patrons" element={<PatronsPage />} />
           <Route path="/officebearers" element={<OfficeBearersPage />} />
           <Route path="/contact" element={<ContactUsPage />} />
+          <Route path="/objectives" element={<Objectives />} />
         </Route>
       </Routes>
     </BrowserRouter>
