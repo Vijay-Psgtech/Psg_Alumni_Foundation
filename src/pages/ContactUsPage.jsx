@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import {
   Mail,
   Phone,
@@ -7,240 +7,388 @@ import {
   Facebook,
   Instagram,
   Linkedin,
-  ExternalLink
+  Send,
+  CheckCircle,
 } from "lucide-react";
 import { motion } from "framer-motion";
 
 export default function ContactUsPage() {
   const ALUMNI_EMAIL = "alumni@psgtech.ac.in";
+  const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: { staggerChildren: 0.1, delayChildren: 0.1 },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.6, ease: "easeOut" },
+    },
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setLoading(true);
+    const form = new FormData(e.target);
+
+    setTimeout(() => {
+      setLoading(false);
+      setSubmitted(true);
+      setTimeout(() => {
+        setSubmitted(false);
+        e.target.reset();
+      }, 3000);
+    }, 1500);
+  };
+
+  const contactInfo = [
+    {
+      icon: Mail,
+      label: "Email",
+      value: ALUMNI_EMAIL,
+      href: `mailto:${ALUMNI_EMAIL}`,
+    },
+    {
+      icon: Phone,
+      label: "Phone",
+      value: "0422 4344474 (Ext: 4474)",
+      href: "tel:+914224344474",
+    },
+    {
+      icon: MapPin,
+      label: "Address",
+      value: "PSG College of Technology, Avinashi Road, Coimbatore, TN",
+      href: null,
+    },
+  ];
+
+  const socialLinks = [
+    { icon: Facebook, label: "Facebook", color: "hover:text-blue-600" },
+    { icon: Instagram, label: "Instagram", color: "hover:text-pink-600" },
+    { icon: Linkedin, label: "LinkedIn", color: "hover:text-blue-700" },
+  ];
 
   return (
-    <main className="min-h-full bg-blend-color-to-b from-slate-50 via-white to-blue-50 text-slate-900 p-34">
-      {/* Soft Background */}
-      <div className="pointer-events-none absolute inset-0 -z-10">
-        <div className="absolute left-10 top-20 w-72 h-72 bg-blue-100/40 rounded-full blur-3xl" />
-        <div className="absolute right-10 bottom-20 w-96 h-96 bg-indigo-100/30 rounded-full blur-3xl" />
+    <main className="min-h-screen bg-gradient-to-b from-slate-50 via-white to-slate-50 pt-20 pb-12 text-slate-900">
+      {/* Decorative Background */}
+      <div className="fixed inset-0 -z-10 overflow-hidden">
+        <div className="absolute top-20 left-0 w-96 h-96 bg-blue-100/20 rounded-full blur-3xl" />
+        <div className="absolute bottom-20 right-0 w-96 h-96 bg-purple-100/20 rounded-full blur-3xl" />
       </div>
 
-      <section className="max-w-7xl mx-auto ">
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
-        <header className="text-center mb-14">
-          <motion.div
-            initial={{ opacity: 0, y: -8 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-          >
-            <div className="inline-flex items-center gap-4 bg-blue-700/60 backdrop-blur px-6 py-4 rounded-full shadow border border-white/60" >
-              <svg
-                width="40"
-                height="40"
-                viewBox="0 0 24 24"
-                className="text-sky-700"
-                fill="none"
-              >
-                <path
-                  d="M12 2C8.1 2 5 5.1 5 9c0 5 7 11 7 11s7-6 7-11c0-3.9-3.1-7-7-7z"
-                  stroke="currentColor"
-                  strokeWidth="1.3"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-                <circle cx="12" cy="9" r="2.2" fill="currentColor" />
-              </svg>
-              <h1 className="text-3xl md:text-4x  font-bold text-sky-800 tracking-tight">
-                Contact Alumni Office
-              </h1>
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
+          className="text-center mb-16 sm:mb-20"
+        >
+          <motion.div variants={itemVariants}>
+            <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-500 rounded-2xl mb-6 shadow-lg">
+              <Mail size={32} className="text-white" />
             </div>
-
-            <p className="mt-4 text-slate-600 max-w-xl mx-auto text-base md:text-lg">
-              Reach out to the alumni office for events, support, records and
-              collaborations. We respond during business hours.
-            </p>
           </motion.div>
-        </header>
+
+          <motion.h1
+            variants={itemVariants}
+            className="text-4xl sm:text-5xl md:text-6xl font-bold text-slate-900 mb-4 leading-tight"
+          >
+            Get in{" "}
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600">
+              Touch
+            </span>
+          </motion.h1>
+
+          <motion.p
+            variants={itemVariants}
+            className="text-lg sm:text-xl text-slate-600 max-w-2xl mx-auto"
+          >
+            Reach out to the alumni office for events, support, records and
+            collaborations. We respond during business hours.
+          </motion.p>
+        </motion.div>
 
         {/* Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
-          {/* LEFT COLUMN */}
-          <aside className="lg:col-span-5">
-            <motion.div
-              initial={{ opacity: 0, scale: 0.96 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.6 }}
-              className="rounded-2xl bg-white/70 backdrop-blur p-8 border border-sky-100 shadow-lg"
-            >
-              {/* Image */}
-              <div className="rounded-xl overflow-hidden mb-6">
-                <img
-                  src="src/assets/Images/staffImages/a71f81aa117e4e05b149115e91604733.png"
-                  alt="PSG Alumni Office"
-                  className="w-full h-34 md:h-32 object-cover"
-                />
-              </div>
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          className="grid grid-cols-1 lg:grid-cols-5 gap-8 lg:gap-10"
+        >
+          {/* LEFT COLUMN - Contact Info */}
+          <motion.aside variants={itemVariants} className="lg:col-span-2">
+            <div className="relative group">
+              {/* Gradient Border */}
+              <div className="absolute -inset-0.5 bg-gradient-to-br from-blue-500 to-purple-500 rounded-3xl blur opacity-20 group-hover:opacity-40 transition duration-500 -z-10" />
 
-              {/* Contact Block */}
-              <h2 className="text-xl font-semibold text-slate-800 mb-4">
-                CONTACT ALUMNI OFFICE
-              </h2>
-
-              {/* Email */}
-              <div className="flex items-start gap-4 mb-4">
-                <span className="p-3 rounded-lg bg-sky-50 text-sky-600">
-                  <Mail size={20} />
-                </span>
-                <div>
-                  <p className="text-xs text-slate-500">Email</p>
-                  <a
-                    href={`mailto:${ALUMNI_EMAIL}`}
-                    className="text-sky-700 font-medium hover:underline"
-                  >
-                    {ALUMNI_EMAIL}
-                  </a>
+              <div className="rounded-3xl bg-white/60 backdrop-blur-xl p-8 sm:p-10 border border-white/20 shadow-xl">
+                {/* Image */}
+                <div className="rounded-2xl overflow-hidden mb-8 h-48 sm:h-56">
+                  <img
+                    src="src/assets/Images/staffImages/a71f81aa117e4e05b149115e91604733.png"
+                    alt="PSG Alumni Office"
+                    className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+                  />
                 </div>
-              </div>
 
-              {/* Phone */}
-              <div className="flex items-start gap-4 mb-4">
-                <span className="p-3 rounded-lg bg-sky-50 text-sky-600">
-                  <Phone size={20} />
-                </span>
-                <div>
-                  <p className="text-xs text-slate-500">Phone</p>
-                  <a
-                    href="tel:+914224344474"
-                    className="text-sky-700 font-medium hover:underline"
-                  >
-                    0422 4344474{" "}
-                    <span className="text-xs text-slate-400">(Ext: 4474)</span>
-                  </a>
+                {/* Contact Block */}
+                <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 mb-8">
+                  Contact Info
+                </h2>
+
+                {/* Contact Items */}
+                <div className="space-y-6">
+                  {contactInfo.map((info, idx) => {
+                    const Icon = info.icon;
+                    return (
+                      <motion.div
+                        key={idx}
+                        whileHover={{ x: 5 }}
+                        className="flex items-start gap-4 group/item"
+                      >
+                        <div className="p-3 rounded-lg bg-gradient-to-br from-blue-100 to-purple-100 text-blue-600 flex-shrink-0 group-hover/item:scale-110 transition-transform">
+                          <Icon size={20} />
+                        </div>
+                        <div className="flex-1 min-w-0">
+                          <p className="text-xs sm:text-sm font-semibold text-slate-500 uppercase tracking-wider mb-1">
+                            {info.label}
+                          </p>
+                          {info.href ? (
+                            <a
+                              href={info.href}
+                              className="text-sm sm:text-base text-slate-800 font-medium hover:text-blue-600 transition-colors break-all"
+                            >
+                              {info.value}
+                            </a>
+                          ) : (
+                            <p className="text-sm sm:text-base text-slate-800 font-medium leading-relaxed">
+                              {info.value}
+                            </p>
+                          )}
+                        </div>
+                      </motion.div>
+                    );
+                  })}
                 </div>
-              </div>
 
-              {/* Address */}
-              <div className="flex items-start gap-4 mb-4">
-                <span className="p-3 rounded-lg bg-sky-50 text-sky-600">
-                  <MapPin size={20} />
-                </span>
+                {/* Divider */}
+                <div className="my-8 h-px bg-gradient-to-r from-transparent via-slate-300 to-transparent" />
+
+                {/* Social Icons */}
                 <div>
-                  <p className="text-xs text-slate-500">Address</p>
-                  <p className="text-slate-700 text-sm leading-relaxed">
-                    PSG College of Technology,
-                    <br />
-                    Avinashi Road, Coimbatore, TN.
+                  <p className="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-4">
+                    Follow Us
                   </p>
+                  <div className="flex gap-3 flex-wrap">
+                    {socialLinks.map((social, idx) => {
+                      const Icon = social.icon;
+                      return (
+                        <motion.button
+                          key={idx}
+                          whileHover={{ scale: 1.1, y: -2 }}
+                          whileTap={{ scale: 0.95 }}
+                          className={`p-3 rounded-full bg-slate-100 text-slate-600 transition-all duration-300 ${social.color} hover:bg-slate-200`}
+                          title={social.label}
+                        >
+                          <Icon size={18} />
+                        </motion.button>
+                      );
+                    })}
+                  </div>
                 </div>
               </div>
+            </div>
+          </motion.aside>
 
-              {/* Social Icons */}
-              <div className="flex gap-3 mt-4">
-                <button className="px-3 py-2 bg-white border border-sky-100 rounded-full flex items-center gap-2 text-slate-700 hover:scale-105 transition">
-                  <Facebook size={16} /> <span className="text-xs">Facebook</span>
-                </button>
-                <button className="px-3 py-2 bg-white border border-sky-100 rounded-full flex items-center gap-2 text-slate-700 hover:scale-105 transition">
-                  <Instagram size={16} /> <span className="text-xs">Instagram</span>
-                </button>
-                <button className="px-3 py-2 bg-white border border-sky-100 rounded-full flex items-center gap-2 text-slate-700 hover:scale-105 transition">
-                  <Linkedin size={16} /> <span className="text-xs">LinkedIn</span>
-                </button>
-              </div>
-            </motion.div>
-          </aside>
+          {/* RIGHT COLUMN - Form & Map */}
+          <div className="lg:col-span-3 space-y-8">
+            <motion.div variants={itemVariants} className="relative group">
+              {/* Gradient Border */}
+              <div className="absolute -inset-0.5 bg-gradient-to-br from-blue-500 to-purple-500 rounded-3xl blur opacity-20 group-hover:opacity-40 transition duration-500 -z-10" />
 
-          {/* RIGHT COLUMN */}
-          <div className="lg:col-span-7">
-            <motion.div
-              initial={{ opacity: 0, y: 8 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="rounded-2xl bg-white/80 backdrop-blur border border-sky-100 shadow-xl p-10"
-            >
-              <h3 className="text-2xl font-semibold text-slate-800 mb-3">
-                Get in touch
-              </h3>
-              <p className="text-sm text-slate-600 mb-6">
-                Send your message and our team will respond shortly.
-              </p>
+              <div className="rounded-3xl bg-white/60 backdrop-blur-xl p-8 sm:p-10 border border-white/20 shadow-xl">
+                <h3 className="text-2xl sm:text-3xl font-bold text-slate-900 mb-2">
+                  Send us a Message
+                </h3>
+                <p className="text-slate-600 mb-8">
+                  We'll get back to you as soon as possible.
+                </p>
 
-              {/* FORM */}
-              <form
-                className="grid grid-cols-1 md:grid-cols-2 gap-5"
-                onSubmit={(e) => {
-                  e.preventDefault();
-                  const form = new FormData(e.target);
-                  alert(`Thanks ${form.get("name")}, your message is saved.`);
-                }}
-              >
-                <label>
-                  <span className="text-sm font-medium">Name</span>
-                  <input
-                    name="name"
-                    required
-                    className="mt-2 w-full p-3 rounded-lg border border-sky-100 bg-white focus:ring-2 focus:ring-sky-200"
-                  />
-                </label>
-
-                <label>
-                  <span className="text-sm font-medium">Email</span>
-                  <input
-                    name="email"
-                    required
-                    type="email"
-                    className="mt-2 w-full p-3 rounded-lg border border-sky-100 bg-white focus:ring-2 focus:ring-sky-200"
-                  />
-                </label>
-
-                <label>
-                  <span className="text-sm font-medium">Phone</span>
-                  <input
-                    name="phone"
-                    className="mt-2 w-full p-3 rounded-lg border border-sky-100 bg-white focus:ring-2 focus:ring-sky-200"
-                  />
-                </label>
-
-                <label>
-                  <span className="text-sm font-medium">Subject</span>
-                  <input
-                    name="subject"
-                    className="mt-2 w-full p-3 rounded-lg border border-sky-100 bg-white focus:ring-2 focus:ring-sky-200"
-                  />
-                </label>
-
-                <label className="md:col-span-2">
-                  <span className="text-sm font-medium">Message</span>
-                  <textarea
-                    name="message"
-                    required
-                    rows="5"
-                    className="mt-2 w-full p-3 rounded-lg border border-sky-100 bg-white focus:ring-2 focus:ring-sky-200"
-                  />
-                </label>
-
-                <div className="md:col-span-2 flex justify-end">
-                  <button
-                    type="submit"
-                    className="px-6 py-3 bg-sky-600 text-white font-medium rounded-full shadow hover:brightness-110 flex items-center gap-2"
+                {/* Success Message */}
+                {submitted && (
+                  <motion.div
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="mb-6 p-4 rounded-lg bg-gradient-to-r from-green-100 to-emerald-100 border border-green-300 flex items-start gap-3"
                   >
-                    Send Message <ExternalLink size={16} />
-                  </button>
-                </div>
-              </form>
+                    <CheckCircle
+                      size={20}
+                      className="text-green-600 flex-shrink-0 mt-0.5"
+                    />
+                    <div>
+                      <p className="font-semibold text-green-900">
+                        Message sent successfully!
+                      </p>
+                      <p className="text-sm text-green-800">
+                        Thank you for reaching out. We'll respond shortly.
+                      </p>
+                    </div>
+                  </motion.div>
+                )}
+
+                {/* FORM */}
+                <form onSubmit={handleSubmit} className="space-y-6">
+                  {/* Name & Email */}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                    <motion.div
+                      whileHover={{ scale: 1.01 }}
+                      className="space-y-2"
+                    >
+                      <label className="text-sm font-semibold text-slate-700">
+                        Full Name <span className="text-red-500">*</span>
+                      </label>
+                      <input
+                        name="name"
+                        required
+                        placeholder="Your name"
+                        className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-white/50 text-slate-900 placeholder-slate-400 focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-200 focus:outline-none transition-all duration-300"
+                      />
+                    </motion.div>
+
+                    <motion.div
+                      whileHover={{ scale: 1.01 }}
+                      className="space-y-2"
+                    >
+                      <label className="text-sm font-semibold text-slate-700">
+                        Email <span className="text-red-500">*</span>
+                      </label>
+                      <input
+                        name="email"
+                        required
+                        type="email"
+                        placeholder="your@email.com"
+                        className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-white/50 text-slate-900 placeholder-slate-400 focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-200 focus:outline-none transition-all duration-300"
+                      />
+                    </motion.div>
+                  </div>
+
+                  {/* Phone & Subject */}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                    <motion.div
+                      whileHover={{ scale: 1.01 }}
+                      className="space-y-2"
+                    >
+                      <label className="text-sm font-semibold text-slate-700">
+                        Phone Number
+                      </label>
+                      <input
+                        name="phone"
+                        placeholder="Your phone number"
+                        className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-white/50 text-slate-900 placeholder-slate-400 focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-200 focus:outline-none transition-all duration-300"
+                      />
+                    </motion.div>
+
+                    <motion.div
+                      whileHover={{ scale: 1.01 }}
+                      className="space-y-2"
+                    >
+                      <label className="text-sm font-semibold text-slate-700">
+                        Subject <span className="text-red-500">*</span>
+                      </label>
+                      <input
+                        name="subject"
+                        required
+                        placeholder="Message subject"
+                        className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-white/50 text-slate-900 placeholder-slate-400 focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-200 focus:outline-none transition-all duration-300"
+                      />
+                    </motion.div>
+                  </div>
+
+                  {/* Message */}
+                  <motion.div
+                    whileHover={{ scale: 1.01 }}
+                    className="space-y-2"
+                  >
+                    <label className="text-sm font-semibold text-slate-700">
+                      Message <span className="text-red-500">*</span>
+                    </label>
+                    <textarea
+                      name="message"
+                      required
+                      rows="5"
+                      placeholder="Your message here..."
+                      className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-white/50 text-slate-900 placeholder-slate-400 focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-200 focus:outline-none transition-all duration-300 resize-none"
+                    />
+                  </motion.div>
+
+                  {/* Submit Button */}
+                  <motion.button
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                    type="submit"
+                    disabled={loading}
+                    className="w-full px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 disabled:opacity-50 text-white font-bold rounded-xl shadow-lg hover:shadow-blue-500/50 transition-all duration-300 flex items-center justify-center gap-2"
+                  >
+                    {loading ? (
+                      <>
+                        <motion.div
+                          animate={{ rotate: 360 }}
+                          transition={{ duration: 1, repeat: Infinity }}
+                        >
+                          <Send size={18} />
+                        </motion.div>
+                        Sending...
+                      </>
+                    ) : (
+                      <>
+                        <Send size={18} />
+                        Send Message
+                      </>
+                    )}
+                  </motion.button>
+                </form>
+              </div>
             </motion.div>
 
             {/* MAP */}
-            <div className="mt-6 rounded-2xl overflow-hidden border border-sky-100 shadow-sm">
-              <iframe
-                src="https://maps.google.com/maps?q=PSG%20College%20of%20Technology%2C%20Coimbatore&t=&z=13&ie=UTF8&iwloc=&output=embed"
-                className="w-full h-52 border-0"
-                loading="lazy"
-              />
-              <div className="p-4 bg-white text-sm text-slate-600">
-                Include your roll number / year for faster alumni verification.
+            <motion.div
+              variants={itemVariants}
+              className="relative group rounded-3xl overflow-hidden shadow-xl border border-white/20"
+            >
+              {/* Gradient Border */}
+              <div className="absolute -inset-0.5 bg-gradient-to-br from-blue-500 to-purple-500 rounded-3xl blur opacity-20 group-hover:opacity-40 transition duration-500 -z-10" />
+
+              <div className="rounded-3xl overflow-hidden">
+                <iframe
+                  src="https://maps.google.com/maps?q=PSG%20College%20of%20Technology%2C%20Coimbatore&t=&z=13&ie=UTF8&iwloc=&output=embed"
+                  className="w-full h-80 sm:h-96 border-0"
+                  loading="lazy"
+                  title="PSG College Location"
+                />
               </div>
-            </div>
+
+              <div className="p-4 sm:p-6 bg-white/60 backdrop-blur-xl border-t border-white/20">
+                <p className="text-sm sm:text-base text-slate-600">
+                  <span className="font-semibold text-slate-900">
+                    Include your roll number / year
+                  </span>{" "}
+                  for faster alumni verification.
+                </p>
+              </div>
+            </motion.div>
           </div>
-        </div>
+        </motion.div>
       </section>
     </main>
   );
 }
-
