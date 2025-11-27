@@ -45,11 +45,11 @@ const Banner = () => {
         backgroundAttachment: 'fixed',
       }}
     >
-      {/* Dark Overlay for Better Text Contrast */}
-      <div className="absolute inset-0 bg-gradient-to-br from-slate-900/85 via-slate-900/75 to-slate-900/85" />
+      {/* Dark Overlay for Better Text Contrast (non-interactive) */}
+      <div className="absolute inset-0 bg-gradient-to-br from-slate-900/85 via-slate-900/75 to-slate-900/85 pointer-events-none" />
 
-      {/* Animated Background Elements */}
-      <div className="absolute inset-0 overflow-hidden opacity-30">
+      {/* Animated Background Elements (non-interactive) */}
+      <div className="absolute inset-0 overflow-hidden opacity-30 pointer-events-none">
         <motion.div
           className="absolute top-20 left-10 w-72 h-72 bg-blue-500 rounded-full mix-blend-multiply filter blur-3xl"
           animate={{ x: [0, 50, 0], y: [0, 30, 0] }}
@@ -144,7 +144,7 @@ const Banner = () => {
 
       {/* Scroll Indicator */}
       <motion.div
-        className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
+        className="absolute bottom-8 left-1/2 transform -translate-x-1/2 pointer-events-none"
         animate={{ y: [0, 10, 0] }}
         transition={{ duration: 2, repeat: Infinity }}
       >

@@ -51,7 +51,7 @@ export default function NavBar() {
 
   return (
     <nav
-      className={`fixed w-full top-0 z-10 backdrop-blur-2xl bg-[#0E0F14]/70 
+      className={`fixed w-full top-0 z-50 backdrop-blur-2xl bg-[#0E0F14]/70 
       border-b border-blue-500/20 shadow-[0_0_25px_rgba(59,130,246,0.1)]
       transition-all duration-500 ${navVisible ? "translate-y-0" : "-translate-y-full"}`}
     >
