@@ -82,7 +82,10 @@ const Mission = () => {
               <Compass size={32} className="text-white" />
             </div>
             <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold text-slate-900 mb-4">
-              Our <span className="bg-clip-text text-transparent bg-gradient-to-r from-green-600 to-teal-600">Mission</span>
+              Our{" "}
+              <span className="bg-clip-text text-transparent bg-gradient-to-r from-green-600 to-teal-600">
+                Mission
+              </span>
             </h2>
             <p className="text-lg text-slate-600">How we will make an impact</p>
           </motion.div>
@@ -116,7 +119,10 @@ const Mission = () => {
                         {index + 1}
                       </div>
 
-                      <Icon size={32} className="text-green-600 mb-4 group-hover:scale-110 transition-transform duration-300" />
+                      <Icon
+                        size={32}
+                        className="text-green-600 mb-4 group-hover:scale-110 transition-transform duration-300"
+                      />
                       <h4 className="text-lg font-bold text-slate-900 mb-3">
                         {point.title}
                       </h4>
@@ -195,9 +201,12 @@ const Mission = () => {
             variants={itemVariants}
             className="mt-12 p-8 md:p-12 rounded-2xl bg-gradient-to-r from-green-500 to-teal-500 text-white text-center"
           >
-            <h3 className="text-2xl md:text-3xl font-bold mb-4">Join Our Mission</h3>
+            <h3 className="text-2xl md:text-3xl font-bold mb-4">
+              Join Our Mission
+            </h3>
             <p className="text-lg opacity-95 mb-6">
-              Be part of our collective effort to support PSG Tech's growth and excellence
+              Be part of our collective effort to support PSG Tech's growth and
+              excellence
             </p>
             <motion.button
               whileHover={{ scale: 1.05 }}

@@ -1,7 +1,13 @@
 "use client";
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { Users, FileCheck, ShieldCheck, UploadCloud, Heart } from "lucide-react";
+import {
+  Users,
+  FileCheck,
+  ShieldCheck,
+  UploadCloud,
+  Heart,
+} from "lucide-react";
 import { Card, CardContent } from "../components/ui/card";
 import { Button } from "../components/ui/button";
 
@@ -167,7 +173,8 @@ export default function DonationGate() {
                     {/* Residential Address */}
                     <div className="grid gap-2 mb-6">
                       <label className="text-gray-300 text-sm font-semibold">
-                        Residential Address <span className="text-red-400">*</span>
+                        Residential Address{" "}
+                        <span className="text-red-400">*</span>
                       </label>
                       <input
                         name="address"
@@ -236,9 +243,21 @@ export default function DonationGate() {
                     {/* FILE UPLOADS */}
                     <div className="space-y-4 mb-6">
                       {[
-                        { key: "aadhaar", label: "Aadhaar Card Copy", icon: ShieldCheck },
-                        { key: "pan", label: "PAN Card Copy", icon: ShieldCheck },
-                        { key: "consent", label: "Contribution Consent Letter", icon: FileCheck },
+                        {
+                          key: "aadhaar",
+                          label: "Aadhaar Card Copy",
+                          icon: ShieldCheck,
+                        },
+                        {
+                          key: "pan",
+                          label: "PAN Card Copy",
+                          icon: ShieldCheck,
+                        },
+                        {
+                          key: "consent",
+                          label: "Contribution Consent Letter",
+                          icon: FileCheck,
+                        },
                       ].map((doc) => (
                         <motion.div
                           key={doc.key}
@@ -250,10 +269,14 @@ export default function DonationGate() {
                             <div className="absolute inset-0 bg-gradient-to-r from-blue-500/0 to-purple-500/0 group-hover/file:from-blue-500/5 group-hover/file:to-purple-500/5 transition-all duration-300" />
 
                             <label className="relative flex items-center gap-3 cursor-pointer">
-                              <UploadCloud size={20} className="text-blue-400 flex-shrink-0" />
+                              <UploadCloud
+                                size={20}
+                                className="text-blue-400 flex-shrink-0"
+                              />
                               <div className="flex-1">
                                 <div className="text-white font-semibold text-sm">
-                                  {doc.label} <span className="text-red-400">*</span>
+                                  {doc.label}{" "}
+                                  <span className="text-red-400">*</span>
                                 </div>
                                 <div className="text-gray-500 text-xs mt-1">
                                   {files[doc.key]
@@ -262,7 +285,10 @@ export default function DonationGate() {
                                 </div>
                               </div>
                               {files[doc.key] && (
-                                <ShieldCheck size={20} className="text-green-400 flex-shrink-0" />
+                                <ShieldCheck
+                                  size={20}
+                                  className="text-green-400 flex-shrink-0"
+                                />
                               )}
                               <input
                                 type="file"
@@ -317,7 +343,11 @@ export default function DonationGate() {
                   <div className="flex justify-center">
                     <motion.div
                       animate={{ rotate: 360 }}
-                      transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
+                      transition={{
+                        duration: 2,
+                        repeat: Infinity,
+                        ease: "linear",
+                      }}
                     >
                       <UploadCloud size={48} className="text-blue-400" />
                     </motion.div>
@@ -326,7 +356,9 @@ export default function DonationGate() {
                     <h2 className="text-3xl font-bold text-white mb-2">
                       {loading ? "Validating for Compliance…" : "Under Review"}
                     </h2>
-                    <p className="text-gray-400">Your KYC documents are being processed</p>
+                    <p className="text-gray-400">
+                      Your KYC documents are being processed
+                    </p>
                   </div>
                 </motion.div>
               )}
@@ -350,7 +382,9 @@ export default function DonationGate() {
                     <h2 className="text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-green-400 to-emerald-400">
                       KYC Approved!
                     </h2>
-                    <p className="text-gray-300">Your verification is complete</p>
+                    <p className="text-gray-300">
+                      Your verification is complete
+                    </p>
                   </div>
 
                   {/* SUMMARY */}
@@ -362,19 +396,27 @@ export default function DonationGate() {
                     <div className="space-y-3 text-sm text-gray-300">
                       <div className="flex justify-between">
                         <span className="text-gray-400">Name:</span>
-                        <span className="text-white font-medium">{formData.fullName}</span>
+                        <span className="text-white font-medium">
+                          {formData.fullName}
+                        </span>
                       </div>
                       <div className="flex justify-between">
                         <span className="text-gray-400">PAN:</span>
-                        <span className="text-white font-medium">{formData.pan}</span>
+                        <span className="text-white font-medium">
+                          {formData.pan}
+                        </span>
                       </div>
                       <div className="flex justify-between">
                         <span className="text-gray-400">Mobile:</span>
-                        <span className="text-white font-medium">{formData.mobile}</span>
+                        <span className="text-white font-medium">
+                          {formData.mobile}
+                        </span>
                       </div>
                       <div className="flex justify-between">
                         <span className="text-gray-400">Email:</span>
-                        <span className="text-white font-medium truncate">{formData.email}</span>
+                        <span className="text-white font-medium truncate">
+                          {formData.email}
+                        </span>
                       </div>
                     </div>
                   </div>
@@ -402,5 +444,3 @@ export default function DonationGate() {
     </div>
   );
 }
-
-

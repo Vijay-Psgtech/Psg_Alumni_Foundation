@@ -10,7 +10,12 @@ import { President, VicePresidents } from "../content/data/OfficeBearersData";
 // =====================================================
 function OfficerCard({ data, index }) {
   return (
-    <Tilt tiltMaxAngleX={10} tiltMaxAngleY={10} scale={1.02} transitionSpeed={900}>
+    <Tilt
+      tiltMaxAngleX={10}
+      tiltMaxAngleY={10}
+      scale={1.02}
+      transitionSpeed={900}
+    >
       <motion.div
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -58,13 +63,12 @@ function OfficerCard({ data, index }) {
 export default function OfficeBearersPage() {
   return (
     <main className="relative min-h-screen bg-linear-to-b from-white via-blue-50 to-blue-100 text-gray-900">
-
       {/* Background Blurs */}
       <div className="absolute inset-0 -z-10">
         <div className="absolute left-0 top-0 w-[500px] h-[500px] bg-blue-200/40 blur-[150px] rounded-full" />
         <div className="absolute right-0 bottom-0 w-[550px] h-[550px] bg-blue-300/30 blur-[170px] rounded-full" />
       </div>
-  
+
       <section className="max-w-7xl mx-auto px-6 py-24">
         {/* HEADER */}
         <motion.div
@@ -103,5 +107,3 @@ export default function OfficeBearersPage() {
     </main>
   );
 }
-
-      

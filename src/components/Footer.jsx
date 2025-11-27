@@ -12,11 +12,10 @@ const Footer = () => {
       <div className="container mx-auto flex flex-col md:flex-row justify-between items-center text-center md:text-left">
         <div className="mb-4 md:mb-0 flex-1">
           <p className="font-semibold text-lg">
-            © {new Date().getFullYear()} PSG Tech Alumni Foundation. All Rights Reserved.
+            © {new Date().getFullYear()} PSG Tech Alumni Foundation. All Rights
+            Reserved.
           </p>
-          <p className="text-sm mt-2">
-            Developed by Central IT Services Team
-          </p>
+          <p className="text-sm mt-2">Developed by Central IT Services Team</p>
         </div>
         <div className="flex-1">
           <div className="border-t border-slate-600 pt-4 md:pt-0 md:border-t-0 md:border-l md:pl-6">
@@ -32,8 +31,8 @@ const Footer = () => {
                 </a>
               </li>
               <li>
-                <span className="font-semibold">Contact:</span>{" "}
-                  0422 2572177 (Ext: 4474)
+                <span className="font-semibold">Contact:</span> 0422 2572177
+                (Ext: 4474)
               </li>
             </ul>
           </div>

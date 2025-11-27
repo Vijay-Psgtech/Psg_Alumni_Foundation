@@ -1,15 +1,15 @@
-import { motion } from 'framer-motion';
-import React from 'react';
-import { ChevronRight, Heart } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { motion } from "framer-motion";
+import React from "react";
+import { ChevronRight, Heart } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const BannerContent = {
-    title: "Create Opportunity Together",
-    subtitle: "Join us in building a stronger PSG Tech Alumni Network.",
-    buttonText: "Donate Now",
-    buttonLink: "/donate",
-    image: "/image1.jpg"
-}
+  title: "Create Opportunity Together",
+  subtitle: "Join us in building a stronger PSG Tech Alumni Network.",
+  buttonText: "Donate Now",
+  buttonLink: "/donate",
+  image: "/image1.jpg",
+};
 
 const Banner = () => {
   const containerVariants = {
@@ -40,9 +40,9 @@ const Banner = () => {
       transition={{ duration: 0.8 }}
       style={{
         backgroundImage: `url(${BannerContent.image})`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        backgroundAttachment: 'fixed',
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundAttachment: "fixed",
       }}
     >
       {/* Dark Overlay for Better Text Contrast (non-interactive) */}
@@ -117,29 +117,6 @@ const Banner = () => {
             Learn More
           </motion.button>
         </motion.div>
-
-        {/* Stats Section */}
-        {/* <motion.div
-          variants={itemVariants}
-          className="mt-16 grid grid-cols-2 gap-6 sm:gap-8"
-        >
-          {[
-            { number: "30K+", label: "Alumni Members" },
-            { number: "50+", label: "Active Chapters" },
-            // { number: "$1M+", label: "Donations" },
-          ].map((stat, index) => (
-            <motion.div
-              key={index}
-              whileHover={{ y: -5 }}
-              className="p-4 rounded-lg bg-white/5 border border-white/10 backdrop-blur-sm hover:bg-white/10 transition-all duration-300"
-            >
-              <p className="text-2xl sm:text-3xl font-bold text-blue-300 mb-1">
-                {stat.number}
-              </p>
-              <p className="text-sm text-gray-400">{stat.label}</p>
-            </motion.div>
-          ))}
-        </motion.div> */}
       </motion.div>
 
       {/* Scroll Indicator */}
@@ -161,7 +138,7 @@ const Banner = () => {
         </svg>
       </motion.div>
     </motion.div>
-  )
-}
+  );
+};
 
-export default Banner
+export default Banner;
