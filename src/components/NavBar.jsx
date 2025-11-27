@@ -53,10 +53,11 @@ export default function NavBar() {
     <nav
       className={`fixed w-full top-0 z-50 backdrop-blur-2xl bg-[#0E0F14]/70 
       border-b border-blue-500/20 shadow-[0_0_25px_rgba(59,130,246,0.1)]
-      transition-all duration-500 ${navVisible ? "translate-y-0" : "-translate-y-full"}`}
+      transition-all duration-500 ${
+        navVisible ? "translate-y-0" : "-translate-y-full"
+      }`}
     >
       <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-        
         {/* LOGO + TEXT */}
         <Link to="/" className="flex items-center gap-3">
           <img
@@ -64,8 +65,10 @@ export default function NavBar() {
             alt="Logo"
             className="w-19 h-16 object-fill drop-shadow-[0_0_10px_rgba(59,130,246,0.4)]"
           />
-          <span className="text-2xl font-bold bg-linear-to-r from-blue-400 to-purple-500 
-            text-transparent bg-clip-text drop-shadow-[0_0_12px_rgba(59,130,246,0.35)]">
+          <span
+            className="text-2xl font-bold bg-linear-to-r from-blue-400 to-purple-500 
+            text-transparent bg-clip-text drop-shadow-[0_0_12px_rgba(59,130,246,0.35)]"
+          >
             PSG Tech Alumni Foundation
           </span>
         </Link>
@@ -83,7 +86,9 @@ export default function NavBar() {
                   {item.label}
                   <ChevronDown
                     size={16}
-                    className={`transition-transform duration-300 ${aboutOpen ? "rotate-180" : ""}`}
+                    className={`transition-transform duration-300 ${
+                      aboutOpen ? "rotate-180" : ""
+                    }`}
                   />
                 </button>
 
@@ -91,7 +96,11 @@ export default function NavBar() {
                   className={`absolute left-0 mt-4 w-64 bg-[#0B0C10]/95 backdrop-blur-xl 
                   border border-blue-500/20 rounded-xl shadow-[0_8px_25px_rgba(59,130,246,0.15)]
                   transition-all duration-300 transform origin-top
-                  ${aboutOpen ? "opacity-100 scale-y-100" : "opacity-0 scale-y-0 pointer-events-none"}`}
+                  ${
+                    aboutOpen
+                      ? "opacity-100 scale-y-100"
+                      : "opacity-0 scale-y-0 pointer-events-none"
+                  }`}
                 >
                   {item.submenu.map((sub) => (
                     <NavLink
@@ -116,7 +125,9 @@ export default function NavBar() {
                 to={item.path}
                 className={({ isActive }) =>
                   `relative text-[17px] font-medium transition-all duration-300 ${
-                    isActive ? "text-blue-300" : "text-gray-200 hover:text-blue-300"
+                    isActive
+                      ? "text-blue-300"
+                      : "text-gray-200 hover:text-blue-300"
                   }`
                 }
               >
@@ -127,7 +138,10 @@ export default function NavBar() {
         </div>
 
         {/* MOBILE MENU BUTTON */}
-        <button className="md:hidden text-blue-300" onClick={() => setIsOpen(!isOpen)}>
+        <button
+          className="md:hidden text-blue-300"
+          onClick={() => setIsOpen(!isOpen)}
+        >
           {isOpen ? <X size={28} /> : <Menu size={28} />}
         </button>
       </div>
@@ -148,7 +162,9 @@ export default function NavBar() {
 
                 <div
                   className={`ml-4 mt-2 border-l border-blue-500/20 pl-3 flex flex-col gap-2 transition-all duration-300 ${
-                    mobileAboutOpen ? "opacity-100 max-h-96" : "opacity-0 max-h-0 overflow-hidden"
+                    mobileAboutOpen
+                      ? "opacity-100 max-h-96"
+                      : "opacity-0 max-h-0 overflow-hidden"
                   }`}
                 >
                   {item.submenu.map((sub) => (
@@ -158,7 +174,9 @@ export default function NavBar() {
                       onClick={() => setIsOpen(false)}
                       className={({ isActive }) =>
                         `text-[17px] py-1 ${
-                          isActive ? "text-blue-300" : "text-gray-300 hover:text-blue-300"
+                          isActive
+                            ? "text-blue-300"
+                            : "text-gray-300 hover:text-blue-300"
                         }`
                       }
                     >
@@ -174,7 +192,9 @@ export default function NavBar() {
                 onClick={() => setIsOpen(false)}
                 className={({ isActive }) =>
                   `text-[18px] font-medium py-2 transition-all duration-300 ${
-                    isActive ? "text-blue-300 bg-blue-500/10 border border-blue-500/30" : "text-gray-200 hover:text-blue-300"
+                    isActive
+                      ? "text-blue-300 bg-blue-500/10 border border-blue-500/30"
+                      : "text-gray-200 hover:text-blue-300"
                   }`
                 }
               >
@@ -187,4 +207,3 @@ export default function NavBar() {
     </nav>
   );
 }
-

@@ -27,7 +27,6 @@ function App() {
           <Route path="/contact" element={<ContactUsPage />} />
           <Route path="/objectives" element={<Objectives />} />
           <Route path="/donate" element={<DonationGate />} />
-
         </Route>
       </Routes>
     </BrowserRouter>

@@ -33,7 +33,8 @@ const Values = () => {
     {
       icon: Heart,
       title: "Integrity",
-      description: "We conduct ourselves with honesty, transparency, and ethical principles in all our endeavors.",
+      description:
+        "We conduct ourselves with honesty, transparency, and ethical principles in all our endeavors.",
       color: "from-red-500 to-pink-500",
       lightColor: "from-red-50 to-pink-50",
       borderColor: "border-red-200",
@@ -78,9 +79,14 @@ const Values = () => {
               <Heart size={32} className="text-white" />
             </div>
             <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold text-slate-900 mb-4">
-              Our <span className="bg-clip-text text-transparent bg-gradient-to-r from-purple-600 to-pink-600">Values</span>
+              Our{" "}
+              <span className="bg-clip-text text-transparent bg-gradient-to-r from-purple-600 to-pink-600">
+                Values
+              </span>
             </h2>
-            <p className="text-lg text-slate-600">The principles that guide us</p>
+            <p className="text-lg text-slate-600">
+              The principles that guide us
+            </p>
           </motion.div>
 
           {/* Values Grid */}
@@ -98,7 +104,9 @@ const Values = () => {
                   className="group"
                 >
                   {/* Card */}
-                  <div className={`relative h-full rounded-2xl p-8 bg-gradient-to-br ${value.lightColor} border-2 ${value.borderColor} hover:shadow-xl transition-all duration-500 overflow-hidden`}>
+                  <div
+                    className={`relative h-full rounded-2xl p-8 bg-gradient-to-br ${value.lightColor} border-2 ${value.borderColor} hover:shadow-xl transition-all duration-500 overflow-hidden`}
+                  >
                     {/* Animated Background Gradient */}
                     <div
                       className={`absolute inset-0 bg-gradient-to-br ${value.color} opacity-0 group-hover:opacity-5 transition-opacity duration-500`}
@@ -115,7 +123,9 @@ const Values = () => {
                       </motion.div>
 
                       {/* Title */}
-                      <h3 className={`text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r ${value.color}`}>
+                      <h3
+                        className={`text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r ${value.color}`}
+                      >
                         {value.title}
                       </h3>
 
@@ -126,7 +136,9 @@ const Values = () => {
 
                       {/* Bottom Accent */}
                       <div className="pt-4 mt-6 border-t-2 border-slate-200 group-hover:border-slate-300 transition-colors duration-300">
-                        <div className={`w-8 h-1 rounded-full bg-gradient-to-r ${value.color}`} />
+                        <div
+                          className={`w-8 h-1 rounded-full bg-gradient-to-r ${value.color}`}
+                        />
                       </div>
                     </div>
                   </div>
@@ -141,8 +153,12 @@ const Values = () => {
             className="mt-16 p-8 md:p-12 rounded-2xl bg-gradient-to-r from-purple-50 via-pink-50 to-purple-50 border-2 border-purple-200 text-center"
           >
             <p className="text-lg md:text-xl text-slate-700 leading-relaxed">
-              These core values form the foundation of everything we do, ensuring that our
-              <span className="font-bold text-slate-900"> actions align with our mission </span>
+              These core values form the foundation of everything we do,
+              ensuring that our
+              <span className="font-bold text-slate-900">
+                {" "}
+                actions align with our mission{" "}
+              </span>
               to support PSG Tech's excellence and development.
             </p>
           </motion.div>

@@ -5,7 +5,6 @@ import { motion } from "framer-motion";
 import { Crown, ArrowUpRight } from "lucide-react";
 import { Patrons } from "../content/data/PatronsData";
 
-
 // ======================= CARD COMPONENT =======================
 function PatronCard({ patron, index }) {
   return (
@@ -66,10 +65,14 @@ function PatronCard({ patron, index }) {
               <span className="inline-block px-3 py-1 rounded-full bg-blue-100 text-blue-700 text-sm font-semibold">
                 {patron.role}
               </span>
-              {patron.note && <span className="text-sm text-gray-500">{patron.note}</span>}
+              {patron.note && (
+                <span className="text-sm text-gray-500">{patron.note}</span>
+              )}
             </div>
 
-            <p className="mt-4 text-gray-700 leading-relaxed text-base">{patron.bio}</p>
+            <p className="mt-4 text-gray-700 leading-relaxed text-base">
+              {patron.bio}
+            </p>
           </div>
 
           {/* CTA */}
@@ -112,9 +115,12 @@ export default function PatronsPage() {
               </div>
             </div>
 
-            <h1 className="text-4xl md:text-5xl font-extrabold text-blue-800">Honorary Patrons</h1>
+            <h1 className="text-4xl md:text-5xl font-extrabold text-blue-800">
+              Honorary Patrons
+            </h1>
             <p className="mt-4 text-gray-600 text-base md:text-lg">
-              Esteemed leaders and benefactors who have shaped the legacy and future of PSG College of Technology.
+              Esteemed leaders and benefactors who have shaped the legacy and
+              future of PSG College of Technology.
             </p>
           </motion.div>
         </div>
@@ -148,12 +154,12 @@ export default function PatronsPage() {
 
 /* Shine Animation */
 <style jsx>{`
-@keyframes shineMove {
-  0% {
-    transform: translateX(-150%) skewX(-20deg);
+  @keyframes shineMove {
+    0% {
+      transform: translateX(-150%) skewX(-20deg);
+    }
+    100% {
+      transform: translateX(150%) skewX(-20deg);
+    }
   }
-  100% {
-    transform: translateX(150%) skewX(-20deg);
-  }
-}
-`}</style>
+`}</style>;

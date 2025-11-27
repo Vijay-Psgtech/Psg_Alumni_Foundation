@@ -40,7 +40,10 @@ const Vision = () => {
               <Target size={32} className="text-white" />
             </div>
             <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold text-slate-900 mb-4">
-              Our <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-cyan-600">Vision</span>
+              Our{" "}
+              <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-cyan-600">
+                Vision
+              </span>
             </h2>
             <p className="text-lg text-slate-600">What we aspire to achieve</p>
           </motion.div>

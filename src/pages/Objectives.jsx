@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { CheckCircle, Target,  } from "lucide-react";
+import { CheckCircle, Target } from "lucide-react";
 import { objectivesList, principles } from "../content/data/ObjectivesData";
 
 const Objectives = () => {
@@ -48,14 +48,18 @@ const Objectives = () => {
               variants={itemVariants}
               className="text-5xl sm:text-6xl md:text-7xl font-bold text-slate-900 leading-tight"
             >
-              Our <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600">Objectives</span>
+              Our{" "}
+              <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600">
+                Objectives
+              </span>
             </motion.h1>
 
             <motion.p
               variants={itemVariants}
               className="text-xl md:text-2xl text-slate-600 max-w-3xl mx-auto"
             >
-              Comprehensive goals driving our mission to support education, excellence, and societal development through PSG Tech
+              Comprehensive goals driving our mission to support education,
+              excellence, and societal development through PSG Tech
             </motion.p>
           </motion.div>
         </div>
@@ -74,9 +78,14 @@ const Objectives = () => {
             {/* Section Title */}
             <motion.div variants={itemVariants} className="text-center mb-16">
               <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-4">
-                Eight Core <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600">Objectives</span>
+                Eight Core{" "}
+                <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600">
+                  Objectives
+                </span>
               </h2>
-              <p className="text-lg text-slate-600">Our strategic priorities for advancing education and excellence</p>
+              <p className="text-lg text-slate-600">
+                Our strategic priorities for advancing education and excellence
+              </p>
             </motion.div>
 
             {/* Objectives Grid */}
@@ -89,9 +98,7 @@ const Objectives = () => {
                   <motion.div
                     key={index}
                     variants={itemVariants}
-                    onClick={() =>
-                      setExpandedIndex(isExpanded ? -1 : index)
-                    }
+                    onClick={() => setExpandedIndex(isExpanded ? -1 : index)}
                     className="group cursor-pointer"
                   >
                     <motion.div
@@ -161,7 +168,9 @@ const Objectives = () => {
                       >
                         <CheckCircle
                           size={24}
-                          className={isExpanded ? "text-white" : "text-slate-400"}
+                          className={
+                            isExpanded ? "text-white" : "text-slate-400"
+                          }
                         />
                       </motion.div>
                     </motion.div>
@@ -189,7 +198,10 @@ const Objectives = () => {
             {/* Section Header */}
             <motion.div variants={itemVariants} className="text-center mb-16">
               <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-4">
-                Core <span className="bg-clip-text text-transparent bg-gradient-to-r from-green-600 to-emerald-600">Principles</span>
+                Core{" "}
+                <span className="bg-clip-text text-transparent bg-gradient-to-r from-green-600 to-emerald-600">
+                  Principles
+                </span>
               </h2>
               <p className="text-lg text-slate-600">
                 Guiding values that underpin all our activities
