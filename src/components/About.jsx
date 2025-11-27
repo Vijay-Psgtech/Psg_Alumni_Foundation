@@ -77,7 +77,7 @@ const About = () => {
             <motion.div
               whileHover={{ y: -10 }}
               transition={{ duration: 0.3 }}
-              className="relative w-full max-w-md"
+              className="relative w-full max-w-md lg:max-w-xl"
             >
               {/* Decorative border frame */}
               <div className="absolute -inset-4 bg-gradient-to-br from-blue-400 to-purple-400 rounded-2xl blur opacity-25 -z-10" />
