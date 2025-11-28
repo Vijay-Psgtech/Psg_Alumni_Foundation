@@ -1,29 +1,21 @@
-### Multi-stage Dockerfile for building Vite + React app and serving with nginx
-FROM node:18-alpine AS deps
+# ---- Stage 1: Build ----
+FROM node:20-alpine AS build
 WORKDIR /app
 
-# Install dependencies (uses package-lock if present)
-COPY package.json package-lock.json* ./
-RUN npm install
+COPY package*.json ./
+RUN npm ci
 
-FROM node:18-alpine AS build
-WORKDIR /app
-
-# copy installed node_modules from deps stage to speed up builds
-COPY --from=deps /app/node_modules ./node_modules
-
-# copy project files and build
 COPY . .
 RUN npm run build
 
-FROM nginx:stable-alpine AS production
+# ---- Stage 2: Serve with Nginx ----
+FROM nginx:alpine
 
-# Copy built static assets
-COPY --from=build /app/dist /usr/share/nginx/html
-
-# Use our nginx config (overrides default site config)
+# Optional custom config for SPA routing & caching
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 
-EXPOSE 80
+# Copy build output
+COPY --from=build /app/dist /usr/share/nginx/html
 
+EXPOSE 8080
 CMD ["nginx", "-g", "daemon off;"]
