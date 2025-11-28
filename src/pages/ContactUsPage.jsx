@@ -11,6 +11,7 @@ import {
   CheckCircle,
 } from "lucide-react";
 import { motion } from "framer-motion";
+import bgPattern from "../assets/Images/staffImages/a71f81aa117e4e05b149115e91604733.png"
 
 export default function ContactUsPage() {
   const ALUMNI_EMAIL = "alumni@psgtech.ac.in";
@@ -135,7 +136,7 @@ export default function ContactUsPage() {
                 {/* Image */}
                 <div className="rounded-2xl overflow-hidden mb-8 h-48 sm:h-56">
                   <img
-                    src="src/assets/Images/staffImages/a71f81aa117e4e05b149115e91604733.png"
+                    src={bgPattern}
                     alt="PSG Alumni Office"
                     className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
                   />

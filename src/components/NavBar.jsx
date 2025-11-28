@@ -2,6 +2,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Menu, X, ChevronDown, ChevronUp } from "lucide-react";
 import { Link, NavLink } from "react-router-dom";
+import Logo from "../assets/Images/staffImages/psg_logo.jpg";
 
 export default function NavBar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -58,7 +59,7 @@ export default function NavBar() {
         {/* LOGO + TEXT */}
         <Link to="/" className="flex items-center gap-3">
           <img
-            src="src/assets/Images/staffImages/psg_logo.jpg"
+            src={Logo}
             alt="Logo"
             className="w-19 h-16 object-fill drop-shadow-[0_0_10px_rgba(59,130,246,0.4)]"
           />
