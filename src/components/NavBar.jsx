@@ -23,9 +23,6 @@ export default function NavBar() {
       ],
     },
     { label: "Objectives", path: "/objectives" },
-    // { label: "Notable Alumni", path: "/alumni" },
-    // { label: "Events", path: "/events" },
-    // { label: "Gallery", path: "/gallery" },
     { label: "Contact", path: "/contact" },
   ];
 
@@ -135,6 +132,15 @@ export default function NavBar() {
               </NavLink>
             )
           )}
+          {/* Donate CTA */}
+          <Link to="/donate" className="ml-4">
+            <button
+              aria-label="Donate now"
+              className="px-4 py-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-lg shadow-lg hover:opacity-95 transition"
+            >
+              Donate
+            </button>
+          </Link>
         </div>
 
         {/* MOBILE MENU BUTTON */}
@@ -202,6 +208,13 @@ export default function NavBar() {
               </NavLink>
             )
           )}
+          <div className="mt-2 pt-2 border-t border-blue-500/10">
+            <Link to="/donate" onClick={() => setIsOpen(false)}>
+              <button className="w-full px-4 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-full font-semibold shadow">
+                Donate Now
+              </button>
+            </Link>
+          </div>
         </div>
       )}
     </nav>
