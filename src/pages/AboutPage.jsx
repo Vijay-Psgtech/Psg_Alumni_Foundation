@@ -2,6 +2,7 @@
 import React from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import { ArrowRight, Users, Calendar, Banknote, Download } from "lucide-react";
+import AboutImg from "../assets/Images/3c2b2ea4eae14b04a4c38c9e00ae71b9.png";
 
 /* ============================================================
    PRO LEVEL: PSG TECH ALUMNI — BLUE & WHITE THEMED About Page
@@ -156,7 +157,7 @@ export default function AboutPage() {
               aria-hidden="true"
             >
               <img
-                src="/src/assets/Images/3c2b2ea4eae14b04a4c38c9e00ae71b9.png"
+                src={AboutImg}
                 alt="PSG Tech Alumni collage"
                 loading="lazy"
                 className="w-full h-64 object-cover sm:h-72 md:h-64 lg:h-72"
