@@ -138,7 +138,7 @@ export default function ContactUsPage() {
                   <img
                     src={bgPattern}
                     alt="PSG Alumni Office"
-                    className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+                    className="w-full h-full object-contain hover:scale-105 transition-transform duration-500"
                   />
                 </div>
 
