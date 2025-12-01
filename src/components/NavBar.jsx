@@ -20,7 +20,7 @@ export default function NavBar() {
       submenu: [
         { label: "Overview", path: "/about" },
         { label: "Patrons", path: "/patrons" },
-        { label: "OfficeBearers", path: "/officebearers" },
+        { label: "Office Bearers", path: "/officebearers" },
       ],
     },
     { label: "Objectives", path: "/objectives" },
