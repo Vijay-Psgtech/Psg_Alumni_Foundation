@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import {
   Users,
@@ -7,9 +7,10 @@ import {
   ShieldCheck,
   UploadCloud,
   Heart,
+  AlertCircle,
 } from "lucide-react";
 import { Card, CardContent } from "../components/ui/card";
-import { Button } from "../components/ui/button";
+import axiosInstance from "../utils/axiosInstance";
 
 export default function DonationGate() {
   const [formData, setFormData] = useState({
@@ -19,6 +20,7 @@ export default function DonationGate() {
     mobile: "",
     email: "",
     purpose: "",
+    donationAmount: 1000,
   });
 
   const [files, setFiles] = useState({
@@ -30,24 +32,304 @@ export default function DonationGate() {
   const [submitted, setSubmitted] = useState(false);
   const [verified, setVerified] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [paymentLoading, setPaymentLoading] = useState(false);
+  const [error, setError] = useState("");
+  const [paymentStatus, setPaymentStatus] = useState(null);
 
+  // Load saved form data on mount
+  useEffect(() => {
+    // Try to fetch saved form data from backend
+
+    const fetchSavedData = async () => {
+      try{
+        const response = await axiosInstance.get('/donations/draft');
+        if (response.data.ok) {
+          const data = await response.json();
+          setFormData(data);
+        }
+      } catch (err) {
+        console.error("Error loading saved from data:", err);
+      }
+    }
+
+
+
+    fetchSavedData();
+
+    // Load Razorpay script
+    const script = document.createElement("script");
+    script.src = "https://checkout.razorpay.com/v1/checkout.js";
+    script.async = true;
+    document.body.appendChild(script);
+
+    return () => {
+      if (document.body.contains(script)) {
+        document.body.removeChild(script);
+      }
+    };
+  }, []);
+
+  // Save form data to backend database on change
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    const updatedData = { ...formData, [e.target.name]: e.target.value };
+    setFormData(updatedData);
+
+    // Auto-save to backend
+    // const autoSave = async () => {
+    //   try {
+    //     const response = await fetch(
+    //       `${import.meta.env.REACT_APP_API_BASE_URL}/donations/draft`,
+    //       {
+    //         method: "POST",
+    //         headers: { "Content-Type": "application/json" },
+    //         body: JSON.stringify(updatedData),
+    //       }
+    //     );
+    //     if (!response.ok) {
+    //       console.error("Failed to save form data");
+    //     }
+    //   } catch (err) {
+    //     console.error("Error saving form data:", err);
+    //   }
+    // };
+
+    const autoSave = async () => {
+      try {
+        const response = await axiosInstance.post('/donations/save', updatedData, {
+          headers : { "Content-Type": "application/json" },
+        });
+        if(!response){
+          console.error("Failed to save form data");
+        }
+      } catch (err) {
+        console.log("Error saving form data:", err);
+      }
+    }
+
+    autoSave();
   };
 
   const handleFileUpload = (key) => (e) => {
     setFiles({ ...files, [key]: e.target.files[0] });
   };
 
+  // Validate form before submission
+  const validateForm = () => {
+    if (!formData.fullName.trim()) {
+      setError("Full name is required");
+      return false;
+    }
+    if (!formData.address.trim()) {
+      setError("Address is required");
+      return false;
+    }
+    if (!formData.pan.match(/^[A-Z]{5}[0-9]{4}[A-Z]{1}$/)) {
+      setError("Invalid PAN format (e.g., ABCDE1234F)");
+      return false;
+    }
+    if (!formData.mobile.match(/^[0-9]{10}$/)) {
+      setError("Mobile number must be 10 digits");
+      return false;
+    }
+    if (!formData.email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) {
+      setError("Invalid email address");
+      return false;
+    }
+    if (!files.aadhaar || !files.pan || !files.consent) {
+      setError("All KYC documents are required");
+      return false;
+    }
+    if (formData.donationAmount < 100) {
+      setError("Minimum donation amount is ₹100");
+      return false;
+    }
+    setError("");
+    return true;
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (!validateForm()) return;
+
     setLoading(true);
     setSubmitted(true);
 
+    // Simulate KYC verification
     setTimeout(() => {
       setVerified(true);
       setLoading(false);
     }, 2500);
+  };
+
+  // Submit form data to backend for KYC verification
+  const submitKYCToBackend = async () => {
+    try {
+      const formDataToSend = new FormData();
+      
+      // Add form fields
+      Object.keys(formData).forEach((key) => {
+        formDataToSend.append(key, formData[key]);
+      });
+
+      // Add files
+      Object.keys(files).forEach((key) => {
+        if (files[key]) {
+          formDataToSend.append(key, files[key]);
+        }
+      });
+
+      const response = await fetch(
+        `${import.meta.env.REACT_APP_API_BASE_URL}/donations/verify-kyc`,
+        {
+          method: "POST",
+          body: formDataToSend,
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error("KYC verification failed");
+      }
+
+      const result = await response.json();
+      console.log("KYC verified:", result);
+      return result;
+    } catch (err) {
+      console.error("Error submitting KYC:", err);
+      setError("Failed to submit for verification. Please try again.");
+      setSubmitted(false);
+      setLoading(false);
+      throw err;
+    }
+  };
+
+  // Razorpay payment handler
+  const handlePayment = async () => {
+    setPaymentLoading(true);
+
+    try {
+      // Create order on backend (replace with your API endpoint)
+      const orderResponse = await fetch("/api/create-order", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          amount: formData.donationAmount * 100,
+          currency: "INR",
+          receipt: `donation_${Date.now()}`,
+          notes: {
+            donor: formData.fullName,
+            email: formData.email,
+            purpose: formData.purpose,
+          },
+        }),
+      });
+
+      if (!orderResponse.ok) {
+        initializePayment(null);
+        return;
+      }
+
+      const orderData = await orderResponse.json();
+      initializePayment(orderData.id);
+    } catch (err) {
+      console.error("Order creation error:", err);
+      initializePayment(null);
+    }
+  };
+
+  const initializePayment = (orderId) => {
+    const options = {
+      key: import.meta.env.REACT_APP_RAZORPAY_KEY_ID || "rzp_test_key",
+      amount: formData.donationAmount * 100,
+      currency: "INR",
+      name: "PSG Tech Alumni Foundation",
+      description: `Donation - ${formData.purpose}`,
+      order_id: orderId,
+      prefill: {
+        name: formData.fullName,
+        email: formData.email,
+        contact: formData.mobile,
+      },
+      handler: (response) => {
+        handlePaymentSuccess(response);
+      },
+      modal: {
+        ondismiss: () => {
+          setPaymentLoading(false);
+          setPaymentStatus("failed");
+        },
+      },
+    };
+
+    try {
+      const razorpay = new window.Razorpay(options);
+      razorpay.open();
+    } catch (err) {
+      console.error("Razorpay error:", err);
+      setPaymentLoading(false);
+      setError("Failed to initialize payment gateway");
+    }
+  };
+
+  const handlePaymentSuccess = (response) => {
+    setPaymentLoading(false);
+    setPaymentStatus("success");
+
+    // Save transaction data to backend database
+    const saveTransaction = async () => {
+      try {
+        const transactionData = {
+          ...formData,
+          razorpayOrderId: response.razorpay_order_id,
+          razorpayPaymentId: response.razorpay_payment_id,
+          razorpaySignature: response.razorpay_signature,
+          status: "completed",
+          timestamp: new Date().toISOString(),
+        };
+
+        const saveResponse = await fetch(
+          `${import.meta.env.REACT_APP_API_BASE_URL}/donations/save-transaction`,
+          {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(transactionData),
+          }
+        );
+
+        if (!saveResponse.ok) {
+          console.error("Failed to save transaction");
+          return;
+        }
+
+        const result = await saveResponse.json();
+        console.log("Transaction saved:", result);
+
+        // Clear draft after successful payment
+        await fetch(
+          `${import.meta.env.REACT_APP_API_BASE_URL}/donations/draft`,
+          { method: "DELETE" }
+        );
+      } catch (err) {
+        console.error("Error saving transaction:", err);
+      }
+    };
+
+    saveTransaction();
+
+    // Clear form after successful payment
+    setTimeout(() => {
+      setFormData({
+        fullName: "",
+        address: "",
+        pan: "",
+        mobile: "",
+        email: "",
+        purpose: "",
+        donationAmount: 1000,
+      });
+      setSubmitted(false);
+      setVerified(false);
+      setPaymentStatus(null);
+    }, 3000);
   };
 
   return (
@@ -140,6 +422,18 @@ export default function DonationGate() {
 
           <Card className="relative bg-slate-800/50 backdrop-blur-2xl border border-white/10 rounded-3xl shadow-2xl">
             <CardContent className="p-8 sm:p-10 md:p-12">
+              {/* ERROR MESSAGE */}
+              {error && (
+                <motion.div
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="bg-red-500/10 border border-red-500/30 rounded-lg p-4 mb-6 flex items-start gap-3"
+                >
+                  <AlertCircle className="text-red-400 flex-shrink-0 mt-0.5" />
+                  <p className="text-red-300 text-sm">{error}</p>
+                </motion.div>
+              )}
+
               {/* FORM */}
               {!submitted && (
                 <motion.form
@@ -307,6 +601,27 @@ export default function DonationGate() {
                   {/* DIVIDER */}
                   <div className="h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
 
+                  {/* DONATION AMOUNT */}
+                  <div>
+                    <label className="text-gray-300 text-sm font-semibold block mb-2">
+                      Donation Amount (₹) <span className="text-red-400">*</span>
+                    </label>
+                    <input
+                      type="number"
+                      name="donationAmount"
+                      min="100"
+                      max="1000000"
+                      value={formData.donationAmount}
+                      placeholder="Minimum: ₹100"
+                      className="w-full px-4 py-3 rounded-xl border border-white/10 bg-white/5 text-white placeholder-gray-500 focus:border-blue-500 focus:bg-white/10 focus:outline-none transition-all duration-300"
+                      onChange={handleChange}
+                      required
+                    />
+                    <p className="text-gray-500 text-xs mt-2">
+                      Minimum ₹100 | Maximum ₹10,00,000
+                    </p>
+                  </div>
+
                   {/* PURPOSE */}
                   <div>
                     <label className="text-gray-300 text-sm font-semibold block mb-2">
@@ -421,14 +736,35 @@ export default function DonationGate() {
                     </div>
                   </div>
 
+                  {/* DONATION AMOUNT BOX */}
+                  <div className="bg-gradient-to-br from-blue-500/20 to-purple-500/10 p-6 rounded-2xl border border-blue-500/30">
+                    <p className="text-blue-300 text-sm font-medium mb-2">
+                      Donation Amount
+                    </p>
+                    <p className="text-white text-3xl font-bold">
+                      ₹{formData.donationAmount.toLocaleString("en-IN")}
+                    </p>
+                  </div>
+
                   {/* PROCEED BUTTON */}
                   <motion.button
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
-                    onClick={() => alert("Redirecting to payment gateway")}
-                    className="w-full px-6 py-4 bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white font-bold rounded-xl transition-all duration-300 shadow-lg hover:shadow-green-500/50"
+                    onClick={handlePayment}
+                    disabled={paymentLoading}
+                    className="w-full px-6 py-4 bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white font-bold rounded-xl transition-all duration-300 shadow-lg hover:shadow-green-500/50 disabled:opacity-50 disabled:cursor-not-allowed"
                   >
-                    Proceed to Payment
+                    {paymentLoading ? (
+                      <>
+                        <span className="inline-block animate-spin mr-2">⌛</span>
+                        Processing Payment...
+                      </>
+                    ) : (
+                      <>
+                        <Heart className="inline-block mr-2 w-5 h-5" />
+                        Proceed to Payment
+                      </>
+                    )}
                   </motion.button>
 
                   {/* Additional Info */}
@@ -441,6 +777,87 @@ export default function DonationGate() {
           </Card>
         </motion.div>
       </div>
+
+      {/* PAYMENT SUCCESS OVERLAY */}
+      {paymentStatus === "success" && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 px-4"
+        >
+          <motion.div
+            initial={{ scale: 0.9, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ duration: 0.3 }}
+            className="bg-gradient-to-br from-slate-800 to-slate-900 rounded-3xl p-8 sm:p-12 max-w-md w-full border border-green-500/30"
+          >
+            <motion.div
+              animate={{ scale: [0, 1], rotate: [0, 360] }}
+              transition={{ duration: 0.6 }}
+              className="inline-flex w-full justify-center mb-6"
+            >
+              <div className="w-20 h-20 bg-green-500/20 rounded-full flex items-center justify-center border-2 border-green-500">
+                <Heart className="w-10 h-10 text-green-400 fill-green-400" />
+              </div>
+            </motion.div>
+            <h2 className="text-4xl font-bold text-white text-center mb-3">
+              Thank You!
+            </h2>
+            <p className="text-slate-300 text-center mb-6 text-lg">
+              Your donation of <span className="font-bold text-green-400">₹{formData.donationAmount.toLocaleString("en-IN")}</span> has been received
+            </p>
+            <div className="bg-green-500/10 border border-green-500/30 rounded-lg p-6 mb-6 text-center">
+              <p className="text-green-300 text-sm mb-2">
+                ✓ Transaction saved to your profile
+              </p>
+              <p className="text-white font-mono text-xs">
+                PSG Tech Alumni Foundation
+              </p>
+            </div>
+            <p className="text-slate-400 text-sm text-center">
+              A receipt has been sent to <span className="font-medium text-white">{formData.email}</span>
+            </p>
+          </motion.div>
+        </motion.div>
+      )}
+
+      {/* PAYMENT FAILED OVERLAY */}
+      {paymentStatus === "failed" && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 px-4"
+        >
+          <motion.div
+            initial={{ scale: 0.9, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ duration: 0.3 }}
+            className="bg-gradient-to-br from-slate-800 to-slate-900 rounded-3xl p-8 sm:p-12 max-w-md w-full border border-red-500/30"
+          >
+            <motion.div
+              animate={{ scale: [1, 1.1, 1] }}
+              transition={{ repeat: Infinity, duration: 2 }}
+              className="inline-flex w-full justify-center mb-6"
+            >
+              <AlertCircle className="w-16 h-16 text-red-500" />
+            </motion.div>
+            <h2 className="text-3xl font-bold text-white text-center mb-2">
+              Payment Failed
+            </h2>
+            <p className="text-slate-300 text-center mb-8">
+              {error || "Your payment could not be processed. Please try again."}
+            </p>
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              onClick={handlePayment}
+              className="w-full px-6 py-3 bg-gradient-to-r from-red-500 to-orange-600 text-white font-semibold rounded-lg hover:shadow-lg hover:shadow-red-500/50 transition-all"
+            >
+              Retry Payment
+            </motion.button>
+          </motion.div>
+        </motion.div>
+      )}
     </div>
   );
 }
