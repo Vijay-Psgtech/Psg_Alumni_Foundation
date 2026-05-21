@@ -1,252 +1,112 @@
-import React, { useState } from "react";
+import React from "react";
 import { motion } from "framer-motion";
-import { CheckCircle, Target } from "lucide-react";
-import { objectivesList, principles } from "../content/data/ObjectivesData";
+import { Award, BookOpen, Users, Lightbulb, Building2, Globe, Microscope } from "lucide-react";
+import usePageTitle from "../hooks/usePageTitle";
 
-const Objectives = () => {
-  const [expandedIndex, setExpandedIndex] = useState(0);
+const objectives = [
+  {
+    Icon: Award,
+    title: "Scholarships & Aid",
+    desc: "Provide scholarships, financial aid, and educational assistance to deserving students from economically challenged backgrounds."
+  },
+  {
+    Icon: BookOpen,
+    title: "Higher Education",
+    desc: "Support higher education, research, and academic development initiatives at PSG institutions."
+  },
+  {
+    Icon: Microscope,
+    title: "Research Excellence",
+    desc: "Establish research chairs, fellowships, and centres of excellence for groundbreaking research."
+  },
+  {
+    Icon: Users,
+    title: "Knowledge Events",
+    desc: "Facilitate conferences, seminars, workshops, and expert lectures for academic excellence."
+  },
+  {
+    Icon: Lightbulb,
+    title: "Innovation & Research",
+    desc: "Promote innovation and interdisciplinary research across science, technology, engineering, management, and arts."
+  },
+  {
+    Icon: Building2,
+    title: "Infrastructure",
+    desc: "Strengthen institutional infrastructure and academic capabilities to global standards."
+  },
+  {
+    Icon: Globe,
+    title: "Science Outreach",
+    desc: "Encourage scientific learning and public engagement through museums, libraries, and exhibitions."
+  },
+];
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: { staggerChildren: 0.1, delayChildren: 0.1 },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.6, ease: "easeOut" },
-    },
-  };
-
+const ObjectivesPage = () => {
+  usePageTitle("Objectives");
   return (
-    <div className="min-h-screen bg-gradient-to-b from-slate-50 to-white pt-20">
+    <>
+      <style>{`
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;1,600&family=Outfit:wght@300;400;500;600;700&display=swap');
+        .obj-hero{background:linear-gradient(165deg,#0a0e1f 0%,#0d1428 100%);padding:120px 24px 80px;font-family:'Outfit',sans-serif;position:relative;overflow:hidden;}
+        .obj-hero::before{content:'';position:absolute;top:-100px;right:-100px;width:500px;height:500px;background:radial-gradient(circle,rgba(201,168,76,.08) 0%,transparent 68%);pointer-events:none;}
+        .obj-inner{max-width:1240px;margin:0 auto;position:relative;z-index:2;}
+        .obj-header{text-align:center;margin-bottom:80px;}
+        .obj-eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:10px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:rgba(201,168,76,.72);margin-bottom:26px;}
+        .obj-eyebrow::before,.obj-eyebrow::after{content:'';width:28px;height:1.5px;background:rgba(201,168,76,.5);}
+        .obj-h1{font-family:'Playfair Display',serif;font-size:clamp(44px,7vw,80px);font-weight:800;color:#f2ede3;line-height:1.0;margin-bottom:20px;letter-spacing:-.025em;}
+        .obj-h1 em{font-style:italic;background:linear-gradient(130deg,#c9a84c,#f0d870);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+        .obj-sub{font-size:16px;font-weight:300;color:rgba(200,215,240,.52);max-width:600px;margin:0 auto;line-height:1.72;}
+        .obj-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px;}
+        .obj-card{position:relative;padding:40px 32px;background:rgba(255,255,255,.025);border:1px solid rgba(255,255,255,.055);border-radius:12px;transition:all .35s ease;overflow:hidden;}
+        .obj-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,#a86e20,#e8c255,#a86e20);opacity:0;transition:opacity .35s;}
+        .obj-card:hover{border-color:rgba(201,168,76,.28);transform:translateY(-4px);box-shadow:0 16px 48px rgba(0,0,0,.4);}
+        .obj-card:hover::before{opacity:1;}
+        .obj-icon-wrap{width:56px;height:56px;border-radius:10px;background:rgba(201,168,76,.1);border:1px solid rgba(201,168,76,.3);display:flex;align-items:center;justify-content:center;margin-bottom:20px;transition:all .3s;}
+        .obj-card:hover .obj-icon-wrap{background:rgba(201,168,76,.2);border-color:rgba(201,168,76,.6);transform:scale(1.08) rotate(4deg);}
+        .obj-icon{color:#c9a84c;}
+        .obj-title{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:#f2ede3;margin-bottom:12px;line-height:1.2;}
+        .obj-desc{font-size:14px;font-weight:300;line-height:1.72;color:rgba(200,215,240,.56);}
+        .obj-section{margin-top:100px;padding:60px 40px;background:rgba(201,168,76,.05);border:1px solid rgba(201,168,76,.15);border-radius:14px;position:relative;}
+        .obj-section::before{content:'';position:absolute;top:0;left:0;right:0;height:1.5px;background:linear-gradient(90deg,transparent,rgba(201,168,76,.5),transparent);}
+        .obj-section-title{font-family:'Playfair Display',serif;font-size:32px;font-weight:700;color:#0c0e1a;margin-bottom:24px;line-height:1.2;}
+        .obj-section-text{font-size:15px;font-weight:300;line-height:1.8;color:#535e78;}
+        .obj-highlight{font-weight:600;color:#0c0e1a;}
+        @media(max-width:820px){.obj-grid{grid-template-columns:1fr;}.obj-section{padding:40px 24px;}}
+      `}</style>
+
       {/* Hero Section */}
-      <section className="px-6 py-16 md:py-24 bg-gradient-to-br from-blue-50 via-purple-50 to-slate-50 relative overflow-hidden">
-        {/* Decorative Background */}
-        <div className="absolute top-0 right-0 w-96 h-96 bg-blue-100/30 rounded-full blur-3xl -z-10" />
-        <div className="absolute bottom-0 left-0 w-96 h-96 bg-purple-100/30 rounded-full blur-3xl -z-10" />
+      <section className="obj-hero">
+        <div className="obj-inner">
+          <motion.div className="obj-header" initial={{opacity:0,y:28}} animate={{opacity:1,y:0}} transition={{duration:.8}}>
+            <div className="obj-eyebrow">Objectives</div>
+            <h1 className="obj-h1">Our Commitment to <em>Excellence</em></h1>
+            <p className="obj-sub">
+              The PSG Tech Alumni Foundation is dedicated to advancing educational excellence through strategic initiatives and transformative programs that create lasting impact.
+            </p>
+          </motion.div>
 
-        <div className="mx-auto max-w-6xl">
-          <motion.div
-            variants={containerVariants}
-            initial="hidden"
-            animate="visible"
-            className="text-center space-y-6"
-          >
-            <motion.div variants={itemVariants}>
-              <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-500 rounded-2xl mb-6 shadow-lg">
-                <Target size={32} className="text-white" />
-              </div>
-            </motion.div>
+          <motion.div className="obj-grid" initial={{opacity:0}} animate={{opacity:1}} transition={{duration:.9,delay:.2}}>
+            {objectives.map(({Icon,title,desc},i)=>(
+              <motion.div key={title} className="obj-card" initial={{opacity:0,y:40}} whileInView={{opacity:1,y:0}} transition={{duration:.6,delay:i*.08}} viewport={{once:true}}>
+                <div className="obj-icon-wrap">
+                  <Icon size={28} className="obj-icon"/>
+                </div>
+                <h3 className="obj-title">{title}</h3>
+                <p className="obj-desc">{desc}</p>
+              </motion.div>
+            ))}
+          </motion.div>
 
-            <motion.h1
-              variants={itemVariants}
-              className="text-5xl sm:text-6xl md:text-7xl font-bold text-slate-900 leading-tight"
-            >
-              Our{" "}
-              <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600">
-                Objectives
-              </span>
-            </motion.h1>
-
-            <motion.p
-              variants={itemVariants}
-              className="text-xl md:text-2xl text-slate-600 max-w-3xl mx-auto"
-            >
-              Comprehensive goals driving our mission to support education,
-              excellence, and societal development through PSG Tech
-            </motion.p>
+          <motion.div className="obj-section" initial={{opacity:0,y:40}} whileInView={{opacity:1,y:0}} transition={{duration:.75}} viewport={{once:true}}>
+            <h2 className="obj-section-title">Our Foundation Principles</h2>
+            <p className="obj-section-text">
+              The PSG Tech Alumni Foundation operates on the core principle that <span className="obj-highlight">no deserving student should be deprived of quality education due to financial limitations</span>. Through scholarships, capacity-building programs, and research initiatives, we empower the next generation of leaders and innovators. Our structured philanthropic approach ensures transparency, accountability, and sustainable impact across all educational and institutional development initiatives.
+            </p>
           </motion.div>
         </div>
       </section>
-
-      {/* Main Objectives Section */}
-      <section className="px-6 py-20 md:py-28">
-        <div className="mx-auto max-w-6xl">
-          <motion.div
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-100px" }}
-            className="space-y-8"
-          >
-            {/* Section Title */}
-            <motion.div variants={itemVariants} className="text-center mb-16">
-              <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-4">
-                Eight Core{" "}
-                <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600">
-                  Objectives
-                </span>
-              </h2>
-              <p className="text-lg text-slate-600">
-                Our strategic priorities for advancing education and excellence
-              </p>
-            </motion.div>
-
-            {/* Objectives Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {objectivesList.map((objective, index) => {
-                const Icon = objective.icon;
-                const isExpanded = expandedIndex === index;
-
-                return (
-                  <motion.div
-                    key={index}
-                    variants={itemVariants}
-                    onClick={() => setExpandedIndex(isExpanded ? -1 : index)}
-                    className="group cursor-pointer"
-                  >
-                    <motion.div
-                      layoutId={`card-${index}`}
-                      whileHover={{ y: -5 }}
-                      className={`h-full rounded-2xl p-6 md:p-8 transition-all duration-300 ${
-                        isExpanded
-                          ? `bg-gradient-to-br ${objective.color} text-white shadow-2xl`
-                          : `bg-gradient-to-br ${objective.lightColor} border-2 border-slate-200 hover:border-slate-300`
-                      }`}
-                    >
-                      {/* Icon */}
-                      <motion.div
-                        className={`w-14 h-14 rounded-xl ${
-                          isExpanded
-                            ? "bg-white/20"
-                            : "bg-gradient-to-br " + objective.color
-                        } flex items-center justify-center mb-4 transition-all duration-300`}
-                      >
-                        <Icon
-                          size={28}
-                          className={isExpanded ? "text-white" : "text-white"}
-                        />
-                      </motion.div>
-
-                      {/* Title */}
-                      <h3
-                        className={`text-xl font-bold mb-3 ${
-                          isExpanded ? "text-white" : "text-slate-900"
-                        }`}
-                      >
-                        {objective.title}
-                      </h3>
-
-                      {/* Number Badge */}
-                      <div
-                        className={`absolute top-6 right-6 w-10 h-10 rounded-full flex items-center justify-center font-bold text-sm ${
-                          isExpanded
-                            ? "bg-white/20 text-white"
-                            : "bg-slate-200 text-slate-700"
-                        }`}
-                      >
-                        {index + 1}
-                      </div>
-
-                      {/* Description */}
-                      <motion.p
-                        initial={{ opacity: 0, height: 0 }}
-                        animate={{
-                          opacity: isExpanded ? 1 : 0.7,
-                          height: "auto",
-                        }}
-                        transition={{ duration: 0.3 }}
-                        className={`text-sm md:text-base leading-relaxed ${
-                          isExpanded
-                            ? "text-white/95 block"
-                            : "text-slate-700 line-clamp-2 group-hover:line-clamp-none"
-                        }`}
-                      >
-                        {objective.description}
-                      </motion.p>
-
-                      {/* Expand Indicator */}
-                      <motion.div
-                        animate={{ rotate: isExpanded ? 180 : 0 }}
-                        className="mt-4 flex justify-end"
-                      >
-                        <CheckCircle
-                          size={24}
-                          className={
-                            isExpanded ? "text-white" : "text-slate-400"
-                          }
-                        />
-                      </motion.div>
-                    </motion.div>
-                  </motion.div>
-                );
-              })}
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Core Principles Section */}
-      <section className="px-6 py-20 md:py-28 bg-gradient-to-b from-white to-slate-50 relative overflow-hidden">
-        {/* Decorative Background */}
-        <div className="absolute top-0 right-0 w-96 h-96 bg-green-100/20 rounded-full blur-3xl -z-10" />
-
-        <div className="mx-auto max-w-6xl">
-          <motion.div
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-100px" }}
-            className="space-y-12"
-          >
-            {/* Section Header */}
-            <motion.div variants={itemVariants} className="text-center mb-16">
-              <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-4">
-                Core{" "}
-                <span className="bg-clip-text text-transparent bg-gradient-to-r from-green-600 to-emerald-600">
-                  Principles
-                </span>
-              </h2>
-              <p className="text-lg text-slate-600">
-                Guiding values that underpin all our activities
-              </p>
-            </motion.div>
-
-            {/* Principles Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {principles.map((principle, index) => (
-                <motion.div
-                  key={index}
-                  variants={itemVariants}
-                  whileHover={{ scale: 1.05 }}
-                  className="group"
-                >
-                  <div className="h-full rounded-2xl p-8 bg-gradient-to-br from-green-50 to-emerald-50 border-2 border-green-200 hover:border-green-400 hover:shadow-xl transition-all duration-300 relative overflow-hidden">
-                    {/* Background Accent */}
-                    <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-green-400 to-emerald-400 opacity-0 group-hover:opacity-5 rounded-full blur-2xl transition-opacity duration-300" />
-
-                    {/* Step Number */}
-                    <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-gradient-to-br from-green-500 to-emerald-500 text-white font-bold text-lg mb-4 shadow-lg">
-                      {index + 1}
-                    </div>
-
-                    {/* Content */}
-                    <h3 className="text-xl font-bold text-slate-900 mb-3">
-                      {principle.title}
-                    </h3>
-                    <p className="text-slate-700 leading-relaxed">
-                      {principle.description}
-                    </p>
-
-                    {/* Bottom Border */}
-                    <div className="mt-6 pt-6 border-t-2 border-green-200 group-hover:border-green-400 transition-colors duration-300">
-                      <div className="w-8 h-1 rounded-full bg-gradient-to-r from-green-500 to-emerald-500" />
-                    </div>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
-        </div>
-      </section>
-    </div>
+    </>
   );
 };
 
-export default Objectives;
+export default ObjectivesPage;

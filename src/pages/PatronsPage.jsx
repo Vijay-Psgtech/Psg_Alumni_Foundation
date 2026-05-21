@@ -1,165 +1,159 @@
-// PatronsPage with Glow, Lift, Shine & Gradient Border Effects
-"use client";
+// frontend/src/pages/PatronsPage.jsx
 import React from "react";
 import { motion } from "framer-motion";
-import { Crown, ArrowUpRight } from "lucide-react";
-import { Patrons } from "../content/data/PatronsData";
+import { Patrons } from "../content/data/PatronsData.js";
+import usePageTitle from "../hooks/usePageTitle";
 
-// ======================= CARD COMPONENT =======================
-function PatronCard({ patron, index }) {
+const PatronsPage = () => {
+  usePageTitle("Patrons");
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: { staggerChildren: 0.15, delayChildren: 0.1 },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.6, ease: "easeOut" },
+    },
+  };
+
+  const imageVariants = {
+    hidden: { opacity: 0, scale: 0.8 },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      transition: { duration: 0.5, ease: "easeOut" },
+    },
+  };
+
   return (
-    <motion.article
-      initial={{ opacity: 0, y: 24 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.7, delay: index * 0.06 }}
-      className="relative w-full max-w-4xl mx-auto group"
-    >
-      <div
-        className="relative rounded-3xl bg-white shadow-xl border border-transparent 
-        overflow-hidden transition-all duration-500
-        group-hover:shadow-[0_0_35px_rgba(59,130,246,0.35)]
-        group-hover:-translate-y-2
-        bg-linear-to-b from-white to-blue-50
-        group-hover:border-blue-400/60"
-      >
-        {/* Floating Shine */}
-        <div
-          className="absolute inset-0 opacity-0 group-hover:opacity-100 transition duration-700 pointer-events-none"
-          style={{
-            background:
-              "linear-gradient(120deg, transparent 0%, rgba(255,255,255,0.55) 50%, transparent 100%)",
-            transform: "skewX(-20deg)",
-            animation: "shineMove 2s ease forwards",
-          }}
-        />
+    <section className="px-6 py-16 md:py-28 bg-linear-to-b from-slate-50 to-white relative overflow-hidden">
+      {/* Decorative Background */}
+      <div className="absolute top-0 right-0 w-96 h-96 bg-purple-100/30 rounded-full blur-3xl -z-10" />
+      <div className="absolute bottom-0 left-0 w-96 h-96 bg-orange-100/30 rounded-full blur-3xl -z-10" />
 
-        <div className="h-1.5 w-full bg-linear-to-r from-blue-400 to-blue-600" />
-
-        <div className="p-8 md:p-12 grid md:grid-cols-12 gap-6 items-center">
-          {/* IMAGE */}
-          <div className="md:col-span-3 flex justify-center md:justify-start">
-            <div className="relative">
-              <img
-                src={patron.image}
-                alt={patron.name}
-                className="w-24 h-24 md:w-28 md:h-28 rounded-2xl object-cover shadow-lg border border-blue-100 
-                transition duration-500 group-hover:scale-110"
-              />
-
-              {/* Glow Around Image */}
-              <div
-                className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 
-                transition duration-500 blur-xl bg-blue-400/30"
-              ></div>
-            </div>
-          </div>
-
-          {/* TEXT */}
-          <div className="md:col-span-6">
-            <h3 className="text-2xl md:text-3xl font-semibold text-blue-800 tracking-tight">
-              {patron.name}
-            </h3>
-
-            <div className="mt-1 flex items-center gap-3">
-              <span className="inline-block px-3 py-1 rounded-full bg-blue-100 text-blue-700 text-sm font-semibold">
-                {patron.role}
-              </span>
-              {patron.note && (
-                <span className="text-sm text-gray-500">{patron.note}</span>
-              )}
-            </div>
-
-            <p className="mt-4 text-gray-700 leading-relaxed text-base">
-              {patron.bio}
-            </p>
-          </div>
-
-          {/* CTA */}
-          <div className="md:col-span-3 flex md:justify-end justify-center">
-            <button className="inline-flex items-center gap-2 rounded-full bg-blue-600 hover:bg-blue-700 text-white px-5 py-2.5 shadow-md transition">
-              Know More <ArrowUpRight size={16} />
-            </button>
-          </div>
-        </div>
-      </div>
-
-      {/* Shadow Below */}
-      <div className="mt-6 h-6 w-full flex justify-center">
-        <div className="w-56 h-1 rounded-full bg-blue-200/40 blur-sm" />
-      </div>
-    </motion.article>
-  );
-}
-
-// ======================= MAIN PAGE =======================
-export default function PatronsPage() {
-  return (
-    <main className="relative min-h-screen bg-linear-to-b from-white to-blue-50 text-gray-900">
-      {/* ambient soft halos */}
-      <div className="absolute inset-0 -z-10 pointer-events-none">
-        <div className="absolute left-0 top-10 w-96 h-96 rounded-full bg-blue-100/40 blur-3xl" />
-        <div className="absolute right-0 bottom-10 w-[520px] h-[520px] rounded-full bg-blue-50/30 blur-3xl" />
-      </div>
-
-      <section className="max-w-6xl mx-auto px-6 py-24">
-        <div className="max-w-3xl mx-auto text-center mb-12">
-          <motion.div
-            initial={{ opacity: 0, y: -10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-          >
-            <div className="flex justify-center mb-4">
-              <div className="rounded-full p-3 bg-blue-100 shadow-md">
-                <Crown size={36} className="text-blue-600" />
-              </div>
-            </div>
-
-            <h1 className="text-4xl md:text-5xl font-extrabold text-blue-800">
-              Honorary Patrons
-            </h1>
-            <p className="mt-4 text-gray-600 text-base md:text-lg">
-              Esteemed leaders and benefactors who have shaped the legacy and
-              future of PSG College of Technology.
-            </p>
+      <div className="mx-auto max-w-6xl">
+        {/* Header */}
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          className="text-center mb-20"
+        >
+          <motion.div variants={itemVariants}>
+            <span className="inline-block px-4 py-2 mb-6 bg-purple-100 border border-purple-300 rounded-full text-sm font-semibold text-purple-700">
+              ✨ Our Patrons
+            </span>
           </motion.div>
-        </div>
 
-        {/* Center Spine */}
-        <div className="relative">
-          <div className="absolute left-1/2 -translate-x-1/2 top-8 bottom-8 w-1.5 bg-linear-to-b from-blue-300 to-blue-600 rounded-full shadow-[0_6px_30px_rgba(37,99,235,0.18)]" />
+          <motion.h1
+            variants={itemVariants}
+            className="text-4xl sm:text-5xl md:text-6xl font-bold text-slate-900 mb-6"
+          >
+            <span className="bg-clip-text text-transparent bg-linear-to-r from-purple-600 to-orange-600">
+              Visionary Patrons
+            </span>
+          </motion.h1>
 
-          <div className="space-y-12 relative z-10">
-            {Patrons.map((p, i) => (
-              <div key={p.name} className="relative px-2 md:px-0">
-                <div
-                  className="hidden md:block absolute left-1/2 -translate-x-1/2"
-                  style={{
-                    top: "1.8rem",
-                    width: "7rem",
-                    height: "1px",
-                    background:
-                      "linear-gradient(90deg, rgba(59,130,246,0.2), rgba(59,130,246,0))",
-                  }}
-                />
-                <PatronCard patron={p} index={i} />
+          <motion.p
+            variants={itemVariants}
+            className="text-lg md:text-xl text-slate-600 max-w-2xl mx-auto"
+          >
+            Meet the distinguished leaders and mentors who guide PSG Tech's
+            mission and inspire generations of students.
+          </motion.p>
+        </motion.div>
+
+        {/* Patrons Grid */}
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+        >
+          {Patrons.map((patron, index) => (
+            <motion.div
+              key={index}
+              variants={itemVariants}
+              whileHover={{ y: -8 }}
+              className="group"
+            >
+              <div className="relative bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500">
+                {/* Image Container */}
+                <motion.div
+                  variants={imageVariants}
+                  className="relative h-80 overflow-hidden bg-linear-to-br from-slate-200 to-slate-300"
+                >
+                  <img
+                    src={patron.image}
+                    alt={patron.name}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                  />
+                  {/* Overlay on hover */}
+                  <div className="absolute inset-0 bg-linear-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                </motion.div>
+
+                {/* Content */}
+                <div className="p-8">
+                  <div className="mb-4">
+                    <span className="inline-block px-3 py-1 bg-purple-100 text-purple-700 text-xs font-semibold rounded-full">
+                      {patron.role}
+                    </span>
+                  </div>
+
+                  <h3 className="text-xl font-bold text-slate-900 mb-2">
+                    {patron.name}
+                  </h3>
+
+                  {patron.note && (
+                    <p className="text-sm text-purple-600 font-semibold mb-3">
+                      {patron.note}
+                    </p>
+                  )}
+
+                  <p className="text-slate-600 text-sm leading-relaxed">
+                    {patron.bio}
+                  </p>
+
+                  {/* Bottom accent */}
+                  <div className="mt-6 pt-6 border-t border-slate-100">
+                    <div className="w-8 h-1 rounded-full bg-linear-to-r from-purple-600 to-orange-600" />
+                  </div>
+                </div>
               </div>
-            ))}
-          </div>
-        </div>
-      </section>
-    </main>
-  );
-}
+            </motion.div>
+          ))}
+        </motion.div>
 
-/* Shine Animation */
-<style jsx>{`
-  @keyframes shineMove {
-    0% {
-      transform: translateX(-150%) skewX(-20deg);
-    }
-    100% {
-      transform: translateX(150%) skewX(-20deg);
-    }
-  }
-`}</style>;
+        {/* Impact Section */}
+        <motion.div
+          variants={itemVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          className="mt-20 p-8 md:p-12 rounded-2xl bg-linear-to-r from-purple-50 via-orange-50 to-purple-50 border-2 border-purple-200 text-center"
+        >
+          <h3 className="text-2xl font-bold text-slate-900 mb-4">
+            Guiding PSG Tech's Future
+          </h3>
+          <p className="text-lg text-slate-700 leading-relaxed">
+            Our patrons embody the spirit of excellence, innovation, and service
+            that defines PSG Tech. Their unwavering support and mentorship have
+            been instrumental in shaping the institution's legacy and vision for
+            the future.
+          </p>
+        </motion.div>
+      </div>
+    </section>
+  );
+};
+
+export default PatronsPage;
