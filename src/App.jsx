@@ -10,7 +10,7 @@ import ProtectedAdminRoute from "./components/ProtectedAdminRoute";
 // ═══════════════════════════════════════════════════════════════════════
 // PUBLIC PAGES
 // ═══════════════════════════════════════════════════════════════════════
-const HomePage = lazy(() => import("./components/Homepage"));
+const HomePage = lazy(() => import("./components/HomePage"));
 const About = lazy(() => import("./pages/AboutPage"));
 const Objectives = lazy(() => import("./pages/Objectives"));
 const OfficeBearersPage = lazy(() => import("./pages/OfficeBearersPage"));
@@ -18,9 +18,9 @@ const Patrons = lazy(() => import("./pages/PatronsPage"));
 const Contact = lazy(() => import("./pages/ContactUsPage"));
 const DonatePage = lazy(() => import("./pages/DonatePage"));
 const Engagement = lazy(() => import("./pages/Engagementpage"));
-const Initiatives = lazy(() => import("./pages/InitiativesPage"));
-const Gallery = lazy(() => import("./pages/GalleryPage"));
-const CouncilPage = lazy(() => import("./pages/CouncilPage"));
+const Initiatives = lazy(() => import("./pages/Initiativespage"));
+const Gallery = lazy(() => import("./pages/Gallerypage"));
+const CouncilPage = lazy(() => import("./pages/Councilpage"));
 
 // ═══════════════════════════════════════════════════════════════════════
 // EVENT PAGES
