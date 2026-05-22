@@ -9,23 +9,18 @@ import {
   LayoutDashboard,
 } from "lucide-react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
-import { useAuth } from "../context/AuthContext";
-import Logo from "../assets/Images/staffImages/logo.jpg";
+import Logo from "/logo.jpg";
 
 export default function NavBar() {
-  const { user, logout } = useAuth();
-
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [navVisible, setNavVisible] = useState(true);
   const [lastScroll, setLastScroll] = useState(0);
   const [aboutOpen, setAboutOpen] = useState(false);
   const [eventsOpen, setEventsOpen] = useState(false);
-  const [alumniOpen, setAlumniOpen] = useState(false);
   const [userMenuOpen, setUserMenuOpen] = useState(false);
   const [mobileAboutOpen, setMobileAboutOpen] = useState(false);
   const [mobileEventsOpen, setMobileEventsOpen] = useState(false);
-  const [mobileAlumniOpen, setMobileAlumniOpen] = useState(false);
   const navRef = useRef(null);
   const userMenuRef = useRef(null);
   const navigate = useNavigate();
@@ -37,68 +32,36 @@ export default function NavBar() {
       submenu: [
         { label: "Overview", path: "/about" },
         { label: "Objectives", path: "/objectives" },
-        { label: "Patrons", path: "/patrons" },
-        { label: "Office Bearers", path: "/officebearers" },
-        { label: "Council Members", path: "/council" },
-        { label: "Engagement", path: "/engagement" },
-        { label: "Initiatives", path: "/initiatives" },
+        
       ],
     },
+    { label: "Initiatives", path: "/initiatives" },
+    { label: "Engagement", path: "/engagement" },
+    { label: "Donate", path: "/donate" },
+    { label: "News & Events", path: "/news-events" },
     { label: "Gallery", path: "/gallery" },
-    {
-      label: "Events",
-      submenu: [
-        { label: "All Events", path: "/events" },
-        { label: "Calendar", path: "/events/calendar" },
-        { label: "Photo Albums", path: "/events/albums" },
-      ],
-    },
-    {
-      label: "Access",
-      submenu: [
-        { label: "PSG TECH EVENTS ", path: "https://alumni.psgtech.ac.in/events" },
-        { label: "PSG TECH", path: "https://alumni.psgtech.ac.in/" },
-        { label: "PSG TECH ALUMNI GALLERY", path: "https://alumni.psgtech.ac.in/gallery" },
-      ],
-    },
     { label: "Contact", path: "/contact" },
-    // {
-    //   label: "Alumni",
-    //   submenu: [
-    //     user ? { label: "Directory", path: "/alumni/directory" } : null,
-    //     user ? { label: "Alumni Map", path: "/alumni/map" } : null,
-    //     user ? { label: "My Profile", path: "/alumni/profile" } : null,
-    //     user ? { label: "My Donations", path: "/alumni/donations" } : null,
-    //     user?.isAdmin
-    //       ? { label: "Admin Dashboard", path: "/alumni/dashboard" }
-    //       : null,
-    //   ].filter(Boolean),
-    // },
   ];
 
   const isDropdownOpen = (label) => {
     if (label === "About") return aboutOpen;
     if (label === "Events") return eventsOpen;
-    if (label === "Alumni") return alumniOpen;
     return false;
   };
 
   const toggleDropdown = (label) => {
     setAboutOpen(label === "About" ? (p) => !p : false);
     setEventsOpen(label === "Events" ? (p) => !p : false);
-    setAlumniOpen(label === "Alumni" ? (p) => !p : false);
   };
 
   const toggleMobileDropdown = (label) => {
     if (label === "About") setMobileAboutOpen((p) => !p);
     if (label === "Events") setMobileEventsOpen((p) => !p);
-    if (label === "Alumni") setMobileAlumniOpen((p) => !p);
   };
 
   const isMobileDropdownOpen = (label) => {
     if (label === "About") return mobileAboutOpen;
     if (label === "Events") return mobileEventsOpen;
-    if (label === "Alumni") return mobileAlumniOpen;
     return false;
   };
 
@@ -127,13 +90,6 @@ export default function NavBar() {
     document.addEventListener("mousedown", handler);
     return () => document.removeEventListener("mousedown", handler);
   }, []);
-
-  const handleLogout = useCallback(() => {
-    logout();
-    setUserMenuOpen(false);
-    setIsOpen(false);
-    navigate("/");
-  }, [logout, navigate]);
 
   const closeAll = useCallback(() => {
     setIsOpen(false);
@@ -486,73 +442,6 @@ export default function NavBar() {
             )}
           </div>
 
-          <div className="nav-actions">
-            {user ? (
-              <div style={{ position: "relative" }} ref={userMenuRef}>
-                <button
-                  className="user-btn"
-                  onClick={() => setUserMenuOpen((p) => !p)}
-                >
-                  <div className="user-avatar">
-                    {user.firstName?.[0]}
-                    {user.lastName?.[0]}
-                  </div>
-                  <div>
-                    <div className="user-name">{user.firstName}</div>
-                  </div>
-                  <ChevronDown
-                    size={13}
-                    className={`chevron-icon ${userMenuOpen ? "chevron-open" : ""}`}
-                  />
-                </button>
-
-                <div className={`user-dropdown ${userMenuOpen ? "open" : ""}`}>
-                  <div style={{ padding: "6px 0" }}>
-                    <NavLink
-                      to="/alumni/profile"
-                      onClick={() => setUserMenuOpen(false)}
-                      className="ud-item"
-                    >
-                      <User size={14} /> My Profile
-                    </NavLink>
-                    <NavLink
-                      to="/alumni/donations"
-                      onClick={() => setUserMenuOpen(false)}
-                      className="ud-item"
-                    >
-                      💳 My Donations
-                    </NavLink>
-                    {user.isAdmin && (
-                      <NavLink
-                        to="/alumni/dashboard"
-                        onClick={() => setUserMenuOpen(false)}
-                        className="ud-item"
-                      >
-                        <LayoutDashboard
-                          size={14}
-                          style={{ color: "var(--gold)" }}
-                        />{" "}
-                        Admin Dashboard
-                      </NavLink>
-                    )}
-                    <div className="ud-divider" />
-                    <button 
-                      onClick={handleLogout} 
-                      className="ud-item danger"
-                    >
-                      <LogOut size={14} /> Sign Out
-                    </button>
-                  </div>
-                </div>
-              </div>
-            ) : (
-              <>
-                <Link to="/donate" className="btn-gold-nav">
-                  Donate
-                </Link>
-              </>
-            )}
-          </div>
 
           <button
             className="ham-btn"
@@ -612,64 +501,6 @@ export default function NavBar() {
                   {item.label}
                 </NavLink>
               ),
-            )}
-
-            {user ? (
-              <>
-                <div className="m-user-card">
-                  <div className="m-user-label">Signed in as</div>
-                  <div className="m-user-name">
-                    {user.firstName} {user.lastName}
-                  </div>
-                </div>
-                <NavLink
-                  to="/alumni/profile"
-                  onClick={closeAll}
-                  className="m-link"
-                >
-                  <User size={15} /> My Profile
-                </NavLink>
-                <NavLink
-                  to="/alumni/donations"
-                  onClick={closeAll}
-                  className="m-link"
-                >
-                  💳 My Donations
-                </NavLink>
-                {user.isAdmin && (
-                  <NavLink
-                    to="/alumni/dashboard"
-                    onClick={closeAll}
-                    className="m-link"
-                  >
-                    <LayoutDashboard size={15} /> Admin Dashboard
-                  </NavLink>
-                )}
-                <div className="m-btn-row">
-                  <button
-                    onClick={() => {
-                      handleLogout();
-                      closeAll();
-                    }}
-                    className="m-btn-danger"
-                  >
-                    <LogOut size={15} /> Sign Out
-                  </button>
-                </div>
-              </>
-            ) : (
-              <div className="m-btn-row">
-                <Link
-                  to="/alumni/login"
-                  onClick={closeAll}
-                  className="m-btn-ghost"
-                >
-                  Alumni Login
-                </Link>
-                <Link to="/donate" onClick={closeAll} className="m-btn-gold">
-                  Contibute  Now
-                </Link>
-              </div>
             )}
           </div>
         )}
