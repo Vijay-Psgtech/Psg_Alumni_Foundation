@@ -6,8 +6,10 @@ import About from "./About";
 import InitiativesPage from "../pages/Initiativespage";
 import EngagementPage from "../pages/Engagementpage";
 import Contribute from "../pages/Contribute";
+import usePageTitle from "../hooks/usePageTitle";
 
 const HomePage = () => {
+  usePageTitle("Home - PSG TECH Alumni Foundation");
   let user = null;
   try {
     user = JSON.parse(localStorage.getItem("alumniUser"));

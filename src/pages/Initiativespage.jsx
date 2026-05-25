@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronDown, Microscope, Award, Users, Globe } from "lucide-react";
+import usePageTitle from "../hooks/usePageTitle";
 
 const initiativeSections = [
   {
@@ -53,7 +54,7 @@ const initiativeSections = [
 
 const InitiativesPage = () => {
   const [expandedId, setExpandedId] = useState(1);
-
+  usePageTitle("Initiatives - PSG Tech Alumni Foundation");
   return (
     <>
       <style>{`

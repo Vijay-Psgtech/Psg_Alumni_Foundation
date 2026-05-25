@@ -81,7 +81,7 @@ export default function NavBar() {
       if (navRef.current && !navRef.current.contains(e.target)) {
         setAboutOpen(false);
         setEventsOpen(false);
-        setAlumniOpen(false);
+
       }
       if (userMenuRef.current && !userMenuRef.current.contains(e.target)) {
         setUserMenuOpen(false);
@@ -95,7 +95,6 @@ export default function NavBar() {
     setIsOpen(false);
     setAboutOpen(false);
     setEventsOpen(false);
-    setAlumniOpen(false);
   }, []);
 
   return (
@@ -416,7 +415,6 @@ export default function NavBar() {
                           onClick={() => {
                             setAboutOpen(false);
                             setEventsOpen(false);
-                            setAlumniOpen(false);
                           }}
                           className={({ isActive }) =>
                             `dropdown-item${isActive ? " active-dd" : ""}`

@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { ArrowRight, Download } from "lucide-react";
 import Vision from "../components/Vision";
 import AboutImg from "/about.webp";
+import usePageTitle from "../hooks/usePageTitle";
 
 // Board of Trustees Data
 const trustees = [
@@ -75,6 +76,7 @@ function TCard({ name, role }) {
 }
 
 export default function AboutPage() {
+  usePageTitle("About Us - PSG Tech Alumni Foundation");
   const fade = (d = 0, x = 0) => ({
     hidden: {
       opacity: 0,
