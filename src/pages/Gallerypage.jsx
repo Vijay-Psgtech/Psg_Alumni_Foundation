@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, ImagePlus } from "lucide-react";
+import usePageTitle from "../hooks/usePageTitle";
 
 const galleryCategories = [
   "All",
@@ -29,7 +30,7 @@ const galleryItems = [
 const GalleryPage = () => {
   const [activeCategory, setActiveCategory] = useState("All");
   const [selectedItem, setSelectedItem] = useState(null);
-
+  usePageTitle("Gallery - PSG Tech Alumni Foundation");
   const filteredItems = activeCategory === "All" 
     ? galleryItems 
     : galleryItems.filter(item => item.category === activeCategory);

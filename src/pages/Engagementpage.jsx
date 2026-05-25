@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { Heart, Users, Handshake, ArrowRight, CheckCircle } from "lucide-react";
+import usePageTitle from "../hooks/usePageTitle";
 
 const engagementPaths = [
   {
@@ -64,6 +65,7 @@ const engagementPaths = [
 
 const EnagementPage = () => {
   const [expandedId, setExpandedId] = useState(1);
+  usePageTitle("Engagement - PSG Tech Alumni Foundation");
 
   return (
     <>
