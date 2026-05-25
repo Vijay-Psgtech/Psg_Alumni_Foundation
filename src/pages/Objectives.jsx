@@ -1,43 +1,51 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { Award, BookOpen, Users, Lightbulb, Building2, Globe, Microscope } from "lucide-react";
+import {
+  Award,
+  BookOpen,
+  Users,
+  Lightbulb,
+  Building2,
+  Globe,
+  Microscope,
+} from "lucide-react";
 import usePageTitle from "../hooks/usePageTitle";
 
 const objectives = [
   {
     Icon: Award,
     title: "Scholarships & Aid",
-    desc: "Provide scholarships, financial aid, and educational assistance to deserving students from economically challenged backgrounds."
+    desc: "Provide scholarships, financial aid, and educational assistance to deserving students from economically challenged backgrounds.",
   },
   {
     Icon: BookOpen,
     title: "Higher Education",
-    desc: "Support higher education, research, and academic development initiatives at PSG institutions."
+    desc: "Support higher education, research, and academic development initiatives at PSG institutions.",
   },
   {
     Icon: Microscope,
     title: "Research Excellence",
-    desc: "Establish research chairs, fellowships, and centres of excellence for groundbreaking research."
+    desc: "Establish research chairs, fellowships, and centres of excellence for groundbreaking research.",
   },
   {
     Icon: Users,
     title: "Knowledge Events",
-    desc: "Facilitate conferences, seminars, workshops, and expert lectures for academic excellence."
+    desc: "Facilitate conferences, seminars, workshops, and expert lectures for academic excellence.",
   },
   {
     Icon: Lightbulb,
     title: "Innovation & Research",
-    desc: "Promote innovation and interdisciplinary research across science, technology, engineering, management, and arts."
+    desc: "Promote innovation and interdisciplinary research across science, technology, engineering, management, and arts.",
   },
   {
     Icon: Building2,
     title: "Infrastructure",
-    desc: "Strengthen institutional infrastructure and academic capabilities to global standards."
+    desc: "Strengthen institutional infrastructure and academic capabilities to global standards.",
   },
   {
     Icon: Globe,
     title: "Science Outreach",
-    desc: "Encourage scientific learning and public engagement through museums, libraries, and exhibitions."
+    desc: "Encourage scientific learning and public engagement through museums, libraries, and exhibitions.",
   },
 ];
 
@@ -68,28 +76,49 @@ const ObjectivesPage = () => {
         .obj-desc{font-size:14px;font-weight:300;line-height:1.72;color:rgba(200,215,240,.56);}
         .obj-section{margin-top:100px;padding:60px 40px;background:rgba(201,168,76,.05);border:1px solid rgba(201,168,76,.15);border-radius:14px;position:relative;}
         .obj-section::before{content:'';position:absolute;top:0;left:0;right:0;height:1.5px;background:linear-gradient(90deg,transparent,rgba(201,168,76,.5),transparent);}
-        .obj-section-title{font-family:'Playfair Display',serif;font-size:32px;font-weight:700;color:#0c0e1a;margin-bottom:24px;line-height:1.2;}
-        .obj-section-text{font-size:15px;font-weight:300;line-height:1.8;color:#535e78;}
-        .obj-highlight{font-weight:600;color:#0c0e1a;}
+        .obj-section-title{font-family:'Playfair Display',serif;font-size:32px;font-weight:700;color:#f2ede3;margin-bottom:24px;line-height:1.2;}
+        .obj-section-text{font-size:16px;font-weight:300;line-height:1.8;color:rgba(200,215,240,.56);}
+        .obj-highlight{font-weight:600;color:#c9a84c;}
         @media(max-width:820px){.obj-grid{grid-template-columns:1fr;}.obj-section{padding:40px 24px;}}
       `}</style>
 
       {/* Hero Section */}
       <section className="obj-hero">
         <div className="obj-inner">
-          <motion.div className="obj-header" initial={{opacity:0,y:28}} animate={{opacity:1,y:0}} transition={{duration:.8}}>
+          <motion.div
+            className="obj-header"
+            initial={{ opacity: 0, y: 28 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+          >
             <div className="obj-eyebrow">Objectives</div>
-            <h1 className="obj-h1">Our Commitment to <em>Excellence</em></h1>
+            <h1 className="obj-h1">
+              Our Commitment to <em>Excellence</em>
+            </h1>
             <p className="obj-sub">
-              The PSG Tech Alumni Foundation is dedicated to advancing educational excellence through strategic initiatives and transformative programs that create lasting impact.
+              The PSG Tech Alumni Foundation is dedicated to advancing
+              educational excellence through strategic initiatives and
+              transformative programs that create lasting impact.
             </p>
           </motion.div>
 
-          <motion.div className="obj-grid" initial={{opacity:0}} animate={{opacity:1}} transition={{duration:.9,delay:.2}}>
-            {objectives.map(({Icon,title,desc},i)=>(
-              <motion.div key={title} className="obj-card" initial={{opacity:0,y:40}} whileInView={{opacity:1,y:0}} transition={{duration:.6,delay:i*.08}} viewport={{once:true}}>
+          <motion.div
+            className="obj-grid"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.9, delay: 0.2 }}
+          >
+            {objectives.map(({ Icon, title, desc }, i) => (
+              <motion.div
+                key={title}
+                className="obj-card"
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: i * 0.08 }}
+                viewport={{ once: true }}
+              >
                 <div className="obj-icon-wrap">
-                  <Icon size={28} className="obj-icon"/>
+                  <Icon size={28} className="obj-icon" />
                 </div>
                 <h3 className="obj-title">{title}</h3>
                 <p className="obj-desc">{desc}</p>
@@ -97,10 +126,25 @@ const ObjectivesPage = () => {
             ))}
           </motion.div>
 
-          <motion.div className="obj-section" initial={{opacity:0,y:40}} whileInView={{opacity:1,y:0}} transition={{duration:.75}} viewport={{once:true}}>
+          <motion.div
+            className="obj-section"
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.75 }}
+            viewport={{ once: true }}
+          >
             <h2 className="obj-section-title">Our Foundation Principles</h2>
             <p className="obj-section-text">
-              The PSG Tech Alumni Foundation operates on the core principle that <span className="obj-highlight">no deserving student should be deprived of quality education due to financial limitations</span>. Through scholarships, capacity-building programs, and research initiatives, we empower the next generation of leaders and innovators. Our structured philanthropic approach ensures transparency, accountability, and sustainable impact across all educational and institutional development initiatives.
+              The PSG Tech Alumni Foundation operates on the core principle that{" "}
+              <span className="obj-highlight">
+                no deserving student should be deprived of quality education due
+                to financial limitations
+              </span>
+              . Through scholarships, capacity-building programs, and research
+              initiatives, we empower the next generation of leaders and
+              innovators. Our structured philanthropic approach ensures
+              transparency, accountability, and sustainable impact across all
+              educational and institutional development initiatives.
             </p>
           </motion.div>
         </div>

@@ -3,63 +3,15 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import Banner from "./Banner";
 import About from "./About";
-import Vision from "./Vision";
-import Values from "./Values";
-import Mission from "./Mission";
-import usePageTitle from "../hooks/usePageTitle";
-
-const features = [
-  {
-    emoji: "👥",
-    title: "Alumni Directory",
-    desc: "Browse and connect with global alumni",
-  },
-  {
-    emoji: "🌍",
-    title: "World Map",
-    desc: "See where alumni are located worldwide",
-  },
-  {
-    emoji: "👤",
-    title: "My Profile",
-    desc: "Keep your information up to date",
-  },
-  {
-    emoji: "🔒",
-    title: "Secure Access",
-    desc: "Protected with modern authentication",
-  },
-];
-
-const engagementInitiatives = [
-  {
-    emoji: "🤝",
-    title: "Mentorship Programs",
-    desc: "Connect experienced professionals with emerging talent through structured mentorship",
-    link: "/engagement",
-  },
-  {
-    emoji: "🎓",
-    title: "Skill Development",
-    desc: "Workshops, seminars, and training sessions for continuous learning and growth",
-    link: "/initiatives",
-  },
-  {
-    emoji: "💼",
-    title: "Career Support",
-    desc: "Job placement assistance and career guidance from industry experts",
-    link: "/engagement",
-  },
-  {
-    emoji: "🌱",
-    title: "Community Service",
-    desc: "Meaningful initiatives that give back to society and create lasting impact",
-    link: "/initiatives",
-  },
-];
+import InitiativesPage from "../pages/Initiativespage";
+import EngagementPage from "../pages/Engagementpage";
+import Contribute from "../pages/Contribute";
 
 const HomePage = () => {
-  usePageTitle("Home");
+  let user = null;
+  try {
+    user = JSON.parse(localStorage.getItem("alumniUser"));
+  } catch {}
 
   return (
     <>
@@ -265,74 +217,9 @@ const HomePage = () => {
 
       <Banner />
       <About />
-
-      {/* Engagement & Initiatives Section */}
-      <section className="engagement-section">
-        <div className="engagement-inner">
-          <motion.div
-            className="section-header"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-          >
-            <div className="section-label">Growth & Impact</div>
-            <h2 className="section-title">
-              Engagement &{" "}
-              <span
-                style={{
-                  background: "linear-gradient(130deg, #c9a84c, #f0d870)",
-                  WebkitBackgroundClip: "text",
-                  WebkitTextFillColor: "transparent",
-                }}
-              >
-                Initiatives
-              </span>
-            </h2>
-            <p className="section-subtitle">
-              Discover meaningful ways to grow professionally, contribute to
-              society, and build lasting relationships with our vibrant
-              community
-            </p>
-          </motion.div>
-
-          <div className="initiatives-grid">
-            {engagementInitiatives.map((initiative, index) => (
-              <motion.div
-                key={initiative.title}
-                className="initiative-card"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                viewport={{ once: true }}
-              >
-                <span className="initiative-emoji">{initiative.emoji}</span>
-                <h3 className="initiative-title">{initiative.title}</h3>
-                <p className="initiative-desc">{initiative.desc}</p>
-                <Link to={initiative.link} className="initiative-link">
-                  Learn More →
-                </Link>
-              </motion.div>
-            ))}
-          </div>
-
-          <motion.div
-            className="engagement-cta"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            viewport={{ once: true }}
-          >
-            <Link to="/engagement" className="engagement-cta-btn">
-              Explore All Engagement Programs
-            </Link>
-          </motion.div>
-        </div>
-      </section>
-
-      <Vision />
-      <Values />
-      <Mission />
+      <InitiativesPage />
+      <EngagementPage />
+      <Contribute />
     </>
   );
 };

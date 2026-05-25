@@ -30,7 +30,7 @@ export default function NavBar() {
     {
       label: "About",
       submenu: [
-        { label: "Overview", path: "/about" },
+        { label: "About Us", path: "/about" },
         { label: "Objectives", path: "/objectives" },
         
       ],
