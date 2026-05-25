@@ -10,11 +10,11 @@ import ScrolltoTop from "./components/ScrolltoTop";
 const HomePage = lazy(() => import("./components/HomePage"));
 const About = lazy(() => import("./pages/AboutPage"));
 const Objectives = lazy(() => import("./pages/Objectives"));
-const Contact = lazy(() => import("./pages/ContactUsPage"));
-const Engagement = lazy(() => import("./pages/Engagementpage"));
 const Initiatives = lazy(() => import("./pages/Initiativespage"));
+const Engagement = lazy(() => import("./pages/Engagementpage"));
 const Gallery = lazy(() => import("./pages/Gallerypage"));
-
+const Contact = lazy(() => import("./pages/ContactUsPage"));
+const NewsEvents = lazy(() => import("./pages/NewsEventPage"));
 
 // ── Full-screen spinner while AuthContext verifies the token ──────
 const AppLoader = () => (
@@ -51,15 +51,15 @@ export default function App() {
       <Suspense fallback={<AppLoader />}>
         <Routes>
           <Route path="/" element={<Layout />}>
-            {/* PUBLIC */}
+            
             <Route index element={<HomePage />} />
             <Route path="about" element={<About />} />
             <Route path="objectives" element={<Objectives />} />
-            <Route path="contact" element={<Contact />} />
-            <Route path="engagement" element={<Engagement />} />
             <Route path="initiatives" element={<Initiatives />} />
+            <Route path="engagement" element={<Engagement />} />
             <Route path="gallery" element={<Gallery />} />
-
+            <Route path="contact" element={<Contact />} />
+            <Route path="news-events" element={<NewsEvents />} />
             <Route path="*" element={<Navigate to="/" replace />} />
           </Route>
         </Routes>
