@@ -6,7 +6,6 @@ import About from "./About";
 import Vision from "./Vision";
 import Values from "./Values";
 import Mission from "./Mission";
-import { useAuth } from "../context/AuthContext";
 import usePageTitle from "../hooks/usePageTitle";
 
 const features = [
@@ -60,7 +59,6 @@ const engagementInitiatives = [
 ];
 
 const HomePage = () => {
-  const { user } = useAuth();
   usePageTitle("Home");
 
   return (
@@ -267,81 +265,6 @@ const HomePage = () => {
 
       <Banner />
       <About />
-
-      {/* <section className="alumni-cta-s">
-        <div className="cta-inner">
-          <div className="cta-grid">
-            <motion.div
-              initial={{ opacity: 0, x: -28 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8 }}
-              viewport={{ once: true }}
-            >
-              <div className="cta-eyebrow">Alumni Network</div>
-              <h2 className="cta-h2">
-                {user ? (
-                  <>
-                    Welcome Back,
-                    <br />
-                    <em>{user.firstName}</em>
-                  </>
-                ) : (
-                  <>
-                    Connect with <em>Alumni</em>
-                  </>
-                )}
-              </h2>
-              <p className="cta-desc">
-                {user
-                  ? "Continue building your legacy with PSG Tech's global community of changemakers."
-                  : "Join our thriving alumni network. Register, update your profile, and connect with graduates from around the world."}
-              </p>
-              <div className="cta-btns">
-                {user ? (
-                  <>
-                    <Link to="/alumni/profile" className="cta-btn-gold">
-                      My Profile
-                    </Link>
-                    <Link to="/alumni/directory" className="cta-btn-ghost">
-                      Browse Alumni
-                    </Link>
-                    <Link to="/alumni/map" className="cta-btn-ghost">
-                      World Map
-                    </Link>
-                  </>
-                ) : (
-                  <>
-                    <Link to="/alumni/register" className="cta-btn-gold">
-                      Register Now
-                    </Link>
-                    <Link to="/alumni/login" className="cta-btn-ghost">
-                      Sign In
-                    </Link>
-                    <Link to="/alumni/directory" className="cta-btn-ghost">
-                      Browse Alumni
-                    </Link>
-                  </>
-                )}
-              </div>
-            </motion.div>
-            <motion.div
-              className="feat-grid"
-              initial={{ opacity: 0, x: 28 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, delay: 0.1 }}
-              viewport={{ once: true }}
-            >
-              {features.map((f) => (
-                <div className="feat-tile" key={f.title}>
-                  <span className="feat-emoji">{f.emoji}</span>
-                  <div className="feat-title">{f.title}</div>
-                  <div className="feat-desc">{f.desc}</div>
-                </div>
-              ))}
-            </motion.div>
-          </div>
-        </div>
-      </section> */}
 
       {/* Engagement & Initiatives Section */}
       <section className="engagement-section">

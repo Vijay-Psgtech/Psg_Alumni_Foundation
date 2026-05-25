@@ -47,16 +47,6 @@ const Footer = () => {
             <Link to="/donate" className="footer-link">Donate</Link>
           </div>
 
-          {/* Alumni */}
-          <div className="footer-col">
-            <h4>Alumni</h4>
-            <Link to="/alumni/register" className="footer-link">Register</Link>
-            <Link to="/alumni/login" className="footer-link">Login</Link>
-            <Link to="/alumni/directory" className="footer-link">Directory</Link>
-            <Link to="/alumni/map" className="footer-link">World Map</Link>
-            <Link to="/alumni/profile" className="footer-link">My Profile</Link>
-          </div>
-
           {/* Contact */}
           <div className="footer-col">
             <h4>Contact Us</h4>
