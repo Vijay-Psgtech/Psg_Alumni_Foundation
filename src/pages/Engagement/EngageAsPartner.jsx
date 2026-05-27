@@ -1,4 +1,6 @@
 import { useState, useEffect } from "react";
+import usePageTitle from "../../hooks/usePageTitle";
+
 
 const C = {
   dark:        "#08090f",
@@ -130,7 +132,7 @@ function FocusCard({ item, index }) {
 
 export default function EngageAsPartner() {
   const [btnHov, setBtnHov] = useState(false);
-
+  usePageTitle("Engage as a Partner");
   useEffect(() => {
     const link = document.createElement("link");
     link.rel = "stylesheet";

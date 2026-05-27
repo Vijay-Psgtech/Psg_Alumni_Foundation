@@ -1,4 +1,6 @@
 import { useState, useEffect } from "react";
+import usePageTitle from "../../hooks/usePageTitle";
+
 
 const C = {
   dark:        "#08090f",
@@ -112,6 +114,7 @@ function AreaRow({ item, index }) {
 
 export default function EngageAsMentor() {
   const [btnHov, setBtnHov] = useState(false);
+  usePageTitle("Engage as a Mentor");
 
   useEffect(() => {
     const link = document.createElement("link");

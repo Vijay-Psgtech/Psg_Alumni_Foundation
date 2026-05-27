@@ -1,7 +1,9 @@
 import React from "react";
 import { motion } from "framer-motion";
+import usePageTitle from "../../hooks/usePageTitle";
 
 const AboutPage = () => {
+  usePageTitle("About the Foundation");
   return (
     <>
       <style>{`
