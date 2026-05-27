@@ -9,7 +9,7 @@ import {
   Globe,
   Microscope,
 } from "lucide-react";
-import usePageTitle from "../hooks/usePageTitle";
+import usePageTitle from "../../hooks/usePageTitle";
 
 const objectives = [
   {
@@ -125,7 +125,7 @@ const ObjectivesPage = () => {
               </motion.div>
             ))}
           </motion.div>
-
+{/* 
           <motion.div
             className="obj-section"
             initial={{ opacity: 0, y: 40 }}
@@ -146,7 +146,7 @@ const ObjectivesPage = () => {
               transparency, accountability, and sustainable impact across all
               educational and institutional development initiatives.
             </p>
-          </motion.div>
+          </motion.div> */}
         </div>
       </section>
     </>

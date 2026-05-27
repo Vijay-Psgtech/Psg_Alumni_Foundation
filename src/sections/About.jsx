@@ -2,15 +2,16 @@ import React from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, Download } from "lucide-react";
 import Vision from "./Vision";
-import ObjectivesPage from "../pages/Objectives";
+import ObjectivesPage from "../pages/AboutUs/Objectives";
 import AboutImg from "/about.webp";
+import MissionPage from "./Mission";
 
 // Board of Trustees Data
-const trustees = [
-  { name: "Dr. S. Senior", role: "Managing Trustee" },
-  { name: "Prof. A. Principal", role: "Principal (Ex-officio)" },
-  { name: "Mr. P. President", role: "President, Alumni Association (Ex-official)" },
-];
+// const trustees = [
+//   { name: "Dr. S. Senior", role: "Managing Trustee" },
+//   { name: "Prof. A. Principal", role: "Principal (Ex-officio)" },
+//   { name: "Mr. P. President", role: "President, Alumni Association (Ex-official)" },
+// ];
 
 // Trustee Card Component
 function TCard({ name, role }) {
@@ -486,8 +487,7 @@ export default function AboutPage() {
           }
         }
       `}</style>
-
-      <main className="ap">
+          <main className="ap">
         {/* HERO SECTION */}
         <div className="ap-inner">
           <div className="ap-hero">
@@ -505,12 +505,12 @@ export default function AboutPage() {
                 Connecting alumni globally with mentorship, opportunities, and purpose-driven initiatives since 2016.
               </p>
               <div className="ap-btns">
-                <a href="/donate" className="btn-g">
+                {/* <a href="/donate" className="btn-g">
                   Donate <ArrowRight size={15} />
-                </a>
-                <a href="#" className="btn-gh">
+                </a> */}
+                {/* <a href="#" className="btn-gh">
                   <Download size={13} /> Brochure
-                </a>
+                </a> */}
               </div>
             </motion.div>
 
@@ -528,30 +528,6 @@ export default function AboutPage() {
               <div className="hc hc-br" />
             </motion.div>
           </div>
-        </div>
-
-        {/* INTRODUCTION SECTION */}
-        <div className="ap-inner">
-          <motion.div
-            className="ap-intro-section"
-            initial={{ opacity: 0, y: 28 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.75 }}
-            viewport={{ once: true }}
-          >
-            <div className="sl">Introduction</div>
-            <h2 className="ap-h2">
-              A <em>Philanthropic Initiative</em>
-            </h2>
-
-            <p className="ap-p">
-              The PSG Tech Alumni Foundation is a philanthropic initiative established by alumni of PSG College of Technology & Polytechnic College to strengthen education, innovation, research, and student development.
-            </p>
-
-            <p className="ap-p">
-              Driven by a collective desire of the Alumni towards the alma mater, the Foundation supports transformative initiatives that create academic and societal impact. Through scholarships, institutional development, experiential learning initiatives, and capacity-building programmes, the Foundation continues to uphold the legacy of excellence associated with PSG College of Technology & Polytechnic College.
-            </p>
-          </motion.div>
         </div>
 
         {/* 2a. ABOUT THE FOUNDATION */}
@@ -584,6 +560,7 @@ export default function AboutPage() {
 
         {/* 2b & 2c. VISION & MISSION (Imported Component) */}
         <Vision />
+        <MissionPage />
 
         {/* 2d. OBJECTIVES (Imported Component) */}
         <ObjectivesPage />
@@ -603,7 +580,8 @@ export default function AboutPage() {
             </h2>
 
             <p className="ap-p dark">
-              The Foundation is managed by a Board of Trustees comprising distinguished alumni and institutional leaders. The Board provides direction for major functions necessary to carry out the mission of the Foundation.
+              The details of present Board of Trustees and Former Board of Trustees will be included in this page.
+
             </p>
 
             {/* <div className="sidebar">

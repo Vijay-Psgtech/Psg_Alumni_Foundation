@@ -22,24 +22,24 @@ const updates = [
     description:
       "Networking sessions, alumni reunions and mentorship programs designed to keep the PSG community connected and active.",
   },
-  {
-    icon: CalendarDays,
-    title: "Workshops & Conferences",
-    description:
-      "Technical workshops, leadership conferences and professional learning events curated for students and alumni alike.",
-  },
-  {
-    icon: Award,
-    title: "Museum Programmes & Exhibitions",
-    description:
-      "Curated museum exhibitions, guided tours and heritage programmes that celebrate PSG’s history and innovation.",
-  },
-  {
-    icon: Building2,
-    title: "Institutional Development Initiatives",
-    description:
-      "Insights into campus upgrades, research investments, facility expansions and long-term foundation goals.",
-  },
+  // {
+  //   icon: CalendarDays,
+  //   title: "Workshops & Conferences",
+  //   description:
+  //     "Technical workshops, leadership conferences and professional learning events curated for students and alumni alike.",
+  // },
+  // {
+  //   icon: Award,
+  //   title: "Museum Programmes & Exhibitions",
+  //   description:
+  //     "Curated museum exhibitions, guided tours and heritage programmes that celebrate PSG’s history and innovation.",
+  // },
+  // {
+  //   icon: Building2,
+  //   title: "Institutional Development Initiatives",
+  //   description:
+  //     "Insights into campus upgrades, research investments, facility expansions and long-term foundation goals.",
+  // },
 ];
 
 const NewsEventPage = () => {
@@ -55,7 +55,7 @@ const NewsEventPage = () => {
           background: linear-gradient(180deg, #f8f5ee 0%, #fffdf9 40%, #fbfaf8 100%);
           color: #12121b;
           font-family: 'Outfit', sans-serif;
-          padding: 42px 24px 80px;
+          padding: 70px 36px 80px;
         }
 
         .news-inner {
@@ -181,7 +181,7 @@ const NewsEventPage = () => {
 
         .news-card-grid {
           display: grid;
-          grid-template-columns: repeat(3, minmax(0, 1fr));
+          grid-template-columns: repeat(2, minmax(0, 1fr));
           gap: 24px;
           padding: 30px 30px 36px;
         }
@@ -328,14 +328,14 @@ const NewsEventPage = () => {
             </p>
           </div>
 
-          <div className="news-stat-grid">
+          {/* <div className="news-stat-grid">
             {highlights.map((item) => (
               <div className="news-stat" key={item.label}>
                 <div className="news-stat-value">{item.value}</div>
                 <div className="news-stat-label">{item.label}</div>
               </div>
             ))}
-          </div>
+          </div> */}
         </section>
 
         <section className="news-panel">
