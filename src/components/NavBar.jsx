@@ -17,27 +17,26 @@ export default function NavBar() {
   const [navVisible, setNavVisible] = useState(true);
   const [lastScroll, setLastScroll] = useState(0);
   const [aboutOpen, setAboutOpen] = useState(false);
-  const [eventsOpen, setEventsOpen] = useState(false);
-  const [userMenuOpen, setUserMenuOpen] = useState(false);
+  const [initiativeOpen, setInitiativeOpen] = useState(false);
+  const [engagementOpen, setEngagementOpen] = useState(false);
   const [mobileAboutOpen, setMobileAboutOpen] = useState(false);
-  const [mobileEventsOpen, setMobileEventsOpen] = useState(false);
+  const [mobileInitiativeOpen, setMobileInitiativeOpen] = useState(false);
+  const [mobileEngagementOpen, setMobileEngagementOpen] = useState(false);
   const navRef = useRef(null);
-  const userMenuRef = useRef(null);
   const navigate = useNavigate();
 
   const navItems = [
     { label: "Home", path: "/" },
     {
-      label: "About",
+      label: "About Us",
       submenu: [
-        { label: "About Us", path: "/about" },
+        { label: "About the Foundation", path: "/about" },
         { label: "Vision", path: "/vision" },
         { label: "Mission", path: "/mission" },
         { label: "Objectives", path: "/objectives" },
-        { label: " Board of Trustees", path: "/trustees" },
+        { label: "Board of Trustees", path: "/trustees" },
       ],
     },
-
     {
       label: "Initiatives",
       submenu: [
@@ -49,36 +48,51 @@ export default function NavBar() {
           label: "Scholarships & Financial Support",
           path: "/initiatives/scholarships",
         },
-        { label: "Capacity Building", path: "/initiatives/capacity-building"},
-        { label: "Science Outreach s Experiential Learning", path: "/initiatives/museum" },
+        { label: "Capacity Building", path: "/initiatives/capacity-building" },
+        {
+          label: "Science Outreach s Experiential Learning",
+          path: "/initiatives/museum",
+        },
       ],
     },
-    { label: "Engagement", path: "/engagement" },
-    { label: "Donate", path: "/donate" },
-    { label: "News & Events", path: "/news-events" },
+    {
+      label: "Engagement",
+      submenu: [
+        { label: "Engage as Donor", path: "/engage-as-donor" },
+        { label: "Engage as Mentor", path: "/engage-as-mentor" },
+        { label: "Engage as Partner", path: "/engage-as-partner" },
+      ],
+    },
+
+    { label: "Announcements", path: "/announcements" },
     { label: "Gallery", path: "/gallery" },
+    { label: "Donate", path: "/donate" },
     { label: "Contact", path: "/contact" },
   ];
 
   const isDropdownOpen = (label) => {
     if (label === "About") return aboutOpen;
-    if (label === "Events") return eventsOpen;
+    if (label === "Engagement") return engagementOpen;
+    if (label === "Initiatives") return initiativeOpen;
     return false;
   };
 
   const toggleDropdown = (label) => {
     setAboutOpen(label === "About" ? (p) => !p : false);
-    setEventsOpen(label === "Events" ? (p) => !p : false);
+    setEngagementOpen(label === "Engagement" ? (p) => !p : false);
+    setInitiativeOpen(label === "Initiatives" ? (p) => !p : false);
   };
 
   const toggleMobileDropdown = (label) => {
     if (label === "About") setMobileAboutOpen((p) => !p);
-    if (label === "Events") setMobileEventsOpen((p) => !p);
+    if (label === "Engagement") setMobileEngagementOpen((p) => !p);
+    if (label === "Initiatives") setMobileInitiativeOpen((p) => !p);
   };
 
   const isMobileDropdownOpen = (label) => {
     if (label === "About") return mobileAboutOpen;
-    if (label === "Events") return mobileEventsOpen;
+    if (label === "Engagement") return mobileEngagementOpen;
+    if (label === "Initiatives") return mobileInitiativeOpen;
     return false;
   };
 
@@ -97,10 +111,8 @@ export default function NavBar() {
     const handler = (e) => {
       if (navRef.current && !navRef.current.contains(e.target)) {
         setAboutOpen(false);
-        setEventsOpen(false);
-      }
-      if (userMenuRef.current && !userMenuRef.current.contains(e.target)) {
-        setUserMenuOpen(false);
+        setEngagementOpen(false);
+        setInitiativeOpen(false);
       }
     };
     document.addEventListener("mousedown", handler);
@@ -110,7 +122,8 @@ export default function NavBar() {
   const closeAll = useCallback(() => {
     setIsOpen(false);
     setAboutOpen(false);
-    setEventsOpen(false);
+    setEngagementOpen(false);
+    setInitiativeOpen(false);
   }, []);
 
   return (
@@ -404,8 +417,8 @@ export default function NavBar() {
               />
             </div>
             <div className="nav-logo-text">
-              <div className="nav-logo-main">PSG TECH</div>
-              <div className="nav-logo-sub">Alumni Foundation</div>
+              <div className="nav-logo-main">PSG Tech</div>
+              <div className="nav-logo-main">Alumni Foundation</div>
             </div>
           </Link>
 
@@ -434,7 +447,8 @@ export default function NavBar() {
                           to={sub.path}
                           onClick={() => {
                             setAboutOpen(false);
-                            setEventsOpen(false);
+                            setEngagementOpen(false);
+                            setInitiativeOpen(false);
                           }}
                           className={({ isActive }) =>
                             `dropdown-item${isActive ? " active-dd" : ""}`

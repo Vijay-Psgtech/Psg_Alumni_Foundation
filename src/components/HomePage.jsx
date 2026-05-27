@@ -1,10 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import Banner from "./Banner";
-import About from "./About";
-import InitiativesPage from "../pages/Initiativespage";
-import EngagementPage from "../pages/Engagementpage";
+import Banner from "../sections/Banner";
+import About from "../sections/About";
+import InitiativesPage from "../sections/Initiativespage";
+import EngagementPage from "../sections/Engagementpage";
 import Contribute from "../pages/Contribute";
 import usePageTitle from "../hooks/usePageTitle";
 
@@ -217,11 +217,8 @@ const HomePage = () => {
         }
       `}</style>
 
-      
-
       <Banner />
-
-      {/* INTRODUCTION SECTION */}
+       {/* INTRODUCTION SECTION */}
         <div className="ap-inner">
           <motion.div
             className="ap-intro-section"

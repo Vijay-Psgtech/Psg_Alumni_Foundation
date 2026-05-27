@@ -6,6 +6,14 @@ import usePageTitle from "../hooks/usePageTitle";
 
 const ContactUsPage = () => {
   usePageTitle("Contact Us");
+  const colors = {
+    dark: "#08090f",
+    cream: "#f2ede3",
+    gold: "#c9a84c",
+    softCream: "rgba(242,237,227,0.92)",
+    lightGold: "rgba(201,168,76,0.14)",
+  };
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -109,10 +117,21 @@ const ContactUsPage = () => {
   ];
 
   return (
-    <section className="px-6 py-16 md:py-28 bg-linear-to-b from-slate-50 to-white relative overflow-hidden">
+    <section
+      className="px-6 py-16 md:py-28 relative overflow-hidden"
+      style={{
+        background: `linear-gradient(180deg, ${colors.dark} 0%, #11121c 100%)`,
+      }}
+    >
       {/* Decorative Background */}
-      <div className="absolute top-0 right-0 w-96 h-96 bg-blue-100/30 rounded-full blur-3xl -z-10" />
-      <div className="absolute bottom-0 left-0 w-96 h-96 bg-purple-100/30 rounded-full blur-3xl -z-10" />
+      <div
+        className="absolute top-0 right-0 w-96 h-96 rounded-full blur-3xl -z-10"
+        style={{ background: `${colors.gold}18` }}
+      />
+      <div
+        className="absolute bottom-0 left-0 w-96 h-96 rounded-full blur-3xl -z-10"
+        style={{ background: `${colors.cream}18` }}
+      />
 
       <div className="mx-auto max-w-6xl">
         {/* Header */}
@@ -124,23 +143,36 @@ const ContactUsPage = () => {
           className="text-center mb-16"
         >
           <motion.div variants={itemVariants}>
-            <span className="inline-block px-4 py-2 mb-6 bg-blue-100 border border-blue-300 rounded-full text-sm font-semibold text-blue-700">
+            <span
+            className="inline-block px-4 py-2 mb-6 rounded-full text-sm font-semibold"
+            style={{
+              background: colors.cream,
+              border: `1px solid ${colors.gold}`,
+              color: colors.dark,
+            }}
+          >
               📧 Get in Touch
             </span>
           </motion.div>
 
           <motion.h1
             variants={itemVariants}
-            className="text-4xl sm:text-5xl md:text-6xl font-bold text-slate-900 mb-6"
+            className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6"
+            style={{ color: colors.cream }}
           >
-            <span className="bg-clip-text text-transparent bg-linear-to-r from-blue-600 to-purple-600">
+            <span className="bg-clip-text text-transparent"
+              style={{
+                backgroundImage: `linear-gradient(90deg, ${colors.gold}, ${colors.cream})`,
+              }}
+            >
               Contact Us
             </span>
           </motion.h1>
 
           <motion.p
             variants={itemVariants}
-            className="text-lg md:text-xl text-slate-600 max-w-2xl mx-auto"
+            className="text-lg md:text-xl max-w-2xl mx-auto"
+            style={{ color: colors.cream, opacity: 0.92 }}
           >
             Have questions about the Association? We'd love to hear from you.
             Reach out and let's connect.
@@ -164,19 +196,29 @@ const ContactUsPage = () => {
                 whileHover={{ y: -6 }}
               >
                 <a href={info.link} className="block group">
-                  <div className="bg-white rounded-xl p-8 shadow-md hover:shadow-xl transition-all duration-300 text-center border border-slate-200 hover:border-blue-400">
-                    <div className="inline-flex items-center justify-center w-16 h-16 bg-blue-100 rounded-xl mb-4 group-hover:bg-blue-600 transition-colors duration-300">
+                  <div
+                    className="rounded-xl p-8 shadow-md hover:shadow-xl transition-all duration-300 text-center border"
+                    style={{
+                      background: colors.cream,
+                      borderColor: colors.gold,
+                    }}
+                  >
+                    <div
+                      className="inline-flex items-center justify-center w-16 h-16 rounded-xl mb-4 transition-colors duration-300"
+                      style={{ background: colors.gold }}
+                    >
                       <Icon
                         size={28}
-                        className="text-blue-600 group-hover:text-white transition-colors duration-300"
+                        style={{ color: colors.dark }}
+                        className="transition-colors duration-300"
                       />
                     </div>
 
-                    <h3 className="text-lg font-bold text-slate-900 mb-2">
+                    <h3 className="text-lg font-bold mb-2" style={{ color: colors.dark }}>
                       {info.title}
                     </h3>
 
-                    <p className="text-slate-600 group-hover:text-blue-600 transition-colors duration-300">
+                    <p className="transition-colors duration-300" style={{ color: colors.dark, opacity: 0.8 }}>
                       {info.content}
                     </p>
                   </div>
@@ -196,8 +238,17 @@ const ContactUsPage = () => {
         >
           {/* Form */}
           <motion.div variants={itemVariants}>
-            <div className="bg-white rounded-2xl p-8 shadow-lg border border-slate-200">
-              <h2 className="text-2xl font-bold text-slate-900 mb-6">
+            <div
+              className="rounded-2xl p-8 shadow-lg border"
+              style={{
+                background: colors.cream,
+                borderColor: colors.gold,
+              }}
+            >
+              <h2
+                className="text-2xl font-bold mb-6"
+                style={{ color: colors.dark }}
+              >
                 Send us a Message
               </h2>
 
@@ -205,7 +256,12 @@ const ContactUsPage = () => {
                 <motion.div
                   initial={{ opacity: 0, y: -10 }}
                   animate={{ opacity: 1, y: 0 }}
-                  className="mb-6 p-4 bg-green-100 border border-green-400 rounded-lg text-green-800"
+                  className="mb-6 p-4 rounded-lg"
+                  style={{
+                    background: "rgba(201,168,76,0.15)",
+                    border: `1px solid ${colors.gold}`,
+                    color: colors.cream,
+                  }}
                 >
                   ✓ Thank you! Your message has been sent successfully.
                 </motion.div>
@@ -215,7 +271,12 @@ const ContactUsPage = () => {
                 <motion.div
                   initial={{ opacity: 0, y: -10 }}
                   animate={{ opacity: 1, y: 0 }}
-                  className="mb-6 p-4 bg-red-100 border border-red-400 rounded-lg text-red-800"
+                  className="mb-6 p-4 rounded-lg"
+                  style={{
+                    background: "rgba(255, 232, 232, 0.98)",
+                    border: "1px solid #d32f2f",
+                    color: "#8b1c1c",
+                  }}
                 >
                   {error}
                 </motion.div>
@@ -224,7 +285,7 @@ const ContactUsPage = () => {
               <form onSubmit={handleSubmit} className="space-y-5">
                 {/* Name */}
                 <div>
-                  <label className="block text-sm font-semibold text-slate-900 mb-2">
+                  <label className="block text-sm font-semibold mb-2" style={{ color: colors.dark }}>
                     Full Name
                   </label>
                   <input
@@ -234,14 +295,15 @@ const ContactUsPage = () => {
                     onChange={handleChange}
                     disabled={loading}
                     placeholder="Your name"
-                    className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-300"
+                    className="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 transition-all duration-300"
+                    style={{ borderColor: colors.gold }}
                     required
                   />
                 </div>
 
                 {/* Email */}
                 <div>
-                  <label className="block text-sm font-semibold text-slate-900 mb-2">
+                  <label className="block text-sm font-semibold mb-2" style={{ color: colors.dark }}>
                     Email Address
                   </label>
                   <input
@@ -251,14 +313,15 @@ const ContactUsPage = () => {
                     onChange={handleChange}
                     disabled={loading}
                     placeholder="your@email.com"
-                    className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-300"
+                    className="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 transition-all duration-300"
+                    style={{ borderColor: colors.gold }}
                     required
                   />
                 </div>
 
                 {/* Subject */}
                 <div>
-                  <label className="block text-sm font-semibold text-slate-900 mb-2">
+                  <label className="block text-sm font-semibold mb-2" style={{ color: colors.dark }}>
                     Subject
                   </label>
                   <input
@@ -268,14 +331,15 @@ const ContactUsPage = () => {
                     onChange={handleChange}
                     disabled={loading}
                     placeholder="Message subject"
-                    className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-300"
+                    className="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 transition-all duration-300"
+                    style={{ borderColor: colors.gold }}
                     required
                   />
                 </div>
 
                 {/* Message */}
                 <div>
-                  <label className="block text-sm font-semibold text-slate-900 mb-2">
+                  <label className="block text-sm font-semibold mb-2" style={{ color: colors.dark }}>
                     Message
                   </label>
                   <textarea
@@ -285,7 +349,8 @@ const ContactUsPage = () => {
                     disabled={loading}
                     placeholder="Your message here..."
                     rows={5}
-                    className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-300 resize-none"
+                    className="w-full px-4 py-3 border rounded-lg focus:outline-none transition-all duration-300 focus:ring-2 resize-none"
+                    style={{ borderColor: colors.gold }}
                     required
                   />
                 </div>
@@ -294,7 +359,12 @@ const ContactUsPage = () => {
                 <button
                   type="submit"
                   disabled={loading}
-                  className="w-full py-3 px-6 bg-linear-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold rounded-lg flex items-center justify-center gap-2 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="w-full py-3 px-6 text-white font-semibold rounded-lg flex items-center justify-center gap-2 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+                style={{
+                  background: `linear-gradient(90deg, ${colors.gold}, ${colors.cream})`,
+                  color: colors.dark,
+                  border: `1px solid ${colors.gold}`,
+                }}
                 >
                   {loading ? (
                     <>
@@ -315,25 +385,31 @@ const ContactUsPage = () => {
           {/* Info */}
           <motion.div variants={itemVariants} className="space-y-8">
             <div>
-              <h2 className="text-2xl font-bold text-slate-900 mb-4">
+              <h2 className="text-2xl font-bold mb-4" style={{ color: colors.cream }}>
                 Get in Touch
               </h2>
-              <p className="text-slate-600 text-lg leading-relaxed mb-4">
+              <p className="text-lg leading-relaxed mb-4" style={{ color: colors.cream, opacity: 0.92 }}>
                 Have any questions about the PSG Tech Alumni Association? Our
                 team is ready to help. Whether you're interested in donating,
                 connecting with fellow alumni, or learning more about our
                 initiatives, we'd love to hear from you.
               </p>
-              <p className="text-slate-600 text-lg leading-relaxed">
+              <p className="text-lg leading-relaxed" style={{ color: colors.cream, opacity: 0.92 }}>
                 Fill out the form and we'll get back to you as soon as possible.
               </p>
             </div>
 
-            <div className="bg-blue-50 rounded-xl p-8 border border-blue-200">
-              <h3 className="text-lg font-bold text-slate-900 mb-4">
+            <div
+              className="rounded-xl p-8 border"
+              style={{
+                background: colors.cream,
+                borderColor: colors.gold,
+              }}
+            >
+              <h3 className="text-lg font-bold mb-4" style={{ color: colors.dark }}>
                 Office Hours
               </h3>
-              <div className="space-y-3 text-slate-700">
+              <div style={{ color: colors.dark, opacity: 0.85 }}>
                 <p>
                   <strong>Monday - Friday:</strong> 9:00 AM - 5:00 PM IST
                 </p>
@@ -346,14 +422,22 @@ const ContactUsPage = () => {
               </div>
             </div>
 
-            <div className="bg-purple-50 rounded-xl p-8 border border-purple-200">
-              <h3 className="text-lg font-bold text-slate-900 mb-4">
+            <div
+              className="rounded-xl p-8 border"
+              style={{
+                background: colors.cream,
+                borderColor: colors.gold,
+              }}
+            >
+              <h3 className="text-lg font-bold mb-4" style={{ color: colors.dark }}>
                 Emergency Contact
               </h3>
-              <p className="text-slate-700 mb-2">
+              <p style={{ color: colors.dark, opacity: 0.85, marginBottom: "0.5rem" }}>
                 For urgent matters, please call our main office directly:
               </p>
-              <p className="text-2xl font-bold text-purple-600">+91 422 4344474</p>
+              <p style={{ color: colors.gold, fontSize: "1.5rem", fontWeight: 700 }}>
+                +91 422 4344474
+              </p>
             </div>
           </motion.div>
         </motion.div>
