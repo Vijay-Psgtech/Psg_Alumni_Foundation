@@ -501,17 +501,18 @@ export default function AboutPage() {
               <h1 className="ap-h1">
                 About <em>Our Foundation</em>
               </h1>
-              <p className="ap-lead">
-                Connecting alumni globally with mentorship, opportunities, and purpose-driven initiatives since 2016.
-              </p>
-              <div className="ap-btns">
-                {/* <a href="/donate" className="btn-g">
-                  Donate <ArrowRight size={15} />
-                </a> */}
-                {/* <a href="#" className="btn-gh">
-                  <Download size={13} /> Brochure
-                </a> */}
-              </div>
+             <p className="ap-p dark">
+              The PSG Tech Alumni Foundation, registered as a non-profit trust on <strong>19th October 2016</strong> under Indian Trust Act 1882, is a dedicated organization for alumni, corporates, and well-wishers to collaborate and contribute towards the progress of PSG College of Technology & Polytechnic College.
+            </p>
+
+            <p className="ap-p dark">
+              The Foundation enables structured philanthropic engagement for alumni of PSG College of Technology and PSG Polytechnic College. With transparency, accountability, and institutional development at its core, the Foundation actively supports initiatives that strengthen education, research, innovation, and scientific learning within the PSG ecosystem.
+            </p>
+
+            <p className="ap-p dark">
+              The Foundation is governed by Board of Trustees comprising distinguished alumni and institutional leaders.
+            </p>
+              
             </motion.div>
 
             <motion.div
@@ -531,7 +532,7 @@ export default function AboutPage() {
         </div>
 
         {/* 2a. ABOUT THE FOUNDATION */}
-        <div className="ap-inner">
+        {/* <div className="ap-inner">
           <motion.div
             className="ap-section"
             initial={{ opacity: 0, y: 28 }}
@@ -556,7 +557,7 @@ export default function AboutPage() {
               The Foundation is governed by Board of Trustees comprising distinguished alumni and institutional leaders.
             </p>
           </motion.div>
-        </div>
+        </div> */}
 
         {/* 2b & 2c. VISION & MISSION (Imported Component) */}
         <Vision />
