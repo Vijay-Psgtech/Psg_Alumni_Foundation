@@ -68,7 +68,7 @@ const Banner = () => {
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;1,600&family=Outfit:wght@300;400;500&display=swap');
 
         .banner-root {
-          position: relative; min-height: 100vh;
+          position: relative; min-height: 95vh;
           display: flex; align-items: center; justify-content: center;
           overflow: hidden; background: #05060f;
         }
@@ -93,29 +93,9 @@ const Banner = () => {
         .banner-content {
           position: relative; z-index: 10;
           text-align: center; padding: 0 24px; max-width: 860px; margin: 0 auto;
-          padding-top: 80px;
+          padding-top: 40px;
         }
-        .banner-eyebrow {
-          display: inline-flex; align-items: center; gap: 10px;
-          padding: 7px 22px;
-          border: 1px solid rgba(201,168,76,0.32);
-          border-radius: 100px;
-          background: rgba(201,168,76,0.06);
-          backdrop-filter: blur(10px);
-          margin-bottom: 44px;
-          font-family: 'Outfit', sans-serif;
-          font-size: 11px; font-weight: 500;
-          letter-spacing: 0.2em; text-transform: uppercase;
-          color: rgba(201,168,76,0.88);
-        }
-        .eyebrow-dot {
-          width: 5px; height: 5px; border-radius: 50%; background: #c9a84c;
-          animation: eyebrow-pulse 2.2s ease-in-out infinite;
-        }
-        @keyframes eyebrow-pulse {
-          0%,100% { opacity: 1; transform: scale(1); }
-          50% { opacity: 0.4; transform: scale(0.65); }
-        }
+        /* eyebrow removed */
         .banner-title {
           font-family: 'Playfair Display', serif;
           font-size: clamp(54px, 9.5vw, 110px);
@@ -138,75 +118,21 @@ const Banner = () => {
         }
         .banner-sub {
           font-family: 'Outfit', sans-serif;
-          font-size: clamp(15px, 2.2vw, 20px); font-weight: 300;
-          color: rgba(210,225,248,0.7);
-          max-width: 520px; margin: 0 auto 52px;
+          font-size: clamp(16px, 2.6vw, 22px); font-weight: 400;
+          color: rgba(225,235,250,0.96);
+          max-width: 640px; margin: 0 auto 42px;
           line-height: 1.75; letter-spacing: 0.02em;
+          text-shadow: 0 6px 18px rgba(2,6,23,0.55);
         }
-        .banner-actions { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
-        .banner-btn-gold {
-          display: inline-flex; align-items: center; gap: 9px;
-          padding: 15px 36px;
-          background: linear-gradient(135deg, #b8882a 0%, #e8c255 50%, #b8882a 100%);
-          background-size: 220% 100%; background-position: right;
-          border: none; border-radius: 7px;
-          font-family: 'Outfit', sans-serif; font-size: 13px; font-weight: 600;
-          letter-spacing: 0.12em; text-transform: uppercase; color: #07080e;
-          cursor: pointer; text-decoration: none;
-          transition: background-position 0.45s ease, box-shadow 0.3s, transform 0.2s;
-        }
-        .banner-btn-gold:hover {
-          background-position: left;
-          box-shadow: 0 8px 36px rgba(201,168,76,0.42);
-          transform: translateY(-2px);
-        }
-        .banner-btn-ghost {
-          display: inline-flex; align-items: center; gap: 8px;
-          padding: 14px 34px;
-          background: transparent;
-          border: 1px solid rgba(200,220,248,0.22);
-          border-radius: 7px;
-          font-family: 'Outfit', sans-serif; font-size: 13px; font-weight: 400;
-          letter-spacing: 0.1em; text-transform: uppercase;
-          color: rgba(200,220,248,0.78); cursor: pointer; text-decoration: none;
-          transition: all 0.3s ease;
-        }
-        .banner-btn-ghost:hover {
-          border-color: rgba(201,168,76,0.45); color: #e8c560;
-          background: rgba(201,168,76,0.05);
-        }
-        .banner-stats {
-          display: flex; justify-content: center;
-          margin-top: 72px;
-          border-top: 1px solid rgba(201,168,76,0.14);
-          padding-top: 40px;
-          gap: 0;
-        }
-        .banner-stat {
-          padding: 0 44px; text-align: center;
-          border-right: 1px solid rgba(201,168,76,0.1);
-        }
-        .banner-stat:last-child { border-right: none; }
-        .stat-val {
-          font-family: 'Playfair Display', serif;
-          font-size: 38px; font-weight: 700; line-height: 1;
-          background: linear-gradient(135deg, #c9a84c, #f0d870);
-          -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-          margin-bottom: 7px; display: block;
-        }
-        .stat-lbl {
-          font-family: 'Outfit', sans-serif;
-          font-size: 10px; font-weight: 500;
-          letter-spacing: 0.2em; text-transform: uppercase;
-          color: rgba(200,215,240,0.38);
-        }
+        /* actions removed */
+        /* stats removed */
         .scroll-cue {
-          position: absolute; bottom: 34px; left: 50%; transform: translateX(-50%);
+          position: absolute; bottom: 24px; left: 50%; transform: translateX(-50%);
           display: flex; flex-direction: column; align-items: center; gap: 8px; z-index: 10;
           pointer-events: none;
         }
         .scroll-text {
-          font-family: 'Outfit', sans-serif; font-size: 9px; font-weight: 500;
+          font-family: 'Outfit', sans-serif; font-size: 12px; font-weight: 500;
           letter-spacing: 0.28em; text-transform: uppercase; color: rgba(201,168,76,0.42);
         }
         .scroll-line {
@@ -232,13 +158,6 @@ const Banner = () => {
         <div className="banner-grain" />
 
         <motion.div className="banner-content" style={{ opacity: contentOpacity, y: contentY }}>
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.08 }}>
-            <div className="banner-eyebrow">
-              <span className="eyebrow-dot" />
-              PSG Tech Alumni Foundation · Est. 2016
-            </div>
-          </motion.div>
-
           <div className="banner-title">
             {words.map((w, i) => (
               <motion.span key={w} custom={i} variants={wordVariant} initial="hidden" animate="visible"
@@ -251,23 +170,6 @@ const Banner = () => {
           <motion.p className="banner-sub" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.9, delay: 0.95 }}>
             Join us in building a stronger PSG Tech Alumni Network — connecting talent, fostering legacy, and shaping tomorrow's leaders.
           </motion.p>
-
-          <motion.div className="banner-actions" initial={{ opacity: 0, y: 22 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 1.12 }}>
-            <Link to="/donate" className="banner-btn-gold">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
-              Donate Now
-            </Link>
-            <Link to="" className="banner-btn-ghost">Join the Network</Link>
-          </motion.div>
-
-          <motion.div className="banner-stats" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1.1, delay: 1.4 }}>
-            {[{val:"5K+",lbl:"Alumni Worldwide"},{val:"2016",lbl:"Established"},{val:"50+",lbl:"Global Chapters"},{val:"₹Cr+",lbl:"Funds Raised"}].map(s => (
-              <div className="banner-stat" key={s.lbl}>
-                <span className="stat-val">{s.val}</span>
-                <span className="stat-lbl">{s.lbl}</span>
-              </div>
-            ))}
-          </motion.div>
         </motion.div>
 
         <div className="scroll-cue">
