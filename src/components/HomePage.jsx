@@ -1,10 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import Banner from "./Banner";
-import About from "./About";
-import InitiativesPage from "../pages/Initiativespage";
-import EngagementPage from "../pages/Engagementpage";
+import Banner from "../sections/Banner";
+import About from "../sections/About";
+import InitiativesPage from "../sections/Initiativespage";
+import EngagementPage from "../sections/Engagementpage";
 import Contribute from "../pages/Contribute";
 import usePageTitle from "../hooks/usePageTitle";
 
@@ -218,6 +218,29 @@ const HomePage = () => {
       `}</style>
 
       <Banner />
+       {/* INTRODUCTION SECTION */}
+        <div className="ap-inner">
+          <motion.div
+            className="ap-intro-section"
+            initial={{ opacity: 0, y: 28 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.75 }}
+            viewport={{ once: true }}
+          >
+            <div className="sl">Introduction</div>
+            <h2 className="ap-h2">
+              A <em>Philanthropic Initiative</em>
+            </h2>
+
+            <p className="ap-p">
+              The PSG Tech Alumni Foundation is a philanthropic initiative established by alumni of PSG College of Technology & Polytechnic College to strengthen education, innovation, research, and student development.
+            </p>
+
+            <p className="ap-p">
+              Driven by a collective desire of the Alumni towards the alma mater, the Foundation supports transformative initiatives that create academic and societal impact. Through scholarships, institutional development, experiential learning initiatives, and capacity-building programmes, the Foundation continues to uphold the legacy of excellence associated with PSG College of Technology & Polytechnic College.
+            </p>
+          </motion.div>
+        </div>
       <About />
       <InitiativesPage />
       <EngagementPage />
