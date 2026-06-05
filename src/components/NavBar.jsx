@@ -71,26 +71,26 @@ export default function NavBar() {
   ];
 
   const isDropdownOpen = (label) => {
-    if (label === "About") return aboutOpen;
+    if (label === "About Us") return aboutOpen;
     if (label === "Engagement") return engagementOpen;
     if (label === "Initiatives") return initiativeOpen;
     return false;
   };
 
   const toggleDropdown = (label) => {
-    setAboutOpen(label === "About" ? (p) => !p : false);
+    setAboutOpen(label === "About Us" ? (p) => !p : false);
     setEngagementOpen(label === "Engagement" ? (p) => !p : false);
     setInitiativeOpen(label === "Initiatives" ? (p) => !p : false);
   };
 
   const toggleMobileDropdown = (label) => {
-    if (label === "About") setMobileAboutOpen((p) => !p);
+    if (label === "About Us") setMobileAboutOpen((p) => !p);
     if (label === "Engagement") setMobileEngagementOpen((p) => !p);
     if (label === "Initiatives") setMobileInitiativeOpen((p) => !p);
   };
 
   const isMobileDropdownOpen = (label) => {
-    if (label === "About") return mobileAboutOpen;
+    if (label === "About Us") return mobileAboutOpen;
     if (label === "Engagement") return mobileEngagementOpen;
     if (label === "Initiatives") return mobileInitiativeOpen;
     return false;
