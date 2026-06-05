@@ -567,7 +567,7 @@ export default function AboutPage() {
         <ObjectivesPage />
 
         {/* 2e. BOARD OF TRUSTEES */}
-        <div className="ap-inner">
+        {/* <div className="ap-inner">
           <motion.div
             className="ap-section"
             initial={{ opacity: 0, y: 28 }}
@@ -585,7 +585,7 @@ export default function AboutPage() {
 
             </p>
 
-            {/* <div className="sidebar">
+            <div className="sidebar">
               <div className="sidebar-title">Board of Trustees</div>
               <div className="sidebar-subtitle">
                 Present trustees and ex-officio members
@@ -601,9 +601,9 @@ export default function AboutPage() {
                   Contact
                 </a>
               </div>
-            </div> */}
+            </div>
           </motion.div>
-        </div>
+        </div> */}
       </main>
     </>
   );
