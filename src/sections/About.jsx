@@ -575,7 +575,7 @@ export default function AboutPage() {
             transition={{ duration: 0.75, delay: 0.1 }}
             viewport={{ once: true }}
           >
-            <div className="sl">Board of Trustees</div>
+            {/* <div className="sl">Board of Trustees</div>
             <h2 className="ap-h2">
               Foundation <em>Leadership</em>
             </h2>
@@ -583,7 +583,7 @@ export default function AboutPage() {
             <p className="ap-p dark">
               The details of present Board of Trustees and Former Board of Trustees will be included in this page.
 
-            </p>
+            </p> */}
 
             {/* <div className="sidebar">
               <div className="sidebar-title">Board of Trustees</div>

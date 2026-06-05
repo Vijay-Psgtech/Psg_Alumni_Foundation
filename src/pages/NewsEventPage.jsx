@@ -214,13 +214,7 @@ const NewsEventPage = () => {
           flex-shrink: 0;
         }
 
-        .news-card-title {
-          margin: 0;
-          font-size: 1.1rem;
-          font-weight: 700;
-          color: #111827;
-          line-height: 1.3;
-        }
+        .news-card-title   
 
         .news-card-copy {
           margin: 0;
