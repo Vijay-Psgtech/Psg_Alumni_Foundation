@@ -91,7 +91,7 @@ function AreaRow({ item, index }) {
             transition: "color 0.28s",
             lineHeight: 1.3,
           }}>{item.title}</h4>
-          <span style={{
+          {/* <span style={{
             fontSize: "clamp(0.75rem, 1.2vw, 0.85rem)",
             letterSpacing: "0.1em",
             textTransform: "uppercase",
@@ -102,7 +102,7 @@ function AreaRow({ item, index }) {
             padding: "3px 10px",
             fontFamily: "'Lato', sans-serif",
             fontWeight: 700,
-          }}>{item.tag}</span>
+          }}>{item.tag}</span> */}
         </div>
         <p style={{ fontSize: "clamp(0.9rem, 1.8vw, 1rem)", color: C.creamDim, lineHeight: 1.8, margin: 0, fontFamily: "'Lato', sans-serif" }}>
           {item.desc}
@@ -177,7 +177,7 @@ export default function EngageAsMentor() {
         <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: "3.5rem", animation: "fadeUp .4s ease both" }}>
           <span style={{ width: 32, height: 1.5, background: C.gold, display: "block" }} />
           <span style={{ fontSize: "clamp(0.75rem, 1.2vw, 0.95rem)", letterSpacing: "0.2em", textTransform: "uppercase", color: C.gold, fontWeight: 700 }}>
-            PSG Tech AlumniFoundation · Way 02
+            PSG Tech AlumniFoundation
           </span>
         </div>
 
@@ -196,7 +196,7 @@ export default function EngageAsMentor() {
             }}
           >
             {/* Avatar cluster */}
-            <div style={{ display: "flex", gap: 0, marginBottom: "1.8rem" }}>
+            {/* <div style={{ display: "flex", gap: 0, marginBottom: "1.8rem" }}>
               {["P", "A", "E"].map((l, i) => (
                 <div key={i} style={{
                   width: 44, height: 44, borderRadius: "50%",
@@ -214,7 +214,7 @@ export default function EngageAsMentor() {
               <span style={{ marginLeft: 14, fontSize: 12, color: C.creamDim, alignSelf: "center", letterSpacing: "0.02em" }}>
                 Join our mentor community
               </span>
-            </div>
+            </div> */}
 
             <h2 className="mentor-title" style={{
               fontFamily: "'Cormorant Garamond', serif",

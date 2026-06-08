@@ -164,27 +164,28 @@ export default function EngageAsPartner() {
       /* Tablet landscape */
       @media(max-width:1024px){
         .partner-wrap { padding:6rem 2rem 4rem !important; }
-        .partner-focus-grid { grid-template-columns:1fr 1fr !important; }
+        .partner-split { gap:2.5rem !important; }
       }
       /* Tablet portrait */
       @media(max-width:768px){
         .partner-wrap { padding:5rem 1.8rem 3.5rem !important; }
-        .partner-focus-grid { grid-template-columns:1fr 1fr !important; }
-        .partner-type-grid { grid-template-columns:1fr 1fr !important; }
+        .partner-split { flex-direction:column !important; gap:0 !important; }
+        .partner-left { min-width:unset !important; max-width:100% !important; margin-bottom:2.5rem !important; }
+        .partner-right { padding-left:0 !important; border-left:none !important; border-top:1px solid ${C.creamBorder} !important; padding-top:2.5rem !important; }
+        .partner-focus-grid { grid-template-columns:1fr 1fr !important; gap:1.2rem !important; }
       }
       /* Large phone */
       @media(max-width:600px){
         .partner-wrap { padding:4rem 1.5rem 2.5rem !important; }
         .partner-title { font-size:2.3rem !important; line-height:1.15 !important; }
-        .partner-focus-grid { grid-template-columns:1fr !important; }
-        .partner-type-grid { grid-template-columns:1fr 1fr !important; }
+        .partner-right { padding-top:2rem !important; }
+        .partner-focus-grid { grid-template-columns:1fr !important; gap:1rem !important; }
         .partner-bottom { flex-direction:column !important; gap:1.2rem !important; }
       }
       /* Small phone */
       @media(max-width:480px){
         .partner-wrap { padding:3rem 1.2rem 2rem !important; }
         .partner-title { font-size:2rem !important; }
-        .partner-type-grid { grid-template-columns:1fr !important; }
       }
     `;
     document.head.appendChild(style);
@@ -199,53 +200,117 @@ export default function EngageAsPartner() {
         <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: "2.8rem", animation: "fadeUp .4s ease both" }}>
           <span style={{ width: 32, height: 1.5, background: C.gold, display: "block" }} />
           <span style={{ fontSize: "clamp(0.75rem, 1.2vw, 0.95rem)", letterSpacing: "0.2em", textTransform: "uppercase", color: C.gold, fontWeight: 700 }}>
-            PSG Tech Alumni Foundation · Way 03
+            PSG Tech Alumni Foundation
           </span>
         </div>
 
-        {/* ── Hero — centered ── */}
-        <div style={{ maxWidth: 640, marginBottom: "3.5rem", animation: "fadeUp .5s .05s ease both" }}>
-          <h2 className="partner-title" style={{
-            fontFamily: "'Cormorant Garamond', serif",
-            fontSize: "clamp(2.8rem, 6vw, 4rem)",
-            fontWeight: 300,
-            color: C.cream,
-            lineHeight: 1.15,
-            margin: "0 0 1.4rem",
-            letterSpacing: "-1.2px",
-          }}>
-            Engage <em style={{ fontStyle: "italic", color: C.gold }}>as a Partner</em>
-          </h2>
-          <p style={{ fontSize: "clamp(0.95rem, 2vw, 1.05rem)", lineHeight: 1.85, color: C.creamDim, margin: "0 0 1.8rem", maxWidth: 560 }}>
-            The Foundation invites alumni, industries, institutions, and corporate organizations to collaborate as long-term partners in advancing education, research, innovation, and community development.
-          </p>
+        {/* ── Split layout ── */}
+        <div className="partner-split" style={{ display: "flex", gap: "3.5rem", alignItems: "flex-start" }}>
 
-          {/* Who can partner */}
-          <div className="partner-type-grid" style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "0.8rem" }}>
-            {partnerTypes.map((p, i) => <PartnerTypeCard key={i} item={p} index={i} />)}
+          {/* LEFT */}
+          <div className="partner-left" style={{ minWidth: 320, maxWidth: 400, flexShrink: 0, animation: "fadeUp .5s .05s ease both" }}>
+            <h2 className="partner-title" style={{
+              fontFamily: "'Cormorant Garamond', serif",
+              fontSize: "clamp(2.8rem, 6vw, 4rem)",
+              fontWeight: 300,
+              color: C.cream,
+              lineHeight: 1.15,
+              margin: "0 0 1.6rem",
+              letterSpacing: "-1.2px",
+            }}>
+              Engage<br />
+              <em style={{ fontStyle: "italic", color: C.gold }}>as a Partner</em>
+            </h2>
+            <p style={{ fontSize: "clamp(0.95rem, 2vw, 1.05rem)", lineHeight: 1.85, color: C.creamDim, margin: "0 0 2.2rem", maxWidth: 400 }}>
+              The Foundation invites alumni, industries, institutions, and corporate organizations to collaborate as long-term partners in advancing education, research, innovation, and community development.
+            </p>
+
+            <div style={{ marginBottom: "2.2rem" }}>
+              <p style={{ fontSize: "clamp(0.75rem, 1.3vw, 0.9rem)", letterSpacing: "0.18em", textTransform: "uppercase", color: C.creamDim, marginBottom: "0.8rem", fontWeight: 700 }}>
+                Who can partner
+              </p>
+              <div className="partner-tags" style={{ display: "flex", flexWrap: "wrap", gap: "0.8rem" }}>
+                {partnerTypes.map((t, i) => (
+                  <span key={i} style={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: 8,
+                    fontSize: "clamp(0.85rem, 1.5vw, 1rem)",
+                    color: C.cream,
+                    background: C.creamFaint,
+                    border: `1px solid ${C.creamBorder}`,
+                    borderRadius: 20,
+                    padding: "10px 14px",
+                    fontFamily: "'Lato', sans-serif",
+                  }}>
+                    <span>{t.emoji}</span>{t.label}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            <div style={{
+              background: C.goldFaint,
+              border: `1px solid ${C.goldBorder}`,
+              borderRadius: 10,
+              padding: "1.2rem 1.4rem",
+              marginBottom: "2.2rem",
+            }}>
+              <p style={{ fontSize: "clamp(0.85rem, 1.5vw, 0.95rem)", color: C.goldDim, lineHeight: 1.8, margin: 0, letterSpacing: "0.01em" }}>
+                Collaborate with PSG Foundation through strategic partnerships that support sustainable education, research, innovation, and wider social impact.
+              </p>
+            </div>
+
+            <button
+              onMouseEnter={() => setBtnHov(true)}
+              onMouseLeave={() => setBtnHov(false)}
+              style={{
+                background: btnHov ? C.gold : "transparent",
+                color: btnHov ? C.dark : C.gold,
+                border: `1.5px solid ${C.gold}`,
+                borderRadius: 9,
+                padding: "14px 36px",
+                fontSize: "clamp(0.8rem, 1.5vw, 0.95rem)",
+                letterSpacing: "0.16em",
+                textTransform: "uppercase",
+                fontFamily: "'Lato', sans-serif",
+                fontWeight: 700,
+                cursor: "pointer",
+                transition: "all 0.25s ease",
+              }}
+            >
+              {btnHov ? "→ Partner Today" : "Start a Partnership"}
+            </button>
+          </div>
+
+          {/* RIGHT */}
+          <div className="partner-right" style={{ flex: 1, paddingLeft: "3rem", borderLeft: `1px solid ${C.creamBorder}`, animation: "fadeUp .5s .15s ease both" }}>
+            <p style={{
+              fontSize: "clamp(0.75rem, 1.3vw, 0.9rem)", letterSpacing: "0.2em", textTransform: "uppercase",
+              color: C.creamDim, marginBottom: "1.5rem", fontWeight: 700,
+            }}>
+              Strategic partnership focus areas
+            </p>
+            <div
+              className="partner-focus-grid"
+              style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1rem" }}
+            >
+              {focusAreas.map((f, i) => <FocusCard key={i} item={f} index={i} />)}
+            </div>
+
+            <div style={{
+              marginTop: "2rem",
+              padding: "1.4rem 1.6rem",
+              borderRadius: 10,
+              border: `1px solid ${C.creamBorder}`,
+              background: C.creamFaint,
+            }}>
+              <p style={{ fontSize: "clamp(0.9rem, 1.7vw, 1rem)", color: C.creamDim, lineHeight: 1.8, margin: 0, fontStyle: "italic" }}>
+                "A strong partner network helps PSG Foundation deliver meaningful, measurable impact across campus and community initiatives."
+              </p>
+            </div>
           </div>
         </div>
-
-        {/* ── Gold divider ── */}
-        <div className="partner-divider-line" style={{ marginBottom: "3rem" }} />
-
-        {/* ── Focus areas ── */}
-        <div style={{ marginBottom: "3rem" }}>
-          <p style={{
-            fontSize: "clamp(0.75rem, 1.3vw, 0.9rem)", letterSpacing: "0.2em", textTransform: "uppercase",
-            color: C.creamDim, marginBottom: "1.5rem", fontWeight: 700,
-          }}>
-            Strategic partnership focus areas
-          </p>
-          <div
-            className="partner-focus-grid"
-            style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "1rem" }}
-          >
-            {focusAreas.map((f, i) => <FocusCard key={i} item={f} index={i} />)}
-          </div>
-        </div>
-
-        {/* ── Bottom strip ── */}
         <div
           className="partner-bottom"
           style={{
