@@ -99,8 +99,8 @@ const ContactUsPage = () => {
     {
       icon: Mail,
       title: "Email",
-      content: "admin@psgtechalumnifoundation.org",
-      link: "mailto:admin@psgtechalumnifoundation.org",
+      content: "info@psgtechalumnifoundation.org",
+      link: "mailto:info@psgtechalumnifoundation.org",
     },
     {
       icon: Phone,
@@ -174,7 +174,7 @@ const ContactUsPage = () => {
             className="text-lg md:text-xl max-w-2xl mx-auto"
             style={{ color: colors.cream, opacity: 0.92 }}
           >
-            Have questions about the Association? We'd love to hear from you.
+            Have any queries about the foundation? We'd love to hear from you.
             Reach out and let's connect.
           </motion.p>
         </motion.div>
@@ -234,7 +234,7 @@ const ContactUsPage = () => {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
-          className="grid grid-cols-1 md:grid-cols-2 gap-12"
+          className="grid grid-cols-1 md:grid-cols-1 gap-12"
         >
           {/* Form */}
           <motion.div variants={itemVariants}>
@@ -383,7 +383,7 @@ const ContactUsPage = () => {
           </motion.div>
 
           {/* Info */}
-          <motion.div variants={itemVariants} className="space-y-8">
+          {/* <motion.div variants={itemVariants} className="space-y-8">
             <div>
               <h2 className="text-2xl font-bold mb-4" style={{ color: colors.cream }}>
                 Get in Touch
@@ -439,7 +439,7 @@ const ContactUsPage = () => {
                 +91 422 4344474
               </p>
             </div>
-          </motion.div>
+          </motion.div> */}
         </motion.div>
       </div>
     </section>

@@ -142,7 +142,7 @@ export default function EngageAsDonor() {
         <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: "3.5rem", animation: "fadeUp .4s ease both" }}>
           <span style={{ width: 32, height: 1.5, background: C.gold, display: "block" }} />
           <span style={{ fontSize: "clamp(0.75rem, 1.2vw, 0.95rem)", letterSpacing: "0.2em", textTransform: "uppercase", color: C.gold, fontWeight: 700 }}>
-            PSG Tech Alumni Foundation · Way 01
+            PSG Tech Alumni Foundation
           </span>
         </div>
 
