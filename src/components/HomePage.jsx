@@ -7,6 +7,8 @@ import InitiativesPage from "../sections/Initiativespage";
 import EngagementPage from "../sections/Engagementpage";
 import Contribute from "../pages/Contribute";
 import usePageTitle from "../hooks/usePageTitle";
+import Announcements from "../pages/NewsEventPage";
+import GalleryPage from "../pages/Gallerypage";
 
 const HomePage = () => {
   usePageTitle("Home - PSG TECH Alumni Foundation");
@@ -227,7 +229,7 @@ const HomePage = () => {
             transition={{ duration: 0.75 }}
             viewport={{ once: true }}
           >
-            <div className="sl">Introduction</div>
+            {/* <div className="sl">Introduction</div> */}
             <h2 className="ap-h2">
               A <em>Philanthropic Initiative</em>
             </h2>
@@ -242,9 +244,11 @@ const HomePage = () => {
           </motion.div>
         </div>
       <About />
-      <InitiativesPage />
-      <EngagementPage />
-      <Contribute />
+      <Announcements />
+      <GalleryPage/>
+      {/* <InitiativesPage /> */}
+      {/* <EngagementPage /> */}
+      {/* <Contribute /> */}
     </>
   );
 };

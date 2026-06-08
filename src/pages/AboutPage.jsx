@@ -250,9 +250,9 @@ const AboutPage = () => {
             <h1 className="about-h1">
               About <em>PSG Tech Alumni Foundation</em>
             </h1>
-            <p className="about-sub">
+            {/* <p className="about-sub">
               A philanthropic initiative dedicated to strengthening education, research, innovation, and student development at PSG College of Technology & Polytechnic College.
-            </p>
+            </p> */}
           </motion.div>
 
           {/* Main Content */}
@@ -263,7 +263,7 @@ const AboutPage = () => {
             transition={{ duration: 0.8, delay: 0.2 }}
           >
             <p className="about-section-text">
-              The PSG Tech Alumni Foundation, <span className="about-highlight">registered as a non-profit trust on 19th October 2016</span> under the Indian Trust Act 1882, is a dedicated organization for alumni, corporates, and well-wishers to collaborate and contribute towards the progress of PSG College of Technology & Polytechnic College.
+              The PSG Tech Alumni Foundation, <span className="about-highlight">registered as a non-profit trust </span> and  a dedicated organization for alumni, corporates, and well-wishers to collaborate and contribute towards the progress of PSG College of Technology & Polytechnic College.
             </p>
 
             <p className="about-section-text">

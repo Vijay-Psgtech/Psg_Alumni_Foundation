@@ -559,14 +559,14 @@ export default function AboutPage() {
         </div>
 
         {/* 2b & 2c. VISION & MISSION (Imported Component) */}
-        <Vision />
-        <MissionPage />
+        {/* <Vision /> */}
+        {/* <MissionPage /> */}
 
         {/* 2d. OBJECTIVES (Imported Component) */}
-        <ObjectivesPage />
+        {/* <ObjectivesPage /> */}
 
         {/* 2e. BOARD OF TRUSTEES */}
-        <div className="ap-inner">
+        {/* <div className="ap-inner">
           <motion.div
             className="ap-section"
             initial={{ opacity: 0, y: 28 }}
@@ -602,7 +602,7 @@ export default function AboutPage() {
               </div>
             </div> */}
           </motion.div>
-        </div>
+        </div> */}
       </main>
     </>
   );

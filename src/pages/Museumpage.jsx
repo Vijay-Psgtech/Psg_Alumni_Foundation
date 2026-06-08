@@ -11,14 +11,14 @@ const museumSections = [
     color: "#c9a84c",
     description: "A landmark initiative dedicated to scientific curiosity and innovation.",
     details: "The PSG GRD Museum of Science & Technology is a world-class facility jointly established by PSG & Sons' Charities and the PSG Tech Alumni Foundation. Dedicated to the memory of Dr. G.R. Damodaran, the visionary architect of PSG institutions, the museum stands as a testament to excellence in science education and technological innovation.",
-    initiatives: [
-      "30,000+ square feet of exhibition space",
-      "State-of-the-art interactive exhibits",
-      "Technology-driven educational experiences",
-      "Immersive learning environments",
-      "Modern museum infrastructure",
-      "World-class visitor facilities"
-    ]
+    // initiatives: [
+    //   "30,000+ square feet of exhibition space",
+    //   "State-of-the-art interactive exhibits",
+    //   "Technology-driven educational experiences",
+    //   "Immersive learning environments",
+    //   "Modern museum infrastructure",
+    //   "World-class visitor facilities"
+    // ]
   },
   
 ];
@@ -161,7 +161,7 @@ const MuseumPage = () => {
             viewport={{once:true}}
           >
             <h3>Museum Highlights</h3>
-            <div className="museum-info-grid">
+            {/* <div className="museum-info-grid">
               <div className="info-card">
                 <strong>30,000+ SQ FT</strong>
                 <p>State-of-the-art exhibition facility</p>
@@ -178,7 +178,7 @@ const MuseumPage = () => {
                 <strong>LEARNING DESTINATION</strong>
                 <p>Vibrant hub for experiential science education</p>
               </div>
-            </div>
+            </div> */}
           </motion.div>
 
           <motion.div 

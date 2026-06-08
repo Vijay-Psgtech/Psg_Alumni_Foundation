@@ -59,9 +59,12 @@ const ObjectivesPage = () => {
         .obj-hero::before{content:'';position:absolute;top:-100px;right:-100px;width:500px;height:500px;background:radial-gradient(circle,rgba(201,168,76,.08) 0%,transparent 68%);pointer-events:none;}
         .obj-inner{max-width:1240px;margin:0 auto;position:relative;z-index:2;}
         .obj-header{text-align:center;margin-bottom:80px;}
-        .obj-eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:10px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:rgba(201,168,76,.72);margin-bottom:26px;}
-        .obj-eyebrow::before,.obj-eyebrow::after{content:'';width:28px;height:1.5px;background:rgba(201,168,76,.5);}
-        .obj-h1{font-family:'Playfair Display',serif;font-size:clamp(44px,7vw,80px);font-weight:800;color:#f2ede3;line-height:1.0;margin-bottom:20px;letter-spacing:-.025em;}
+        .obj-eyebrow{display:inline-flex;align-items:center;gap:16px;margin-bottom:36px;}
+        .obj-eyebrow-text{font-family:'Playfair Display',serif;font-size:clamp(42px,6vw,72px);font-weight:800;font-style:italic;letter-spacing:.04em;background:linear-gradient(130deg,#c9a84c,#f0d870,#c9a84c);-webkit-background-clip:text;-webkit-text-fill-color:transparent;line-height:1;}
+        .obj-vline{height:1.5px;width:48px;flex-shrink:0;}
+        .obj-vline-left{background:linear-gradient(90deg,transparent,rgba(201,168,76,.65));}
+        .obj-vline-right{background:linear-gradient(90deg,rgba(201,168,76,.65),transparent);}
+        .obj-h1{font-family:'Playfair Display',serif;font-size:clamp(34px,5vw,56px);font-weight:800;color:#f2ede3;line-height:1.0;margin-bottom:20px;letter-spacing:-.025em;}
         .obj-h1 em{font-style:italic;background:linear-gradient(130deg,#c9a84c,#f0d870);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
         .obj-sub{font-size:16px;font-weight:300;color:rgba(200,215,240,.52);max-width:600px;margin:0 auto;line-height:1.72;}
         .obj-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px;}
@@ -74,15 +77,9 @@ const ObjectivesPage = () => {
         .obj-icon{color:#c9a84c;}
         .obj-title{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:#f2ede3;margin-bottom:12px;line-height:1.2;}
         .obj-desc{font-size:14px;font-weight:300;line-height:1.72;color:rgba(200,215,240,.56);}
-        .obj-section{margin-top:100px;padding:60px 40px;background:rgba(201,168,76,.05);border:1px solid rgba(201,168,76,.15);border-radius:14px;position:relative;}
-        .obj-section::before{content:'';position:absolute;top:0;left:0;right:0;height:1.5px;background:linear-gradient(90deg,transparent,rgba(201,168,76,.5),transparent);}
-        .obj-section-title{font-family:'Playfair Display',serif;font-size:32px;font-weight:700;color:#f2ede3;margin-bottom:24px;line-height:1.2;}
-        .obj-section-text{font-size:16px;font-weight:300;line-height:1.8;color:rgba(200,215,240,.56);}
-        .obj-highlight{font-weight:600;color:#c9a84c;}
-        @media(max-width:820px){.obj-grid{grid-template-columns:1fr;}.obj-section{padding:40px 24px;}}
+        @media(max-width:820px){.obj-grid{grid-template-columns:1fr;}.obj-eyebrow-text{font-size:clamp(36px,10vw,52px);}}
       `}</style>
 
-      {/* Hero Section */}
       <section className="obj-hero">
         <div className="obj-inner">
           <motion.div
@@ -91,7 +88,11 @@ const ObjectivesPage = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <div className="obj-eyebrow">Objectives</div>
+            <div className="obj-eyebrow">
+              <div className="obj-vline obj-vline-left" />
+              <span className="obj-eyebrow-text">Objectives</span>
+              <div className="obj-vline obj-vline-right" />
+            </div>
             <h1 className="obj-h1">
               Our Commitment to <em>Excellence</em>
             </h1>
@@ -125,28 +126,6 @@ const ObjectivesPage = () => {
               </motion.div>
             ))}
           </motion.div>
-{/* 
-          <motion.div
-            className="obj-section"
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.75 }}
-            viewport={{ once: true }}
-          >
-            <h2 className="obj-section-title">Our Foundation Principles</h2>
-            <p className="obj-section-text">
-              The PSG Tech Alumni Foundation operates on the core principle that{" "}
-              <span className="obj-highlight">
-                no deserving student should be deprived of quality education due
-                to financial limitations
-              </span>
-              . Through scholarships, capacity-building programs, and research
-              initiatives, we empower the next generation of leaders and
-              innovators. Our structured philanthropic approach ensures
-              transparency, accountability, and sustainable impact across all
-              educational and institutional development initiatives.
-            </p>
-          </motion.div> */}
         </div>
       </section>
     </>
