@@ -34,16 +34,19 @@ const TrusteesPage = () => {
         .vision-page{background:#080b18;padding:110px 24px;font-family:'Outfit',sans-serif;position:relative;overflow:hidden;min-height:auto;display:flex;align-items:center;}
         .vision-orb{position:absolute;border-radius:50%;filter:blur(90px);pointer-events:none;}
         .vision-container{max-width:1200px;margin:0 auto;position:relative;z-index:2;width:100%;}
-        .vision-eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:10px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:rgba(201,168,76,.72);margin-bottom:26px;justify-content:center;width:100%;}
-        .vision-eyebrow .vline{width:28px;height:1.5px;background:linear-gradient(90deg,transparent,rgba(201,168,76,.65));}
+        .tr-eyebrow{display:inline-flex;align-items:center;gap:16px;margin-bottom:36px;justify-content:center;width:100%;}
+        .tr-eyebrow-text{font-family:'Playfair Display',serif;font-size:clamp(42px,6vw,72px);font-weight:800;font-style:italic;letter-spacing:.04em;background:linear-gradient(130deg,#c9a84c,#f0d870,#c9a84c);-webkit-background-clip:text;-webkit-text-fill-color:transparent;line-height:1;}
+        .tr-vline{height:1.5px;width:48px;flex-shrink:0;}
+        .tr-vline-left{background:linear-gradient(90deg,transparent,rgba(201,168,76,.65));}
+        .tr-vline-right{background:linear-gradient(90deg,rgba(201,168,76,.65),transparent);}
         .vision-card{position:relative;background:rgba(255,255,255,.028);border:1px solid rgba(201,168,76,.17);border-radius:14px;padding:56px 60px;text-align:left;overflow:hidden;margin-bottom:40px;}
         .vision-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,#a86e20,#e8c255,#a86e20);}
-        .vision-qmark{font-family:'Playfair Display',serif;font-size:150px;line-height:.75;color:rgba(201,168,76,.07);position:absolute;top:18px;left:32px;font-style:italic;pointer-events:none;user-select:none;}
+        .vision-qmark{font-family:'Playfair Display',serif;font-size:150px;line-height:.75;color:rgba(201,168,76,.07);position:absolute;font-style:italic;pointer-events:none;user-select:none;}
+        .vision-qmark-open{top:18px;left:32px;}
+        .vision-qmark-close{bottom:-10px;right:32px;line-height:1;}
         .vision-text{font-family:'Playfair Display',serif;font-size:clamp(20px,2.6vw,28px);font-weight:500;color:rgba(232,238,252,.82);line-height:1.62;font-style:italic;position:relative;z-index:2;}
         .vision-text strong{font-style:normal;font-weight:700;background:linear-gradient(130deg,#c9a84c,#f0d870);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
         .vision-divider{width:48px;height:1.5px;background:linear-gradient(90deg,#c9a84c,#f0d870);margin:28px 0 18px;}
-        .vision-footer{font-size:10px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:rgba(200,215,240,.3);}
-        
         .trustees-table-wrapper{position:relative;background:rgba(255,255,255,.028);border:1px solid rgba(201,168,76,.17);border-radius:14px;overflow:hidden;margin-bottom:40px;}
         .trustees-table-wrapper::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,#a86e20,#e8c255,#a86e20);z-index:1;}
         .trustees-table{width:100%;border-collapse:collapse;z-index:2;position:relative;}
@@ -55,23 +58,8 @@ const TrusteesPage = () => {
         .trustees-table td.sl-col{font-weight:600;color:rgba(201,168,76,.85);width:40px;text-align:center;}
         .trustees-table td.name-col{font-weight:600;color:rgba(232,238,252,.9);min-width:150px;}
         .trustees-table td.position-col{background:rgba(201,168,76,.04);font-weight:500;color:rgba(201,168,76,.8);}
-        
-        @media(max-width:768px){
-          .vision-card{padding:36px 24px;}
-          .trustees-table-wrapper{margin-bottom:20px;}
-          .trustees-table th,.trustees-table td{padding:10px 8px;font-size:11px;}
-          .trustees-table{font-size:12px;}
-          .vision-eyebrow{flex-direction:column;gap:8px;}
-          .vision-eyebrow .vline{width:20px;}
-        }
-        
-        @media(max-width:600px){
-          .vision-page{padding:80px 16px;}
-          .vision-card{padding:24px 16px;}
-          .trustees-table-wrapper{border-radius:10px;}
-          .trustees-table th,.trustees-table td{padding:8px 6px;font-size:10px;}
-          .trustees-table{font-size:11px;}
-        }
+        @media(max-width:768px){.vision-card{padding:36px 24px;}.trustees-table th,.trustees-table td{padding:10px 8px;font-size:11px;}.tr-eyebrow-text{font-size:clamp(36px,10vw,52px);}}
+        @media(max-width:600px){.vision-page{padding:80px 16px;}.vision-card{padding:24px 16px;}.trustees-table-wrapper{border-radius:10px;}.trustees-table th,.trustees-table td{padding:8px 6px;font-size:10px;}}
       `}</style>
 
       <section className="vision-page">
@@ -80,16 +68,19 @@ const TrusteesPage = () => {
 
         <div className="vision-container">
           <motion.div initial={{opacity:0,y:24}} whileInView={{opacity:1,y:0}} transition={{duration:.75}} viewport={{once:true}}>
-            <div className="vision-eyebrow">
-              <div className="vline"/>Board of Trustees<div className="vline" style={{background:"linear-gradient(90deg,rgba(201,168,76,.65),transparent)"}}/>
+            <div className="tr-eyebrow">
+              <div className="tr-vline tr-vline-left" />
+              <span className="tr-eyebrow-text">Board of Trustees</span>
+              <div className="tr-vline tr-vline-right" />
             </div>
           </motion.div>
 
           <motion.div className="vision-card" initial={{opacity:0,y:38}} whileInView={{opacity:1,y:0}} transition={{duration:.9,delay:.2}} viewport={{once:true}}>
-            <div className="vision-qmark">"</div>
+            <div className="vision-qmark vision-qmark-open">&ldquo;</div>
             <p className="vision-text">
               Meet the distinguished leaders guiding our <strong>alumni foundation</strong> with their expertise and commitment.
             </p>
+            <div className="vision-qmark vision-qmark-close">&rdquo;</div>
             <div className="vision-divider"/>
           </motion.div>
 

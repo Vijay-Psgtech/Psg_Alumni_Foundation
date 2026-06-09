@@ -20,7 +20,7 @@ function TCard({ name, role }) {
     .map((n) => n[0])
     .slice(0, 2)
     .join("");
-  
+
   return (
     <div
       style={{
@@ -487,7 +487,7 @@ export default function AboutPage() {
           }
         }
       `}</style>
-          <main className="ap">
+      <main className="ap">
         {/* HERO SECTION */}
         <div className="ap-inner">
           <div className="ap-hero">
@@ -497,22 +497,31 @@ export default function AboutPage() {
               whileInView="visible"
               viewport={{ once: true }}
             >
-              <div className="ap-ey">PSG Tech Alumni Foundation</div>
               <h1 className="ap-h1">
-                About <em>Our Foundation</em>
+                About <em>PSG TECH Foundation</em>
               </h1>
-             <p className="ap-p dark">
-              The PSG Tech Alumni Foundation, registered as a non-profit trust on <strong>19th October 2016</strong> under Indian Trust Act 1882, is a dedicated organization for alumni, corporates, and well-wishers to collaborate and contribute towards the progress of PSG College of Technology & Polytechnic College.
-            </p>
 
-            <p className="ap-p dark">
-              The Foundation enables structured philanthropic engagement for alumni of PSG College of Technology and PSG Polytechnic College. With transparency, accountability, and institutional development at its core, the Foundation actively supports initiatives that strengthen education, research, innovation, and scientific learning within the PSG ecosystem.
-            </p>
+              <p
+                className="ap-p dark"
+                style={{
+                  display: "-webkit-box",
+                  WebkitLineClamp: 2,
+                  WebkitBoxOrient: "vertical",
+                  overflow: "hidden",
+                }}
+              >
+                The PSG Tech Alumni Foundation, registered as a non-profit trust
+                and a dedicated organization for alumni, corporates, and
+                well-wishers to collaborate and contribute towards the progress
+                of PSG College of Technology & Polytechnic College.
+                <br />
+                The Foundation enables structured philanthropic engagement for
+                alumni of PSG College of Technology and PSG Polytechnic College.
+              </p>
 
-            <p className="ap-p dark">
-              The Foundation is governed by Board of Trustees comprising distinguished alumni and institutional leaders.
-            </p>
-              
+              <a href="/about" className="ap-read-more">
+                Read More →
+              </a>
             </motion.div>
 
             <motion.div
@@ -560,11 +569,11 @@ export default function AboutPage() {
         </div> */}
 
         {/* 2b & 2c. VISION & MISSION (Imported Component) */}
-        <Vision />
-        <MissionPage />
+        {/* <Vision />
+        <MissionPage /> */}
 
         {/* 2d. OBJECTIVES (Imported Component) */}
-        <ObjectivesPage />
+        {/* <ObjectivesPage /> */}
 
         {/* 2e. BOARD OF TRUSTEES */}
         {/* <div className="ap-inner">
@@ -575,7 +584,7 @@ export default function AboutPage() {
             transition={{ duration: 0.75, delay: 0.1 }}
             viewport={{ once: true }}
           >
-            <div className="sl">Board of Trustees</div>
+            {/* <div className="sl">Board of Trustees</div>
             <h2 className="ap-h2">
               Foundation <em>Leadership</em>
             </h2>
@@ -583,9 +592,9 @@ export default function AboutPage() {
             <p className="ap-p dark">
               The details of present Board of Trustees and Former Board of Trustees will be included in this page.
 
-            </p>
+            </p> */}
 
-            <div className="sidebar">
+        {/* <div className="sidebar">
               <div className="sidebar-title">Board of Trustees</div>
               <div className="sidebar-subtitle">
                 Present trustees and ex-officio members
@@ -601,9 +610,9 @@ export default function AboutPage() {
                   Contact
                 </a>
               </div>
-            </div>
-          </motion.div>
-        </div> */}
+            </div> */}
+        {/* </motion.div> */}
+        {/* </div> */}
       </main>
     </>
   );

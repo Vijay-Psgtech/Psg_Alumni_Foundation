@@ -62,7 +62,7 @@ const Footer = () => {
             </div>
             <div className="contact-item">
               <Mail size={18} className="contact-icon" />
-              <a href="mailto:admin@psgtechalumnifoundation.org">admin@psgtechalumnifoundation.org</a>
+              <a href="mailto:info@psgtechalumnifoundation.org">info@psgtechalumnifoundation.org</a>
             </div>
           </div>
         </div>
@@ -71,9 +71,9 @@ const Footer = () => {
 
         <div className="footer-bottom">
           <div className="footer-copyright">
-            © 2024 PSG Tech Alumni Foundation. All rights reserved. | Registered as Non-Profit Trust (19th October 2016)
+            © 2024 PSG Tech Alumni Foundation. All rights reserved. | Powered by Central IT Services
           </div>
-          <div className="footer-social">
+          {/* <div className="footer-social">
             <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="social-icon" title="Facebook">
               <Facebook size={18} />
             </a>
@@ -86,7 +86,7 @@ const Footer = () => {
             <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="social-icon" title="Instagram">
               <Instagram size={18} />
             </a>
-          </div>
+          </div> */}
         </div>
       </footer>
     </>
