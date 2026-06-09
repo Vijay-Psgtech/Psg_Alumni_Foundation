@@ -8,8 +8,11 @@ const MissionPage = () => (
       .mission-page{background:#080b18;padding:110px 24px;font-family:'Outfit',sans-serif;position:relative;overflow:hidden;min-height:100vh;display:flex;align-items:center;}
       .mission-orb{position:absolute;border-radius:50%;filter:blur(90px);pointer-events:none;}
       .mission-container{max-width:860px;margin:0 auto;text-align:center;position:relative;z-index:2;width:100%;}
-      .mission-eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:10px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:rgba(201,168,76,.72);margin-bottom:26px;}
-      .mission-eyebrow .vline{width:28px;height:1.5px;background:linear-gradient(90deg,transparent,rgba(201,168,76,.65));}
+      .mission-eyebrow{display:inline-flex;align-items:center;gap:16px;margin-bottom:36px;}
+      .mission-eyebrow-text{font-family:'Playfair Display',serif;font-size:clamp(42px,6vw,72px);font-weight:800;font-style:italic;letter-spacing:.04em;background:linear-gradient(130deg,#c9a84c,#f0d870,#c9a84c);-webkit-background-clip:text;-webkit-text-fill-color:transparent;line-height:1;}
+      .mission-vline{height:1.5px;width:48px;flex-shrink:0;}
+      .mission-vline-left{background:linear-gradient(90deg,transparent,rgba(201,168,76,.65));}
+      .mission-vline-right{background:linear-gradient(90deg,rgba(201,168,76,.65),transparent);}
       .mission-card{position:relative;background:rgba(255,255,255,.028);border:1px solid rgba(201,168,76,.17);border-radius:14px;padding:56px 60px;text-align:left;overflow:hidden;margin-bottom:40px;}
       .mission-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,#a86e20,#e8c255,#a86e20);}
       .mission-divider{width:48px;height:1.5px;background:linear-gradient(90deg,#c9a84c,#f0d870);margin:28px 0 18px;}
@@ -18,7 +21,7 @@ const MissionPage = () => (
       .mission-list li{margin-bottom:18px;font-family:'Playfair Display',serif;font-size:clamp(18px,2.4vw,24px);color:rgba(232,238,252,.82);line-height:1.6;position:relative;}
       .mission-list li::before{content:'•';position:absolute;left:-20px;background:linear-gradient(130deg,#c9a84c,#f0d870);-webkit-background-clip:text;-webkit-text-fill-color:transparent;font-weight:700;}
       .mission-list li:last-child{margin-bottom:0;}
-      @media(max-width:600px){.mission-card{padding:36px 24px;}}
+      @media(max-width:600px){.mission-card{padding:36px 24px;}.mission-eyebrow-text{font-size:clamp(36px,10vw,52px);}}
     `}</style>
 
     <section className="mission-page">
@@ -28,7 +31,9 @@ const MissionPage = () => (
       <div className="mission-container">
         <motion.div initial={{opacity:0,y:24}} whileInView={{opacity:1,y:0}} transition={{duration:.75}} viewport={{once:true}}>
           <div className="mission-eyebrow">
-            <div className="vline"/>Mission<div className="vline" style={{background:"linear-gradient(90deg,rgba(201,168,76,.65),transparent)"}}/>
+            <div className="mission-vline mission-vline-left" />
+            <span className="mission-eyebrow-text">Mission</span>
+            <div className="mission-vline mission-vline-right" />
           </div>
         </motion.div>
 
@@ -39,7 +44,7 @@ const MissionPage = () => (
             <li>To responsibly secure, manage, and deploy resources toward educational advancement, research, and student welfare.</li>
           </ul>
           <div className="mission-divider"/>
-          <div className="mission-footer">Mission Statement</div>
+          {/* <div className="mission-footer">Mission Statement</div> */}
         </motion.div>
       </div>
     </section>
