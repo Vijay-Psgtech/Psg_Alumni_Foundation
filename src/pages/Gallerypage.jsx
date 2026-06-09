@@ -17,14 +17,14 @@ const galleryItems = [
   { id: 2, category: "Scholarships", title: "Scholar Felicitation", image: "🎓", desc: "Celebrating our scholarship recipients" },
   { id: 3, category: "Workshops", title: "Faculty Development Program", image: "📚", desc: "Professional development session" },
   { id: 4, category: "Museum", title: "Science & Tech Exhibition", image: "🏛️", desc: "PSG GRD Museum interactive exhibit" },
-  { id: 5, category: "Events", title: "Alumni Networking Meet", image: "👥", desc: "Annual alumni gathering" },
-  { id: 6, category: "Initiatives", title: "Capacity Building Session", image: "💼", desc: "Industry experts training students" },
-  { id: 7, category: "Workshops", title: "Seminar on Innovation", image: "🚀", desc: "Promoting innovation and R&D" },
-  { id: 8, category: "Museum", title: "Interactive Learning Zone", image: "⚡", desc: "Students exploring technology" },
-  { id: 9, category: "Scholarships", title: "Merit Award Ceremony", image: "🏆", desc: "Honoring academic excellence" },
-  { id: 10, category: "Events", title: "Foundation Day Celebration", image: "🎉", desc: "Annual foundation celebration" },
-  { id: 11, category: "Initiatives", title: "Industry Collaboration", image: "🤝", desc: "Partnership with leading companies" },
-  { id: 12, category: "Workshops", title: "Leadership Workshop", image: "👨‍💼", desc: "Developing future leaders" }
+  // { id: 5, category: "Events", title: "Alumni Networking Meet", image: "👥", desc: "Annual alumni gathering" },
+  // { id: 6, category: "Initiatives", title: "Capacity Building Session", image: "💼", desc: "Industry experts training students" },
+  // { id: 7, category: "Workshops", title: "Seminar on Innovation", image: "🚀", desc: "Promoting innovation and R&D" },
+  // { id: 8, category: "Museum", title: "Interactive Learning Zone", image: "⚡", desc: "Students exploring technology" },
+  // { id: 9, category: "Scholarships", title: "Merit Award Ceremony", image: "🏆", desc: "Honoring academic excellence" },
+  // { id: 10, category: "Events", title: "Foundation Day Celebration", image: "🎉", desc: "Annual foundation celebration" },
+  // { id: 11, category: "Initiatives", title: "Industry Collaboration", image: "🤝", desc: "Partnership with leading companies" },
+  // { id: 12, category: "Workshops", title: "Leadership Workshop", image: "👨‍💼", desc: "Developing future leaders" }
 ];
 
 const GalleryPage = () => {
