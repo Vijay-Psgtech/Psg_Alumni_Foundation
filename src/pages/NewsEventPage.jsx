@@ -356,9 +356,9 @@ const NewsEventPage = () => {
                   </div>
                   <h3 className="news-card-title">{item.title}</h3>
                   <p className="news-card-copy">{item.description}</p>
-                  <div className="news-card-footer">
+                  {/* <div className="news-card-footer">
                     <span className="news-card-cta">Read more</span>
-                  </div>
+                  </div> */}
                 </article>
               );
             })}
