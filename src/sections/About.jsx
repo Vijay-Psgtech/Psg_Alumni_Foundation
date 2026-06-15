@@ -498,7 +498,7 @@ export default function AboutPage() {
               viewport={{ once: true }}
             >
               <h1 className="ap-h1">
-                About <em>PSG TECH Foundation</em>
+                About <em>PSG TECH Alumni Foundation</em>
               </h1>
 
               <p
