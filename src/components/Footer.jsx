@@ -44,7 +44,7 @@ const Footer = () => {
             <Link to="/about" className="footer-link">About Us</Link>
             <Link to="/objectives" className="footer-link">Objectives</Link>
             <Link to="/events" className="footer-link">Events</Link>
-            <Link to="/donate" className="footer-link">Donate</Link>
+            <a href="https://forms.easebuzz.in/register/PSG32qDZ/PSGTechAlumniFoundation" target="_blank" rel="noopener noreferrer" className="footer-link">Donate</a>
           </div>
 
           {/* Contact */}
