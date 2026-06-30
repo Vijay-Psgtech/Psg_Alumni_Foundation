@@ -183,26 +183,28 @@ export default function EngageAsDonor() {
             </div>
 
             {/* CTA */}
-            <button
-              onMouseEnter={() => setBtnHov(true)}
-              onMouseLeave={() => setBtnHov(false)}
-              style={{
-                background: btnHov ? C.gold : "transparent",
-                color: btnHov ? C.dark : C.gold,
-                border: `1.5px solid ${C.gold}`,
-                borderRadius: 9,
-                padding: "14px 36px",
-                fontSize: "clamp(0.8rem, 1.5vw, 0.95rem)",
-                letterSpacing: "0.16em",
-                textTransform: "uppercase",
-                fontFamily: "'Lato', sans-serif",
-                fontWeight: 700,
-                cursor: "pointer",
-                transition: "all 0.25s ease",
-              }}
-            >
-              {btnHov ? "→ Donate Today" : "Make a Contribution"}
-            </button>
+            <a href="https://forms.easebuzz.in/register/PSG32qDZ/PSGTechAlumniFoundation" target="_blank" rel="noopener noreferrer" style={{ textDecoration: "none" }}>
+              <button
+                onMouseEnter={() => setBtnHov(true)}
+                onMouseLeave={() => setBtnHov(false)}
+                style={{
+                  background: btnHov ? C.gold : "transparent",
+                  color: btnHov ? C.dark : C.gold,
+                  border: `1.5px solid ${C.gold}`,
+                  borderRadius: 9,
+                  padding: "14px 36px",
+                  fontSize: "clamp(0.8rem, 1.5vw, 0.95rem)",
+                  letterSpacing: "0.16em",
+                  textTransform: "uppercase",
+                  fontFamily: "'Lato', sans-serif",
+                  fontWeight: 700,
+                  cursor: "pointer",
+                  transition: "all 0.25s ease",
+                }}
+              >
+                {btnHov ? "→ Donate Today" : "Make a Contribution"}
+              </button>
+            </a>
           </div>
 
           {/* RIGHT */}

@@ -66,7 +66,7 @@ export default function NavBar() {
 
     { label: "Announcements", path: "/announcements" },
     { label: "Gallery", path: "/gallery" },
-    { label: "Donate", path: "/donate" },
+    { label: "Donate", path: "https://forms.easebuzz.in/register/PSG32qDZ/PSGTechAlumniFoundation" },
     { label: "Contact", path: "/contact" },
   ];
 
@@ -461,15 +461,27 @@ export default function NavBar() {
                   </div>
                 </div>
               ) : (
-                <NavLink
-                  key={item.path}
-                  to={item.path}
-                  className={({ isActive }) =>
-                    `nav-link${isActive ? " active" : ""}`
-                  }
-                >
-                  {item.label}
-                </NavLink>
+                item.label === 'Donate' ? (
+                  <a
+                    key={item.path}
+                    href={item.path}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="nav-link"
+                  >
+                    {item.label}
+                  </a>
+                ) : (
+                  <NavLink
+                    key={item.path}
+                    to={item.path}
+                    className={({ isActive }) =>
+                      `nav-link${isActive ? " active" : ""}`
+                    }
+                  >
+                    {item.label}
+                  </NavLink>
+                )
               ),
             )}
           </div>
@@ -521,16 +533,29 @@ export default function NavBar() {
                   </div>
                 </div>
               ) : (
-                <NavLink
-                  key={item.path}
-                  to={item.path}
-                  onClick={closeAll}
-                  className={({ isActive }) =>
-                    `m-link${isActive ? " m-active" : ""}`
-                  }
-                >
-                  {item.label}
-                </NavLink>
+                item.path && item.path.startsWith("http") ? (
+                  <a
+                    key={item.path}
+                    href={item.path}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={closeAll}
+                    className="m-link"
+                  >
+                    {item.label}
+                  </a>
+                ) : (
+                  <NavLink
+                    key={item.path}
+                    to={item.path}
+                    onClick={closeAll}
+                    className={({ isActive }) =>
+                      `m-link${isActive ? " m-active" : ""}`
+                    }
+                  >
+                    {item.label}
+                  </NavLink>
+                )
               ),
             )}
           </div>
